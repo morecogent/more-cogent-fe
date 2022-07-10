@@ -1,6 +1,5 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import AppStore from './App.store.js'
 import {
     BrowserRouter as Router,
     Routes,
@@ -11,6 +10,7 @@ import { createGlobalStyle } from 'styled-components'
 import { Navigation } from './App.styles'
 import HomePage from './pages/HomePage/HomePage'
 import OtherPage from './pages/OtherPage/OtherPage'
+import './stubs'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -26,8 +26,10 @@ const GlobalStyle = createGlobalStyle`
 
 @observer
 export default class App extends React.Component {
-    onClick() {
-        AppStore.number++
+    componentDidMount() {
+        // Stubs
+
+
     }
 
     render() {
@@ -37,11 +39,12 @@ export default class App extends React.Component {
                     <GlobalStyle/>
                     <Navigation position="static">
                         <NavLink to="/" className={({ isActive }) => isActive ? " selected" : ""}>Home</NavLink>
-                        <NavLink to="/other-page" className={({ isActive }) => isActive ? " selected" : ""}>Lessons</NavLink>
+                        <NavLink to="/other-page" className={({ isActive }) => isActive ? " selected" : ""}>Concepts</NavLink>
                     </Navigation>
                     <Routes>
                         <Route path="/" element={<HomePage />}/>
                         <Route path="/other-page" element={<OtherPage />} />
+                        <Route path="/debate/:id" element={<OtherPage />} />
                     </Routes>
                 </Router>
             </div>

@@ -1,16 +1,25 @@
 import { makeObservable, observable } from 'mobx'
+import debates from '../../stores/Debates.store'
+import DebateModel from '../../models/Debate.model'
 
 class HomePageCtrl {
-  number = 1
+  debates = debates.items
+  newDebate = new DebateModel({})
 
   constructor() {
     makeObservable(this, {
-      number: observable
+      debates: observable,
+      newDebate: observable
     })
   }
 
-  increment = () => {
-    this.number++
+  changeName = (value) => {
+    this.newDebate.name = value
+  }
+
+  addDebate = () => {
+    debates.add(this.newDebate)
+    this.newDebate = new DebateModel({})
   }
 }
 
