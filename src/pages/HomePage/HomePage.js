@@ -11,7 +11,7 @@ export default observer(() => {
 
     return (
             <Wrapper>
-                <h3>Debates</h3>
+                <h3>Claims</h3>
                 <Gallery items={ctrl.debates} Component={DebateGallery} onClick={id => navigate(`/debate/${id}`)} />
                 <div style={{ marginTop: 30 }}>
                     <input type="text" value={ctrl.newDebate.name} onChange={e => ctrl.changeName(e.target.value)}/>

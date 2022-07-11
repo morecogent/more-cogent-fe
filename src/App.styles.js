@@ -1,7 +1,10 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-  margin: 20px;
+  margin: 20px auto;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
 `
 
 export const Navigation = styled.div`
@@ -16,15 +19,15 @@ export const Navigation = styled.div`
   font-weight: 800;
   line-height: 1.57;
   letter-spacing: 0.1em;
-  
+
   a {
     text-decoration: none;
     color: white;
     font-size: 1.2rem;
     margin: 0 20px;
-    
+
     &.selected {
       text-decoration: underline;
     }
   }
- `
+`
