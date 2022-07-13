@@ -12,14 +12,6 @@ const Paragraph = observer(({ items }) => {
         <div>
             {
                 items.map(({ type, content }, index) => {
-                    // return <TextInput key={index} block contentEditable
-                    //                   onBlur={e => ctrl.updateText(e, index)}>{content}</TextInput>
-
-                    // return <textarea rows="10"
-                    //                  value={content}
-                    //                  onChange={e => ctrl.updateText(e, index)}
-                    //                  placeholder={'Type something here...'} />
-
                     switch (type) {
                         case 'span':
                             return <TextInput key={index}

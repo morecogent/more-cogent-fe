@@ -2,7 +2,7 @@ import React from 'react'
 import Tag from '../../Tag'
 import { Concepts, Wrapper } from './index.styles'
 
-const debateGallery = ({id, name, concepts, onClick}) => (
+const claimGallery = ({id, name, concepts, onClick}) => (
     <Wrapper onClick={() => onClick(id)}>
         {name}
         <Concepts>
@@ -15,4 +15,4 @@ const debateGallery = ({id, name, concepts, onClick}) => (
     </Wrapper>
 )
 
-export default debateGallery
+export default claimGallery

@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import ctrl from './HomePage.ctrl'
-import DebateGallery from '../../components/Debate/gallery'
+import DebateGallery from '../../components/Claim/gallery'
 import Gallery from '../../components/Gallery'
 import {Wrapper} from '../../App.styles'
 import { useNavigate } from 'react-router-dom'
@@ -12,7 +12,7 @@ export default observer(() => {
     return (
             <Wrapper>
                 <h3>Claims</h3>
-                <Gallery items={ctrl.debates} Component={DebateGallery} onClick={id => navigate(`/debate/${id}`)} />
+                <Gallery items={ctrl.debates} Component={DebateGallery} onClick={id => navigate(`/claim/${id}`)} />
                 <div style={{ marginTop: 30 }}>
                     <input type="text" value={ctrl.newDebate.name} onChange={e => ctrl.changeName(e.target.value)}/>
                     <button onClick={ctrl.addDebate}>Add debate</button>

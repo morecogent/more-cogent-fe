@@ -12,6 +12,7 @@ import HomePage from './pages/HomePage/HomePage'
 import NarrationsPage from './pages/NarrationsPage/NarrationsPage'
 import NarrationPage from './pages/NarrationPage/NarrationPage'
 import OtherPage from './pages/OtherPage/OtherPage'
+import ClaimPage from './pages/ClaimPage/ClaimPage'
 import './stubs'
 
 const GlobalStyle = createGlobalStyle`
@@ -48,7 +49,7 @@ export default class App extends React.Component {
                         <Route path="/" element={<NarrationsPage />}/>
                         <Route path="/claims" element={<HomePage />}/>
                         <Route path="/other-page" element={<OtherPage />} />
-                        <Route path="/debate/:id" element={<OtherPage />} />
+                        <Route path="/claim/:id" element={<ClaimPage />} />
                         <Route path="/narration/:id" element={<NarrationPage />} />
                     </Routes>
                 </Router>
