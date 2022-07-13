@@ -1,4 +1,4 @@
-import { computed, makeObservable, observable } from 'mobx'
+import { action, computed, makeObservable, observable } from 'mobx'
 import narrations from '../../stores/Narrations.store'
 import NarrationModel from '../../models/Narration.model'
 
@@ -6,12 +6,13 @@ export default class NarrationPageCtrl {
 
   constructor(id) {
     this.id = id
-    this.newNarration = new NarrationModel({parentNarrationId: id})
+    this.resetNewNarration()
 
     makeObservable(this, {
       narration: computed,
       narrationResponses: computed,
-      newNarration: observable
+      newNarration: observable,
+      addNarration: action
     })
   }
 
@@ -30,12 +31,12 @@ export default class NarrationPageCtrl {
 
   }
 
-  changeName = (value) => {
-    this.newNarration.text = value
+  resetNewNarration(){
+    this.newNarration = new NarrationModel({parentNarrationId: this.id})
   }
 
   addNarration = () => {
     narrations.add(this.newNarration)
-    this.newNarration = new NarrationModel({parentNarrationId: this.id})
+    this.resetNewNarration()
   }
 }

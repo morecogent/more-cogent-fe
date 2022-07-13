@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import { Item } from './NarrationPage.styles'
 import Button from '../../components/Button'
 import RichText from '../../components/RichText'
+import TextArea from '../../components/TextArea'
 
 export default observer(() => {
         const { id } = useParams()
@@ -14,19 +15,20 @@ export default observer(() => {
         return (
             <Wrapper>
                 <div>
-                    <RichText text={ctrl.narration.text}/>
+                    <RichText items={ctrl.narration.text}/>
                 </div>
 
                 {
-                    ctrl.narrationResponses.map(narration => (
-                        <Item>
-                            <RichText text={narration.text}/>
+                    ctrl.narrationResponses.map((narration, index) => (
+                        <Item key={index}>
+                            <RichText items={narration.text}/>
                         </Item>
                     ))
                 }
-                <textarea rows={10}
-                          value={ctrl.newNarration.text}
-                          onChange={e => ctrl.changeName(e.target.value)}/>
+                <TextArea items={ctrl.narrationResponses[0].text} />
+
+                <TextArea items={ctrl.newNarration.text} />
+
                 <Button name="Reply" color="#7749F8" onClick={ctrl.addNarration}/>
                 {/*<Gallery items={ctrl.narrations} Component={NarrationGallery} onClick={id => navigate(`/narration/${id}`)} />*/}
                 {/*<NewItem>*/}

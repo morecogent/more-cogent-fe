@@ -5,7 +5,7 @@ import { Concepts, Wrapper } from './index.styles'
 
 const narrationGallery = ({id, text, concepts, onClick}) => (
     <Wrapper onClick={() => onClick(id)}>
-        <RichText text={text} />
+        <RichText items={text} />
         <Concepts>
             {
                 concepts.map(concept => (

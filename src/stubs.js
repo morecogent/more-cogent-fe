@@ -76,7 +76,7 @@ narrationsStore.add({
     id: '1',
     text: [
         {
-            type: 'text',
+            type: 'paragraph',
             content: 'Hi. I’m 23, she is 21. I’m with her for over 3 years. ' +
                 'On the beginning everything was fine, frequency of sex was adjusted to my' +
                 ' needs and desire. After some time, we had sex only once a month. ' +
@@ -98,33 +98,38 @@ narrationsStore.add({
     parentNarrationId: '1',
     text: [
         {
-            type: 'text',
-            content: 'She mentioned that she doesn’t have pleasure from it. ' +
-                'It seems like you treat sex as something for your own pleasure, ' +
-                'whereas '
-        },
-        {
-            type: 'claim',
-            content: '1'
-        }, {
-            type: 'text',
-            content: '. Do you watch porn? Because '
-        },
-        {
-            type: 'claim',
-            content: '2'
-        },
-        {
-            type: 'text',
-            content: ' and '
-        },
-        {
-            type: 'claim',
-            content: '3'
-        },
-        {
-            type: 'text',
-            content: '.'
+            type: 'paragraph',
+            children: [
+                {
+                    type: 'span',
+                    content: 'She mentioned that she doesn’t have pleasure from it. ' +
+                        'It seems like you treat sex as something for your own pleasure, ' +
+                        'whereas '
+                },
+                {
+                    type: 'claim',
+                    content: '1'
+                }, {
+                    type: 'span',
+                    content: '. Do you watch porn? Because '
+                },
+                {
+                    type: 'claim',
+                    content: '2'
+                },
+                {
+                    type: 'span',
+                    content: ' and '
+                },
+                {
+                    type: 'claim',
+                    content: '3'
+                },
+                {
+                    type: 'span',
+                    content: '.'
+                }
+            ]
         }
     ]
 })
