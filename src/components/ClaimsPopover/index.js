@@ -3,7 +3,7 @@ import { Item, Wrapper } from './index.styles'
 import Ctrl from './ctrl'
 import { observer } from 'mobx-react'
 
-const ClaimsPopover = ({filter}) => {
+const ClaimsPopover = ({filter, onSelect}) => {
     const ctrl = new Ctrl(filter)
 
     return (
@@ -11,7 +11,7 @@ const ClaimsPopover = ({filter}) => {
             {/*<input type="text" value={search} onChange={(e) => ctrl.setFilter(e.target.value)}/>*/}
             {
                 ctrl.items.map(item => (
-                    <Item>
+                    <Item onClick={() => onSelect(item.id)}>
                         {item.name}
                     </Item>
                 ))

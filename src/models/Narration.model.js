@@ -2,22 +2,37 @@ import { action, makeObservable, observable } from 'mobx'
 import ConceptModel from './Concept.model'
 import { v4 } from 'uuid'
 
-class NarrationTextModel {
+export class NarrationElementModel {
 
-  constructor({type, content, children = []}) {
-    this.type = type || 'paragraph'
+  constructor({type, content}) {
+    this.type = type || 'span'
     this.content = content || ''
-    this.children = children.map(el => new NarrationTextModel(el))
 
     makeObservable(this, {
       content: observable,
-      children: observable,
       setContent: action
     })
   }
 
   setContent(value){
     this.content = value
+  }
+}
+
+class NarrationParagraphModel {
+
+  constructor({children = []}) {
+    this.type = 'paragraph'
+
+    if(!children.length) {
+      this.children = [new NarrationElementModel({})]
+    } else {
+      this.children = children.map(el => new NarrationElementModel(el))
+    }
+
+    makeObservable(this, {
+      children: observable
+    })
   }
 }
 
@@ -31,9 +46,9 @@ export default class NarrationModel {
     this.parentNarrationId = parentNarrationId
 
     if(!text.length) {
-      this.text = [new NarrationTextModel({})]
+      this.text = [new NarrationParagraphModel({})]
     } else {
-      this.text = text.map(el => new NarrationTextModel(el))
+      this.text = text.map(el => new NarrationParagraphModel(el))
     }
 
     this.concepts = concepts.map(c => new ConceptModel(c))

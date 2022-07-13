@@ -5,17 +5,13 @@ import ClaimTag from '../ClaimTag'
 import { observer } from 'mobx-react'
 import ClaimsPopover from '../ClaimsPopover'
 
-
-
-const TextArea = observer(({ items }) => {
+const Paragraph = observer(({ items }) => {
     const [ctrl] = useState(new Ctrl())
 
     return (
         <div>
             {
-                items.map(({ type, content, children }, index) => {
-                    if (children.length) return <TextArea key={index} items={children}/>
-
+                items.map(({ type, content }, index) => {
                     // return <TextInput key={index} block contentEditable
                     //                   onBlur={e => ctrl.updateText(e, index)}>{content}</TextInput>
 
@@ -25,14 +21,9 @@ const TextArea = observer(({ items }) => {
                     //                  placeholder={'Type something here...'} />
 
                     switch (type) {
-                        case 'paragraph':
-                            return <TextInput key={index}
-                                              onKeyUp={e => ctrl.onKeyPress(e)}
-                                              block contentEditable placeholder={'Type something here...'}
-                                              onBlur={e => ctrl.updateText(e, items[index])}>{content}</TextInput>
                         case 'span':
                             return <TextInput key={index}
-                                              onKeyUp={e => ctrl.onKeyPress(e)}
+                                              onKeyUp={e => ctrl.onKeyPress(e, index)}
                                               contentEditable placeholder={'Type something here...'}
                                               onBlur={e => ctrl.updateText(e, items[index])}>{content}</TextInput>
                         case 'claim':
@@ -41,7 +32,19 @@ const TextArea = observer(({ items }) => {
                 })
             }
             {
-                ctrl.popover && <ClaimsPopover filter={ctrl.searchText}/>
+                ctrl.popover && <ClaimsPopover filter={ctrl.searchText} onSelect={claimId => ctrl.replaceSlash(claimId, items)}/>
+            }
+        </div>
+    )
+})
+
+const TextArea = observer(({ items }) => {
+    return (
+        <div>
+            {
+                items.map(({ children }, index) => (
+                    <Paragraph key={index} items={children}/>
+                ))
             }
         </div>
     )
