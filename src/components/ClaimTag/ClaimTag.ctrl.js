@@ -1,5 +1,5 @@
 import { computed, makeObservable } from 'mobx'
-import claims from '../../stores/Debates.store'
+import claims from '../../stores/Claims.store'
 
 export default class ClaimTagCtrl {
 

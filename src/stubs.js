@@ -1,5 +1,5 @@
 import conceptsStore from './stores/Concepts.store'
-import debatesStore from './stores/Debates.store'
+import debatesStore from './stores/Claims.store'
 import narrationsStore from './stores/Narrations.store'
 
 const c1 = conceptsStore.add({ name: 'capitalism' })

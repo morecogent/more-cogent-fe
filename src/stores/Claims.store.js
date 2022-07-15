@@ -1,7 +1,7 @@
 import { makeObservable, observable } from 'mobx'
-import DebateModel from '../models/Debate.model'
+import ClaimModel from '../models/Claim.model'
 
-class DebatesStore {
+class ClaimsStore {
   items = []
 
   constructor() {
@@ -11,8 +11,8 @@ class DebatesStore {
   }
 
   add(debate){
-    this.items.push(new DebateModel(debate))
+    this.items.push(new ClaimModel(debate))
   }
 }
 
-export default new DebatesStore()
+export default new ClaimsStore()

@@ -1,5 +1,5 @@
 import { computed, makeObservable, observable } from 'mobx'
-import claims from '../../stores/Debates.store'
+import claims from '../../stores/Claims.store'
 
 export default class ClaimsPopoverCtrl {
     filter = ''

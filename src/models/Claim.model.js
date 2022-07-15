@@ -5,7 +5,7 @@ import ConceptModel from './Concept.model'
 import DebateArgumentModel from './DebateArgument.model'
 import { v4 } from 'uuid'
 
-export default class DebateModel {
+export default class ClaimModel {
 
   constructor({id, name, debateArguments = [], concepts = [], notGoals = [], relatedDebates = [], percentage}) {
     this.id = id || v4()

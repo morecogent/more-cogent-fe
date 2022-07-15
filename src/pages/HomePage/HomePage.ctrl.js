@@ -1,25 +1,25 @@
 import { makeObservable, observable } from 'mobx'
-import debates from '../../stores/Debates.store'
-import DebateModel from '../../models/Debate.model'
+import claims from '../../stores/Claims.store'
+import ClaimModel from '../../models/Claim.model'
 
 class HomePageCtrl {
-  debates = debates.items
-  newDebate = new DebateModel({})
+  claims = claims.items
+  newClaim = new ClaimModel({})
 
   constructor() {
     makeObservable(this, {
-      debates: observable,
-      newDebate: observable
+      claims: observable,
+      newClaim: observable
     })
   }
 
   changeName = (value) => {
-    this.newDebate.name = value
+    this.newClaim.name = value
   }
 
   addDebate = () => {
-    debates.add(this.newDebate)
-    this.newDebate = new DebateModel({})
+    claims.add(this.newClaim)
+    this.newClaim = new ClaimModel({})
   }
 }
 

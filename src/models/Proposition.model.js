@@ -1,6 +1,6 @@
 import { makeObservable, observable } from 'mobx'
 import {v4} from 'uuid'
-import DebateModel from './Debate.model'
+import DebateModel from './Claim.model'
 
 export default class PropositionModel {
 
