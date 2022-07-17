@@ -2,7 +2,7 @@ import React from 'react'
 import {observer} from 'mobx-react'
 import { Wrapper } from './index.styles'
 
-const Gallery = ({items, Component, onClick}) => (
+const List = ({items, Component, onClick}) => (
     <Wrapper>
         {
             items.map(item => (
@@ -12,4 +12,4 @@ const Gallery = ({items, Component, onClick}) => (
     </Wrapper>
 )
 
-export default observer(Gallery)
+export default observer(List)

@@ -4,25 +4,35 @@ import ClaimModel from '../../models/Claim.model'
 
 export default class ClaimPageCtrl {
 
-  constructor(id) {
-    this.id = id
+    linking = false
 
-    makeObservable(this, {
-      claim: computed
-    })
-  }
+    constructor(id) {
+        this.id = id
 
-  get claim(){
-    if(this.id){
-      return claims.items.find(item => item.id === this.id)
-    } else {
-      return new ClaimModel({})
+        makeObservable(this, {
+            linking: observable,
+            claim: computed,
+            linkAsArgument: action
+        })
     }
-  }
 
+    get claim() {
+        if (this.id) {
+            return claims.items.find(item => item.id === this.id)
+        } else {
+            return new ClaimModel({})
+        }
+    }
 
-  // addNarration = () => {
-  //   narrations.add(this.newNarration)
-  //   this.resetNewNarration()
-  // }
+    getClaimById(id) {
+        return claims.items.find(item => item.id === id)
+    }
+
+    linkAsArgument() {
+        this.linking = true
+    }
+    // addNarration = () => {
+    //   narrations.add(this.newNarration)
+    //   this.resetNewNarration()
+    // }
 }

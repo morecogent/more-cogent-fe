@@ -72,6 +72,37 @@ debatesStore.add({
     percentage: 62
 })
 
+debatesStore.add({
+    id: '4',
+    name: 'Banking model of education treats students like deposits for knowledge',
+    concepts: [],
+    percentage: 0
+})
+
+debatesStore.add({
+    id: '5',
+    name: 'Banking model of education can treat students as humans',
+    concepts: [],
+    percentage: 0
+})
+
+debatesStore.add({
+    id: '6',
+    name: 'Banking model of education leads to oppression',
+    concepts: [],
+    claimArguments: [
+        {
+            claims: ['4'],
+            impact: 'POSITIVE'
+        },
+        {
+            claims: ['5'],
+            impact: 'NEGATIVE'
+        }
+    ],
+    percentage: 0
+})
+
 narrationsStore.add({
     id: '1',
     text: [

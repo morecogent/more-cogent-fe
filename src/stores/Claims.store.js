@@ -10,8 +10,8 @@ class ClaimsStore {
     })
   }
 
-  add(debate){
-    this.items.push(new ClaimModel(debate))
+  add(item){
+    this.items.push(new ClaimModel(item))
   }
 }
 

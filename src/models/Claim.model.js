@@ -1,16 +1,22 @@
-import { makeObservable, observable } from 'mobx'
+import { computed, makeObservable, observable } from 'mobx'
 import NotGoalModel from './NotGoal.model'
 import RelatedDebateModel from './RelatedDebate.model'
 import ConceptModel from './Concept.model'
-import DebateArgumentModel from './DebateArgument.model'
+import ClaimArgumentModel from './ClaimArgumentModel'
 import { v4 } from 'uuid'
 
 export default class ClaimModel {
 
-  constructor({id, name, debateArguments = [], concepts = [], notGoals = [], relatedDebates = [], percentage}) {
+  constructor({id, name, claimArguments = [], concepts = [], notGoals = [], relatedDebates = [], percentage}) {
     this.id = id || v4()
     this.name = name || ''
-    this.debateArguments = debateArguments.map(da => new DebateArgumentModel(da))
+    this.supportingArguments = claimArguments
+        .filter(item => item.impact === 'POSITIVE')
+        .map(item => new ClaimArgumentModel(item))
+    this.opposingArguments = claimArguments
+        .filter(item => item.impact === 'NEGATIVE')
+        .map(item => new ClaimArgumentModel(item))
+    // this.claimArguments = claimArguments.map(da => new ClaimArgumentModel(da))
     this.concepts = concepts.map(c => new ConceptModel(c))
     this.notGoals = notGoals.map(ng => new NotGoalModel(ng))
     this.relatedDebates = relatedDebates.map(rd => new RelatedDebateModel(rd))
@@ -20,10 +26,24 @@ export default class ClaimModel {
 
     makeObservable(this, {
       name: observable,
-      debateArguments: observable,
+      supportingArguments: observable,
+      opposingArguments: observable,
       concepts: observable,
       notGoals: observable,
-      relatedDebates: observable
+      relatedDebates: observable,
+      linkedClaimIDs: computed
     })
   }
+
+  get linkedClaimIDs(){
+    let list = []
+    for(let i = 0; i<this.supportingArguments.length; i++){
+      list.push(this.supportingArguments[i].claims)
+    }
+    for(let i = 0; i<this.opposingArguments.length; i++){
+      list.push(this.opposingArguments[i].claims)
+    }
+    return list.flatMap(f=>f)
+  }
+
 }
