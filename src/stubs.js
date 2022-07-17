@@ -92,11 +92,11 @@ debatesStore.add({
     concepts: [],
     claimArguments: [
         {
-            claims: ['4'],
+            claimsID: ['4'],
             impact: 'POSITIVE'
         },
         {
-            claims: ['5'],
+            claimsID: ['5'],
             impact: 'NEGATIVE'
         }
     ],

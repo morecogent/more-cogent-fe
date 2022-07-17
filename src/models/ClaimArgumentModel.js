@@ -5,18 +5,18 @@ export default class ClaimArgumentModel {
 
   static TYPES = ['INDIVIDUAL', 'RESEARCH', 'PUBLIC_REFERENCE']
 
-  constructor({id, text, type, author, source, claims}) {
+  constructor({id, text, type, author, source, claimsID}) {
     this.id = id || v4()
     // this.text = text
     // this.type = type
-    this.claims = claims
+    this.claimsID = claimsID
 
     // this.author = author
     // this.source = source
 
 
     makeObservable(this, {
-      claims: observable,
+      claimsID: observable,
       // type: observable,
       // author: observable,
       // source: observable
