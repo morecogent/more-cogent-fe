@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-  padding: 5px 15px;
+  padding: 2px 10px;
   color: white;
   background-color: ${({color}) => color};
-  border-radius: 10px;
+  border-radius: 15px;
   margin-bottom: 8px;
 `

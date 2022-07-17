@@ -1,17 +1,26 @@
 import React from 'react'
 import Tag from '../../Tag'
-import { Concepts, Wrapper } from './index.styles'
+import { Arguments, ArgumentsCount, Concepts, CounterArguments, Percentage, Strong, Wrapper } from './index.styles'
 
-const claimGallery = ({id, name, concepts, onClick}) => (
+const claimGallery = ({id, name, concepts, percentage, supportingArguments, opposingArguments, onClick}) => (
     <Wrapper onClick={() => onClick(id)}>
-        {name}
-        <Concepts>
-            {
-                concepts.map(concept => (
-                    <Tag name={concept.name} color={concept.color} />
-                ))
-            }
-        </Concepts>
+        <Percentage>
+            {percentage}%
+        </Percentage>
+        <div>
+            <p>{name}</p>
+            <ArgumentsCount>
+                <Arguments><Strong>{supportingArguments.length}</Strong> arguments</Arguments>
+                <CounterArguments><Strong>{opposingArguments.length}</Strong> counter-arguments</CounterArguments>
+            </ArgumentsCount>
+            <Concepts>
+                {
+                    concepts.map(concept => (
+                        <Tag name={concept.name} color={concept.color} />
+                    ))
+                }
+            </Concepts>
+        </div>
     </Wrapper>
 )
 
