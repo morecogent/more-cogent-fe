@@ -26,7 +26,7 @@ const AddClaim = ({ onFinish, linkingTo, linkingAs, isCounter }) => {
 AddClaim.propTypes = {
     onFinish: PropTypes.func,
     linkingTo: PropTypes.string,
-    linkingAs: PropTypes.oneOf(['PARENT', 'CHILD']),
+    linkingAs: PropTypes.oneOf(['CONCLUSION', 'PREMISE']),
     isCounter: PropTypes.bool
 }
 

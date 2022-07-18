@@ -25,7 +25,7 @@ export default class Ctrl {
     addClaim = (onFinish) => {
         claims.add(this.newClaim)
 
-        if(this.linkingAs === 'CHILD'){
+        if(this.linkingAs === 'PREMISE'){
             const newArgument = new ClaimArgumentModel({claimsID: [this.newClaim.id]})
             const parentClaim = claims.items.find(item => item.id === this.linkingTo)
             if(this.isCounter){

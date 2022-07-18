@@ -26,7 +26,7 @@ const LinkClaim = ({linkingTo, linkingAs}) => {
 
 LinkClaim.propTypes = {
     linkingTo: PropTypes.string,
-    linkingAs: PropTypes.oneOf(['PARENT', 'CHILD'])
+    linkingAs: PropTypes.oneOf(['CONCLUSION', 'PREMISE'])
 }
 
 export default observer(LinkClaim)

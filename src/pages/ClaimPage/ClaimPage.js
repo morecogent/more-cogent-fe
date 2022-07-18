@@ -19,9 +19,9 @@ export default observer(() => {
                 </div>
                 {
                     ctrl.linking ?
-                        <LinkClaim linkingTo={id} linkingAs="PARENT"/> :
+                        <LinkClaim linkingTo={id} linkingAs="CONCLUSION"/> :
                         <div>
-                            <Button onClick={() => ctrl.linkAsArgument()}>Extrapolate</Button>
+                            <Button onClick={() => ctrl.linkAsArgument()}>Link as a premise</Button>
                         </div>
                 }
                 <ArgumentContainers>

@@ -31,7 +31,7 @@ const Arguments = ({items, isCounter, parentID}) => {
 
             {
                 ctrl.isAdding ?
-                    <AddClaim linkingAs='CHILD'
+                    <AddClaim linkingAs='PREMISE'
                               linkingTo={parentID}
                               isCounter={isCounter}
                               onFinish={() => ctrl.toggleIsAdding()}/> :
