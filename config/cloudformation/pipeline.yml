@@ -120,7 +120,7 @@ Resources:
               InputArtifacts:
                 - Name: 'dist'
               Configuration:
-                BucketName: 'meals-manager'
+                BucketName: 'more-cogent'
                 Extract: 'true'
 
   Webhook:
