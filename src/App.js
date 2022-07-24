@@ -13,6 +13,7 @@ import QuestionsPage from './pages/QuestionsPage/QuestionsPage'
 import NarrationPage from './pages/NarrationPage/NarrationPage'
 import OtherPage from './pages/OtherPage/OtherPage'
 import ClaimPage from './pages/ClaimPage/ClaimPage'
+import AddQuestionPage from './pages/AddQuestionPage/AddQuestionPage'
 import './stubs'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -50,6 +51,7 @@ export default class App extends React.Component {
                         <Route path="/" element={<QuestionsPage />}/>
                         <Route path="/claims" element={<HomePage />}/>
                         <Route path="/other-page" element={<OtherPage />} />
+                        <Route path="/add-your-question" element={<AddQuestionPage />} />
                         <Route path="/claim/:id" element={<ClaimPage />} />
                         <Route path="/narration/:id" element={<NarrationPage />} />
                     </Routes>

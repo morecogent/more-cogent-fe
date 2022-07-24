@@ -12,6 +12,10 @@ export const Wrapper = styled.div`
 export const TextInput = styled.div`
   display: ${({block}) => block ? 'block': 'inline'};
   padding: 6px;
+  
+  :focus-visible{
+    outline: none;
+  }
 `
 
 export const Popover = styled.div`

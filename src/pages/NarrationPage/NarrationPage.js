@@ -14,6 +14,8 @@ export default observer(() => {
 
         return (
             <Wrapper>
+                <h3>Question</h3>
+
                 <div>
                     <RichText items={ctrl.narration.text}/>
                 </div>
@@ -30,10 +32,6 @@ export default observer(() => {
                 <TextArea items={ctrl.newNarration.text} />
 
                 <Button name="Reply" color="#7749F8" onClick={ctrl.addNarration}/>
-                {/*<Gallery items={ctrl.narrations} Component={NarrationGallery} onClick={id => navigate(`/narration/${id}`)} />*/}
-                {/*<NewItem>*/}
-
-                {/*</NewItem>*/}
             </Wrapper>
         )
     }

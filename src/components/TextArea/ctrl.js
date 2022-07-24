@@ -6,6 +6,7 @@ export default class TextAreaCtrl {
     slashIndex = -1
     searchText = ''
     currentItemIndex = -1
+    shiftPressed = false
 
     constructor() {
         makeObservable(this, {
@@ -13,6 +14,7 @@ export default class TextAreaCtrl {
             slashIndex: observable,
             searchText: observable,
             currentItemIndex: observable,
+            shiftPressed: observable,
             updateText: action
         })
     }
@@ -24,19 +26,21 @@ export default class TextAreaCtrl {
         if(this.popover && e.keyCode >= 65 && e.keyCode <= 122){
             this.searchText += e.key
         }
-        switch(e.code){
-            case 'Backspace':
-                if(!this.searchText.length)
-                    return this.popover = false
-                this.searchText = this.searchText.slice(0, -1)
-                break
-            case 'Slash':
-                this.slashIndex = e.target.innerText.length
-                this.popover = true
-                break
-            case 'Escape':
-                this.popover = false
-                break
+        if(!e.shiftKey){
+            switch(e.code){
+                case 'Backspace':
+                    if(!this.searchText.length)
+                        return this.popover = false
+                    this.searchText = this.searchText.slice(0, -1)
+                    break
+                case 'Slash':
+                    this.slashIndex = e.target.innerText.length
+                    this.popover = true
+                    break
+                case 'Escape':
+                    this.popover = false
+                    break
+            }
         }
     }
 
