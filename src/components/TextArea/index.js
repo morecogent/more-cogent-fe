@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Popover, TextInput, Wrapper } from './index.styles'
+import { Container, Label, Popover, TextInput, Wrapper } from './index.styles'
 import Ctrl from './ctrl'
 import ClaimTag from '../ClaimTag'
 import { observer } from 'mobx-react'
@@ -24,7 +24,8 @@ const Paragraph = observer(({ items }) => {
                 })
             }
             {
-                ctrl.popover && <ClaimsPopover filter={ctrl.searchText} onSelect={claimId => ctrl.replaceSlash(claimId, items)}/>
+                ctrl.popover &&
+                <ClaimsPopover filter={ctrl.searchText} onSelect={claimId => ctrl.replaceSlash(claimId, items)}/>
             }
         </div>
     )
@@ -43,9 +44,12 @@ const TextArea = observer(({ items }) => {
 })
 
 const TextAreaContainer = ({ items }) => (
-    <Wrapper>
-        <TextArea items={items}/>
-    </Wrapper>
+    <Container>
+        <Wrapper>
+            <TextArea items={items}/>
+        </Wrapper>
+        <Label>Type your text below:</Label>
+    </Container>
 )
 
 export default TextAreaContainer

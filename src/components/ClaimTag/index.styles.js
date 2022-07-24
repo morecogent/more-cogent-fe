@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   border: 1px solid;
   margin: 8px 0;
   cursor: pointer;
+  background-color: white;
 `
 
 export const Percentage = styled.span`

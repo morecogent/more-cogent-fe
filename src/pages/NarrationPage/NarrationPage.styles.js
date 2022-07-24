@@ -15,8 +15,8 @@ export const NewItem = styled.div`
 `
 
 export const Item = styled.div`
-  margin: 20px 0 20px 20px;
+  margin: 10px 0 0px 10px;
   padding: 20px;
-  border: 1px solid;
   border-radius: 4px;
+  background-color: #F6F6F6;
 `
