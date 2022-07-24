@@ -1,19 +1,19 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import ctrl from './NarrationsPage.ctrl'
+import ctrl from './QuestionsPage.ctrl'
 import NarrationGallery from '../../components/Narration/gallery'
-import Gallery from '../../components/Gallery'
+import List from '../../components/List'
 import {Wrapper} from '../../App.styles'
 import { useNavigate } from 'react-router-dom'
-import {NewItem} from './NarrationsPage.styles'
+import {NewItem} from './QuestionsPage.styles'
 
 export default observer(() => {
     const navigate = useNavigate()
 
     return (
             <Wrapper>
-                <h3>Narrations</h3>
-                <Gallery items={ctrl.narrations} Component={NarrationGallery} onClick={id => navigate(`/narration/${id}`)} />
+                <h3>Questions</h3>
+                <List items={ctrl.narrations} Component={NarrationGallery} onClick={id => navigate(`/narration/${id}`)} />
                 <NewItem>
                     <textarea rows={10}
                               value={ctrl.newNarration.text}

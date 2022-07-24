@@ -16,7 +16,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Debates',
+            title: 'More Cogent',
             template: 'src/index.hbs'
         }),
         new webpack.DefinePlugin({

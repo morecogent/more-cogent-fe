@@ -103,6 +103,15 @@ debatesStore.add({
     percentage: 0
 })
 
+debatesStore.add({
+    id: '7',
+    name: 'Sex should give pleasure to both partners',
+    concepts: [],
+    claimArguments: [
+    ],
+    percentage: 83
+})
+
 narrationsStore.add({
     id: '1',
     text: [
@@ -123,6 +132,26 @@ narrationsStore.add({
                         'will change and even we sleep in a single bed nothing changes just excuses ' +
                         'that she doesn’t feel well. Sex was perfect in my previous relationship so ' +
                         'it’s not a problem with me.'
+                }]
+        }
+    ],
+    concepts: [c3, c4]
+})
+narrationsStore.add({
+    id: '3',
+    text: [
+        {
+            type: 'paragraph',
+            children: [
+                {
+                    type: 'span',
+                    content: 'I don\t feel pleasure from sex even though '
+                },{
+                    type: 'claim',
+                    content: '7'
+                },{
+                    type: 'span',
+                    content: ' what can I do about it?'
                 }]
         }
     ],

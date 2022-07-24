@@ -2,7 +2,7 @@ import { computed, makeObservable, observable } from 'mobx'
 import narrations from '../../stores/Narrations.store'
 import NarrationModel from '../../models/Narration.model'
 
-class NarrationsPageCtrl {
+class QuestionsPageCtrl {
   newNarration = new NarrationModel({})
 
   constructor() {
@@ -13,7 +13,8 @@ class NarrationsPageCtrl {
   }
 
   get narrations(){
-    return narrations.items.filter(item => !item.parentNarrationId)
+    return narrations.items
+        .filter(item => !item.parentNarrationId)
   }
 
   changeName = (value) => {
@@ -26,4 +27,4 @@ class NarrationsPageCtrl {
   }
 }
 
-export default new NarrationsPageCtrl()
+export default new QuestionsPageCtrl()

@@ -9,7 +9,7 @@ import {
 import { createGlobalStyle } from 'styled-components'
 import { Navigation } from './App.styles'
 import HomePage from './pages/HomePage/HomePage'
-import NarrationsPage from './pages/NarrationsPage/NarrationsPage'
+import QuestionsPage from './pages/QuestionsPage/QuestionsPage'
 import NarrationPage from './pages/NarrationPage/NarrationPage'
 import OtherPage from './pages/OtherPage/OtherPage'
 import ClaimPage from './pages/ClaimPage/ClaimPage'
@@ -42,12 +42,12 @@ export default class App extends React.Component {
                 <Router>
                     <GlobalStyle/>
                     <Navigation position="static">
-                        <NavLink to="/" className={({ isActive }) => isActive ? " selected" : ""}>Narrations</NavLink>
+                        <NavLink to="/" className={({ isActive }) => isActive ? " selected" : ""}>Questions</NavLink>
                         <NavLink to="/claims" className={({ isActive }) => isActive ? " selected" : ""}>Claims</NavLink>
                         <NavLink to="/other-page" className={({ isActive }) => isActive ? " selected" : ""}>Concepts</NavLink>
                     </Navigation>
                     <Routes>
-                        <Route path="/" element={<NarrationsPage />}/>
+                        <Route path="/" element={<QuestionsPage />}/>
                         <Route path="/claims" element={<HomePage />}/>
                         <Route path="/other-page" element={<OtherPage />} />
                         <Route path="/claim/:id" element={<ClaimPage />} />

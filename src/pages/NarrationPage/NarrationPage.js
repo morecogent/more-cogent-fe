@@ -25,7 +25,7 @@ export default observer(() => {
                         </Item>
                     ))
                 }
-                <TextArea items={ctrl.narrationResponses[0].text} />
+
 
                 <TextArea items={ctrl.newNarration.text} />
 

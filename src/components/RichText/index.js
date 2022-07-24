@@ -15,7 +15,7 @@ const Paragraph = observer(({ items }) => {
 
 const RichText = observer(({ items }) => {
     return items.map(({ children }, index) => {
-        return <Paragraph key={index} items={children} />
+        return <p><Paragraph key={index} items={children} /></p>
     })
 })
 
