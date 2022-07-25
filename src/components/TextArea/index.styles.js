@@ -22,13 +22,17 @@ export const Label = styled.span`
   font-size: 0.875rem;
 `
 
-export const TextInput = styled.div`
+export const TextSpan = styled.div`
   display: ${({block}) => block ? 'block': 'inline'};
-  padding: 6px;
+  padding: 6px 6px 6px 0;
   
   :focus-visible{
     outline: none;
   }
+`
+
+export const TextInput = styled.div`
+  padding: 6px;
 `
 
 export const Popover = styled.div`

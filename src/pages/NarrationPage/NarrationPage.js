@@ -29,6 +29,8 @@ export default observer(() => {
                 }
 
 
+                <br/><br/>
+                <h5>Reply</h5>
                 <TextArea items={ctrl.newNarration.text} />
 
                 <Button name="Reply" color="#7749F8" onClick={ctrl.addNarration}/>
