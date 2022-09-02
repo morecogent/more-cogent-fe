@@ -14,7 +14,7 @@ import NarrationPage from './pages/NarrationPage/NarrationPage'
 import OtherPage from './pages/OtherPage/OtherPage'
 import ClaimPage from './pages/ClaimPage/ClaimPage'
 import AddQuestionPage from './pages/AddQuestionPage/AddQuestionPage'
-import './stubs'
+import './stubs/stubs'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const GlobalStyle = createGlobalStyle`

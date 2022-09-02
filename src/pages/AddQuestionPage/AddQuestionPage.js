@@ -14,7 +14,7 @@ export default observer(() => {
             <Wrapper>
                 <h3>Your question</h3>
 
-                <TextArea items={ctrl.newNarration.text}/>
+                <TextArea narration={ctrl.newNarration} items={ctrl.newNarration.text}/>
 
                 <Button name="Ask your question" color="#7749F8" onClick={ctrl.addNarration}/>
             </Wrapper>

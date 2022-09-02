@@ -4,8 +4,9 @@ import Ctrl from './ctrl'
 import ClaimTag from '../ClaimTag'
 import { observer } from 'mobx-react'
 import ClaimsPopover from '../ClaimsPopover'
+import PropTypes from 'prop-types'
 
-const Paragraph = observer(({ items }) => {
+const Paragraph = observer(({ items, narration }) => {
     const [ctrl] = useState(new Ctrl())
 
     return (
@@ -15,7 +16,7 @@ const Paragraph = observer(({ items }) => {
                     switch (type) {
                         case 'span':
                             return <TextSpan key={index}
-                                              onKeyUp={e => ctrl.onKeyPress(e, index)}
+                                              onKeyUp={e => ctrl.onKeyPress(e, index, narration)}
                                               contentEditable placeholder={'Type something here...'}
                                               onBlur={e => ctrl.updateText(e, items[index])}>{content}</TextSpan>
                         case 'claim':
@@ -31,25 +32,30 @@ const Paragraph = observer(({ items }) => {
     )
 })
 
-const TextArea = observer(({ items }) => {
+const TextArea = observer(({ narration, items }) => {
     return (
         <div>
             {
                 items.map(({ children }, index) => (
-                    <Paragraph key={index} items={children}/>
+                    <Paragraph key={index} items={children} narration={narration}/>
                 ))
             }
         </div>
     )
 })
 
-const TextAreaContainer = ({ items }) => (
+const TextAreaContainer = ({ narration, items }) => (
     <Container>
         <Wrapper>
-            <TextArea items={items}/>
+            <TextArea narration={narration} items={items}/>
         </Wrapper>
         <Label>Type your text below:</Label>
     </Container>
 )
+
+TextAreaContainer.propTypes = {
+    items: PropTypes.array,
+    narration: PropTypes.object,
+}
 
 export default TextAreaContainer

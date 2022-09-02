@@ -6,7 +6,6 @@ export default class TextAreaCtrl {
     slashIndex = -1
     searchText = ''
     currentItemIndex = -1
-    shiftPressed = false
 
     constructor() {
         makeObservable(this, {
@@ -14,12 +13,11 @@ export default class TextAreaCtrl {
             slashIndex: observable,
             searchText: observable,
             currentItemIndex: observable,
-            shiftPressed: observable,
             updateText: action
         })
     }
 
-    onKeyPress(e, index) {
+    onKeyPress(e, index, narration) {
         console.log(e)
         this.currentItemIndex = index
 
@@ -40,6 +38,9 @@ export default class TextAreaCtrl {
                 case 'Escape':
                     this.popover = false
                     break
+                case 'Enter':
+                    this.addParagraph(narration)
+                    break
             }
         }
     }
@@ -47,6 +48,10 @@ export default class TextAreaCtrl {
     updateText(e, item) {
         console.log(e.target.innerText)
         item.setContent(e.target.innerText)
+    }
+
+    addParagraph(narration) {
+        narration.addParagraph()
     }
 
     replaceSlash(claimId, items){

@@ -7,12 +7,19 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `
 
-export const NewItem = styled.div`
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  max-width: 450px;
+export const ProblemBody = styled.div`
+  padding: 20px;
+  margin: 20px 0;
+  border: 1px solid #DEE2E6;
+  border-radius: 4px;
+  
+  h5{
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #68717A;
+  }
 `
+
 
 export const Item = styled.div`
   margin: 10px 0 0px 10px;
