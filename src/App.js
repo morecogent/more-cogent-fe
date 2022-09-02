@@ -44,14 +44,13 @@ export default class App extends React.Component {
                 <Router>
                     <GlobalStyle/>
                     <Navigation position="static">
-                        <NavLink to="/" className={({ isActive }) => isActive ? " selected" : ""}>Questions</NavLink>
-                        <NavLink to="/claims" className={({ isActive }) => isActive ? " selected" : ""}>Claims</NavLink>
-                        <NavLink to="/other-page" className={({ isActive }) => isActive ? " selected" : ""}>Concepts</NavLink>
+                        <NavLink to="/" className={({ isActive }) => isActive ? " selected" : ""}>Alchemy Lab</NavLink>
+                        <NavLink to="/claims" className={({ isActive }) => isActive ? " selected" : ""}>Philosophy Lab</NavLink>
+                        <NavLink to="/claims" className={({ isActive }) => isActive ? " selected" : ""}>Science Lab</NavLink>
                     </Navigation>
                     <Routes>
                         <Route path="/" element={<QuestionsPage />}/>
                         <Route path="/claims" element={<HomePage />}/>
-                        <Route path="/other-page" element={<OtherPage />} />
                         <Route path="/add-your-question" element={<AddQuestionPage />} />
                         <Route path="/claim/:id" element={<ClaimPage />} />
                         <Route path="/narration/:id" element={<NarrationPage />} />

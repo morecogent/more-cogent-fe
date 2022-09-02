@@ -16,7 +16,7 @@ export default observer(() => {
                 <List items={ctrl.narrations} Component={NarrationGallery} onClick={id => navigate(`/narration/${id}`)} />
 
                 <br/>
-                <Button name="Ask your question" color="#7749F8" onClick={() => navigate(`/add-your-question`)}/>
+                <Button name="Add your question" color="#7749F8" onClick={() => navigate(`/add-your-question`)}/>
             </Wrapper>
         )
     }
