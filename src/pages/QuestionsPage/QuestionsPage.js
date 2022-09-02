@@ -12,7 +12,7 @@ export default observer(() => {
 
     return (
             <Wrapper>
-                <h3>Questions</h3>
+                <h3>Stories</h3>
                 <List items={ctrl.narrations} Component={NarrationGallery} onClick={id => navigate(`/narration/${id}`)} />
 
                 <br/>

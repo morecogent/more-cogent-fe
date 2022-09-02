@@ -20,8 +20,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 100;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
     
     input, textarea {
       font-weight: 100 !important;

@@ -3,9 +3,10 @@ import Tag from '../../Tag'
 import RichText from '../../RichText'
 import { Concepts, Wrapper } from './index.styles'
 
-const narrationGallery = ({id, text, concepts, onClick}) => (
+const narrationGallery = ({id, title, text, concepts, onClick}) => (
     <Wrapper onClick={() => onClick(id)}>
-        <RichText items={text} />
+        {/*<RichText items={text} />*/}
+        <p>{title}</p>
         <Concepts>
             {
                 concepts.map(concept => (

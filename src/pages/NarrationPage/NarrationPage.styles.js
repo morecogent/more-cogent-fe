@@ -5,25 +5,28 @@ export const Wrapper = styled.div`
   max-width: 960px;
   display: flex;
   flex-direction: column;
-`
 
-export const ProblemBody = styled.div`
-  padding: 20px;
-  margin: 20px 0;
-  border: 1px solid #DEE2E6;
-  border-radius: 4px;
-  
   h5{
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #68717A;
   }
 `
 
+export const Title = styled.h1`
+  font-size: 1.75rem;
+  font-weight: 100;
+  margin-bottom: 20px;
+`
+
+export const ProblemBody = styled.div`
+  margin: 20px 0;
+  border-radius: 4px;
+`
+
 
 export const Item = styled.div`
-  margin: 10px 0 0px 10px;
   padding: 20px;
   border-radius: 4px;
-  background-color: #F6F6F6;
+  border: 1px solid;
 `

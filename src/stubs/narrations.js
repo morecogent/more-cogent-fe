@@ -2,6 +2,7 @@ import {c3, c4} from './concepts'
 
 export const narrations = [{
     id: '1',
+    title: 'No sex in the relationship',
     text: [
         {
             type: 'paragraph',
@@ -26,6 +27,7 @@ export const narrations = [{
     concepts: [c3, c4]
 }, {
     id: '3',
+    title: 'No pleasure from sex',
     text: [
         {
             type: 'paragraph',
@@ -84,6 +86,7 @@ export const narrations = [{
     ]
 }, {
     id: '4',
+    title: 'Declining friendship',
     text: [
         {
             type: 'paragraph',

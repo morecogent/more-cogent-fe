@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react'
 import Ctrl from './NarrationPage.ctrl'
-import { ProblemBody, Wrapper } from './NarrationPage.styles'
+import { ProblemBody, Title, Wrapper } from './NarrationPage.styles'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Item } from './NarrationPage.styles'
 import Button from '../../components/Button'
@@ -19,13 +19,15 @@ export default observer(() => {
             <Wrapper>
 
                 <ProblemBody>
-                    <h5>Description</h5>
+                    <Title>{ctrl.narration.title}</Title>
 
                     <div>
                         <RichText items={ctrl.narration.text}/>
                     </div>
 
-                    <h5>Context</h5>
+                    <h5>Linked debates</h5>
+
+                    <h5>Additional context</h5>
                     {
                         ctrl.narration.beliefs.map(belief => (
                             <div>
@@ -37,12 +39,17 @@ export default observer(() => {
                             </div>
                         ))
                     }
+
+                    <h5>Discussion</h5>
                 </ProblemBody>
 
+                <h5>Advices</h5>
                 {
                     ctrl.narrationResponses.map((narration, index) => (
                         <Item key={index}>
                             <RichText items={narration.text}/>
+                            <h5>Additional context</h5>
+                            <h5>Discussion</h5>
                         </Item>
                     ))
                 }

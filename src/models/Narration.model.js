@@ -54,12 +54,14 @@ export class ProblemBeliefModel {
 // For questions this should be refactored into Problem (according to problem-posing education)
 export default class NarrationModel {
 
-  constructor({id, text = [], parentNarrationId, concepts = [], beliefs = []}) {
+  constructor({id, title, text = [], parentNarrationId, concepts = [], beliefs = []}) {
     this.id = id || v4()
 
     // this.parentClaim = parentClaim
 
     this.parentNarrationId = parentNarrationId
+
+    this.title = title
 
     if(!text.length) {
       this.text = [new NarrationParagraphModel({})]
