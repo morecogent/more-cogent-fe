@@ -22,7 +22,7 @@ export default observer(() => {
                             <div key={problem.id}>
                                 {problem.title}
                                 <List items={problem.storiesIds} Component={StoriesList}
-                                      onClick={propositionId => navigate(`/quest/${questId}/proposition/${propositionId}`)}
+                                      onClick={storyId => navigate(`/narration/${storyId}`)}
                                 />
                             </div>
                         ))

@@ -1,6 +1,4 @@
 import { action, makeObservable, observable } from 'mobx'
-import ConceptModel from '../Concept/Concept.model'
-import AdviceModel from './Advice.model'
 import { v4 } from 'uuid'
 
 export class NarrationElementModel {
@@ -37,28 +35,11 @@ class NarrationParagraphModel {
   }
 }
 
-export class ProblemBeliefModel {
-
-  constructor({question, answer, linked}) {
-    this.question = question || ''
-    this.answer = answer || ''
-    this.linked = linked || []
-
-    makeObservable(this, {
-      question: observable,
-      answer: observable,
-      linked: observable
-    })
-  }
-}
-
 // For questions this should be refactored into Problem (according to problem-posing education)
-export default class NarrationModel {
+export default class AdviceModel {
 
-  constructor({id, title, text = [], advices = [], beliefs = [], concepts = []}) {
+  constructor({id, text = []}) {
     this.id = id || v4()
-
-    this.title = title
 
     if(!text.length) {
       this.text = [new NarrationParagraphModel({})]
@@ -66,15 +47,8 @@ export default class NarrationModel {
       this.text = text.map(el => new NarrationParagraphModel(el))
     }
 
-    this.beliefs = beliefs.map(el => new ProblemBeliefModel(el))
-    this.concepts = concepts.map(c => new ConceptModel(c))
-    this.advices = advices.map(el => new AdviceModel(el))
-
     makeObservable(this, {
       text: observable,
-      concepts: observable,
-      beliefs: observable,
-      advices: observable,
       addParagraph: action,
     })
   }

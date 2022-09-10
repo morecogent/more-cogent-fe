@@ -45,7 +45,7 @@ export default observer(() => {
 
                 <h5>Advices</h5>
                 {
-                    ctrl.narrationResponses.map((narration, index) => (
+                    ctrl.narration.advices.map((narration, index) => (
                         <Item key={index}>
                             <RichText items={narration.text}/>
                             <h5>Additional context</h5>

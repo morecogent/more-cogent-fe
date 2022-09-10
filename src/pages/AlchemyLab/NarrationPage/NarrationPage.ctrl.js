@@ -11,7 +11,6 @@ export default class NarrationPageCtrl {
 
     makeObservable(this, {
       narration: computed,
-      narrationResponses: computed,
       newNarration: observable,
       addNarration: action
     })
@@ -23,13 +22,6 @@ export default class NarrationPageCtrl {
     } else {
       return new NarrationModel({})
     }
-  }
-
-  get narrationResponses(){
-    if(!this.id) return []
-
-    return narrations.items.filter(item => item.parentNarrationId === this.id) || []
-
   }
 
   getLinkedClaims(ids){
