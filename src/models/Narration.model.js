@@ -71,6 +71,7 @@ export default class NarrationModel {
 
     this.beliefs = beliefs.map(el => new ProblemBeliefModel(el))
     this.concepts = concepts.map(c => new ConceptModel(c))
+    this.advices = []
 
     makeObservable(this, {
       text: observable,

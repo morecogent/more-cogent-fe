@@ -8,17 +8,19 @@ import { useNavigate, useParams } from 'react-router-dom'
 import AddClaim from '../../components/AddClaim'
 
 export default observer(() => {
-    const { id } = useParams()
-    const navigate = useNavigate()
-    const [ctrl] = useState(new Ctrl(id))
+        const { id } = useParams()
+        const navigate = useNavigate()
+        const [ctrl] = useState(new Ctrl(id))
 
         return (
             <Wrapper>
                 <h3>Quest: {ctrl.quest.title}</h3>
                 <br/>
-                <List items={ctrl.propositions} Component={PropositionGallery} onClick={id => navigate(`/claim/${id}`)}/>
+                <List items={ctrl.propositions} Component={PropositionGallery}
+                      onClick={propositionId => navigate(`/quest/${id}/proposition/${propositionId}`)}
+                />
                 <div style={{ marginTop: 30 }}>
-                    <AddClaim />
+                    <AddClaim/>
                 </div>
             </Wrapper>
         )
