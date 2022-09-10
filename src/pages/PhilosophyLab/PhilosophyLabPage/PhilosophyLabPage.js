@@ -1,9 +1,9 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import { Wrapper } from './PhilosophyLabPage.styles'
-import Gallery from '../../components/Gallery'
+import Gallery from '../../../components/Gallery'
 import ctrl from './PhilosophyLabPage.ctrl'
-import QuestGallery from '../../components/Quest/gallery'
+import QuestGallery from '../../../components/Quest/gallery'
 import { useNavigate } from 'react-router-dom'
 
 export default observer(() => {

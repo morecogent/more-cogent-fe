@@ -1,7 +1,7 @@
 import { makeObservable, observable } from 'mobx'
-import claims from '../../stores/Claims.store'
+import claims from '../../../stores/Claims.store'
 
-class HomePageCtrl {
+class ScienceLabPageCtrl {
   claims = claims.items
 
   constructor() {
@@ -11,4 +11,4 @@ class HomePageCtrl {
   }
 }
 
-export default new HomePageCtrl()
+export default new ScienceLabPageCtrl()

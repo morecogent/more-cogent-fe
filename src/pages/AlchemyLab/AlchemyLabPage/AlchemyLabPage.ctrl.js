@@ -1,8 +1,8 @@
 import { computed, makeObservable, observable } from 'mobx'
-import narrations from '../../stores/Narrations.store'
-import NarrationModel from '../../models/Narration.model'
+import narrations from '../../../stores/Narrations.store'
+import NarrationModel from '../../../models/Narration.model'
 
-class QuestionsPageCtrl {
+class AlchemyLabPageCtrl {
   newNarration = new NarrationModel({})
 
   constructor() {
@@ -27,4 +27,4 @@ class QuestionsPageCtrl {
   }
 }
 
-export default new QuestionsPageCtrl()
+export default new AlchemyLabPageCtrl()

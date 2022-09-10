@@ -1,11 +1,11 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import ctrl from './HomePage.ctrl'
-import DebateGallery from '../../components/Claim/gallery'
-import Gallery from '../../components/Gallery'
-import { Wrapper } from '../../App.styles'
+import ctrl from './ScienceLabPage.ctrl'
+import DebateGallery from '../../../components/Claim/gallery'
+import Gallery from '../../../components/Gallery'
+import { Wrapper } from '../../../App.styles'
 import { useNavigate } from 'react-router-dom'
-import AddClaim from '../../components/AddClaim'
+import AddClaim from '../../../components/AddClaim'
 
 export default observer(() => {
         const navigate = useNavigate()

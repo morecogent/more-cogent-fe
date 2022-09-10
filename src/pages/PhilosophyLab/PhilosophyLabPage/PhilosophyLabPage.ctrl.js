@@ -1,5 +1,5 @@
 import { action, computed, makeObservable, observable } from 'mobx'
-import questsStore from '../../stores/Quests.store'
+import questsStore from '../../../stores/Quests.store'
 
 class PhilosophyLabPageCtrl {
 

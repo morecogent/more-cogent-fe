@@ -4,16 +4,17 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    NavLink
+    NavLink,
+    Navigate
 } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 import { Navigation } from './App.styles'
-import HomePage from './pages/HomePage/HomePage'
+import ScienceLabPage from './pages/ScienceLab/ScienceLabPage/ScienceLabPage'
 import QuestPage from './pages/QuestPage/QuestPage'
 import PropositionPage from './pages/PropositionPage/PropositionPage'
-import QuestionsPage from './pages/QuestionsPage/QuestionsPage'
+import AlchemyLabPage from './pages/AlchemyLab/AlchemyLabPage/AlchemyLabPage'
 import NarrationPage from './pages/NarrationPage/NarrationPage'
-import PhilosophyLabPage from './pages/PhilosophyLabPage/PhilosophyLabPage'
+import PhilosophyLabPage from './pages/PhilosophyLab/PhilosophyLabPage/PhilosophyLabPage'
 import ClaimPage from './pages/ClaimPage/ClaimPage'
 import AddQuestionPage from './pages/AddQuestionPage/AddQuestionPage'
 import './stubs/stubs'
@@ -25,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     font-size: 16px;
-    
+
     input, textarea {
       font-weight: 100 !important;
     }
@@ -37,7 +38,6 @@ export default class App extends React.Component {
     componentDidMount() {
         // Stubs
 
-
     }
 
     render() {
@@ -46,22 +46,27 @@ export default class App extends React.Component {
                 <Router>
                     <GlobalStyle/>
                     <Navigation position="static">
-                        <NavLink to="/" className={({ isActive }) => isActive ? " selected" : ""}>Alchemy Lab</NavLink>
-                        <NavLink to="/philosophy-lab" className={({ isActive }) => isActive ? " selected" : ""}>Philosophy Lab</NavLink>
-                        <NavLink to="/claims" className={({ isActive }) => isActive ? " selected" : ""}>Science Lab</NavLink>
+                        <NavLink to="/alchemy-lab" className={({ isActive }) => isActive ? " selected" : ""}>Alchemy
+                            Lab</NavLink>
+                        <NavLink to="/philosophy-lab" className={({ isActive }) => isActive ? " selected" : ""}>Philosophy
+                            Lab</NavLink>
+                        <NavLink to="/science-lab" className={({ isActive }) => isActive ? " selected" : ""}>Science
+                            Lab</NavLink>
                     </Navigation>
                     <Routes>
-                        <Route path="/" element={<QuestionsPage />}/>
-                        <Route path="/claims" element={<HomePage />}/>
-                        <Route path="/quest/:id" element={<QuestPage />}/>
-                        <Route path="/quest/:questId/proposition/:propositionId" element={<PropositionPage />}/>
-                        <Route path="/philosophy-lab" element={<PhilosophyLabPage />}/>
-                        <Route path="/add-your-question" element={<AddQuestionPage />} />
-                        <Route path="/claim/:id" element={<ClaimPage />} />
-                        <Route path="/narration/:id" element={<NarrationPage />} />
+                        <Route path="/alchemy-lab" element={<AlchemyLabPage/>}/>
+                        <Route path="/philosophy-lab" element={<PhilosophyLabPage/>}/>
+                        <Route path="/science-lab" element={<ScienceLabPage/>}/>
+
+                        <Route path="/quest/:id" element={<QuestPage/>}/>
+                        <Route path="/quest/:questId/proposition/:propositionId" element={<PropositionPage/>}/>
+                        <Route path="/add-your-question" element={<AddQuestionPage/>}/>
+                        <Route path="/claim/:id" element={<ClaimPage/>}/>
+                        <Route path="/narration/:id" element={<NarrationPage/>}/>
+                        <Route exact path="/" element={<Navigate to="/alchemy-lab" replace/>}/>
                     </Routes>
                 </Router>
             </div>
-        );
+        )
     }
 }

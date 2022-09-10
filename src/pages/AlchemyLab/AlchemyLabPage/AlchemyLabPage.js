@@ -1,11 +1,11 @@
 import React from 'react'
 import { observer } from 'mobx-react'
-import ctrl from './QuestionsPage.ctrl'
-import NarrationGallery from '../../components/Narration/gallery'
-import List from '../../components/List'
-import {Wrapper} from '../../App.styles'
+import ctrl from './AlchemyLabPage.ctrl'
+import NarrationGallery from '../../../components/Narration/gallery'
+import List from '../../../components/List'
+import {Wrapper} from '../../../App.styles'
 import { useNavigate } from 'react-router-dom'
-import Button from '../../components/Button'
+import Button from '../../../components/Button'
 
 export default observer(() => {
     const navigate = useNavigate()
