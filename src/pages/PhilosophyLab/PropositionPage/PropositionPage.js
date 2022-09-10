@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react'
 import Ctrl from './PropositionPage.ctrl'
-import { Wrapper } from '../../App.styles'
+import { Wrapper } from '../../../App.styles'
 import { useNavigate, useParams } from 'react-router-dom'
-import StoriesList from '../../components/Story/list'
-import List from '../../components/List'
+import StoriesList from '../../../components/Story/list'
+import List from '../../../components/List'
 
 export default observer(() => {
     const { questId, propositionId } = useParams()

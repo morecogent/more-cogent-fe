@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { observer } from 'mobx-react'
 import Ctrl from './AddQuestionPage.ctrl'
 import { Wrapper } from './AddQuestionPage.styles'
-import Button from '../../components/Button'
-import TextArea from '../../components/TextArea'
+import Button from '../../../components/Button'
+import TextArea from '../../../components/TextArea'
 import { useNavigate } from 'react-router-dom'
 
 export default observer(() => {

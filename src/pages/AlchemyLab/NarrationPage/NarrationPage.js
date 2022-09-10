@@ -4,11 +4,11 @@ import Ctrl from './NarrationPage.ctrl'
 import { ProblemBody, Title, Wrapper } from './NarrationPage.styles'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Item } from './NarrationPage.styles'
-import Button from '../../components/Button'
-import RichText from '../../components/RichText'
-import TextArea from '../../components/TextArea'
-import List from '../../components/List'
-import Claim from '../../components/Claim/list'
+import Button from '../../../components/Button'
+import RichText from '../../../components/RichText'
+import TextArea from '../../../components/TextArea'
+import List from '../../../components/List'
+import Claim from '../../../components/Claim/list'
 
 export default observer(() => {
         const { id } = useParams()

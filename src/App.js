@@ -10,13 +10,13 @@ import {
 import { createGlobalStyle } from 'styled-components'
 import { Navigation } from './App.styles'
 import ScienceLabPage from './pages/ScienceLab/ScienceLabPage/ScienceLabPage'
-import QuestPage from './pages/QuestPage/QuestPage'
-import PropositionPage from './pages/PropositionPage/PropositionPage'
+import QuestPage from './pages/PhilosophyLab/QuestPage/QuestPage'
+import PropositionPage from './pages/PhilosophyLab/PropositionPage/PropositionPage'
 import AlchemyLabPage from './pages/AlchemyLab/AlchemyLabPage/AlchemyLabPage'
-import NarrationPage from './pages/NarrationPage/NarrationPage'
+import NarrationPage from './pages/AlchemyLab/NarrationPage/NarrationPage'
 import PhilosophyLabPage from './pages/PhilosophyLab/PhilosophyLabPage/PhilosophyLabPage'
-import ClaimPage from './pages/ClaimPage/ClaimPage'
-import AddQuestionPage from './pages/AddQuestionPage/AddQuestionPage'
+import ClaimPage from './pages/ScienceLab/ClaimPage/ClaimPage'
+import AddQuestionPage from './pages/AlchemyLab/AddQuestionPage/AddQuestionPage'
 import './stubs/stubs'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -55,14 +55,19 @@ export default class App extends React.Component {
                     </Navigation>
                     <Routes>
                         <Route path="/alchemy-lab" element={<AlchemyLabPage/>}/>
-                        <Route path="/philosophy-lab" element={<PhilosophyLabPage/>}/>
-                        <Route path="/science-lab" element={<ScienceLabPage/>}/>
+                        <Route path="/narration/:id" element={<NarrationPage/>}/>
+                        <Route path="/add-your-question" element={<AddQuestionPage/>}/>
 
+
+                        <Route path="/philosophy-lab" element={<PhilosophyLabPage/>}/>
                         <Route path="/quest/:id" element={<QuestPage/>}/>
                         <Route path="/quest/:questId/proposition/:propositionId" element={<PropositionPage/>}/>
-                        <Route path="/add-your-question" element={<AddQuestionPage/>}/>
+
+
+                        <Route path="/science-lab" element={<ScienceLabPage/>}/>
                         <Route path="/claim/:id" element={<ClaimPage/>}/>
-                        <Route path="/narration/:id" element={<NarrationPage/>}/>
+
+
                         <Route exact path="/" element={<Navigate to="/alchemy-lab" replace/>}/>
                     </Routes>
                 </Router>

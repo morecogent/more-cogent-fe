@@ -1,7 +1,7 @@
 import { action, computed, makeObservable, observable } from 'mobx'
-import narrations from '../../stores/Narrations.store'
-import claims from '../../stores/Claims.store'
-import NarrationModel from '../../models/Narration.model'
+import narrations from '../../../stores/Narrations.store'
+import claims from '../../../stores/Claims.store'
+import NarrationModel from '../../../models/Narration.model'
 
 export default class NarrationPageCtrl {
 
