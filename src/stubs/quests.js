@@ -29,6 +29,9 @@ questsStore.add({
                     title: 'The relationship can break as soon as one of the partners find someone who can help them to save on cost of living more.',
                     stories: ['1'],
                     claims: ['100']
+                },{
+                    id: '2',
+                    title: 'The relationship can break due to mismatched expectations and willingness to compromise',
                 }
             ]
         },

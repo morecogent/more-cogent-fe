@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
 export const Wrapper = styled.div`
-  padding: 20px;
+  padding: 15px;
   border: 1px solid;
+  border-radius: 8px;
   display: grid;
   grid-template-columns: 60px 1fr;
   cursor: pointer;
