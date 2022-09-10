@@ -11,7 +11,7 @@ import { Navigation } from './App.styles'
 import HomePage from './pages/HomePage/HomePage'
 import QuestionsPage from './pages/QuestionsPage/QuestionsPage'
 import NarrationPage from './pages/NarrationPage/NarrationPage'
-import OtherPage from './pages/OtherPage/OtherPage'
+import PhilosophyLabPage from './pages/PhilosophyLabPage/PhilosophyLabPage'
 import ClaimPage from './pages/ClaimPage/ClaimPage'
 import AddQuestionPage from './pages/AddQuestionPage/AddQuestionPage'
 import './stubs/stubs'
@@ -45,12 +45,13 @@ export default class App extends React.Component {
                     <GlobalStyle/>
                     <Navigation position="static">
                         <NavLink to="/" className={({ isActive }) => isActive ? " selected" : ""}>Alchemy Lab</NavLink>
-                        <NavLink to="/claims" className={({ isActive }) => isActive ? " selected" : ""}>Philosophy Lab</NavLink>
+                        <NavLink to="/philosophy-lab" className={({ isActive }) => isActive ? " selected" : ""}>Philosophy Lab</NavLink>
                         <NavLink to="/claims" className={({ isActive }) => isActive ? " selected" : ""}>Science Lab</NavLink>
                     </Navigation>
                     <Routes>
                         <Route path="/" element={<QuestionsPage />}/>
                         <Route path="/claims" element={<HomePage />}/>
+                        <Route path="/philosophy-lab" element={<PhilosophyLabPage />}/>
                         <Route path="/add-your-question" element={<AddQuestionPage />} />
                         <Route path="/claim/:id" element={<ClaimPage />} />
                         <Route path="/narration/:id" element={<NarrationPage />} />

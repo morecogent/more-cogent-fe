@@ -1,17 +1,18 @@
 import { makeObservable, observable } from 'mobx'
 import {v4} from 'uuid'
-import DebateModel from './Claim.model'
+import PropositionProblemModel from './PropositionProblem.model'
 
 export default class PropositionModel {
 
-  constructor({id, text, debate = {}}) {
+  constructor({id, title, problems = []}) {
     this.id = id || v4()
-    this.text = text || ''
-    this.debate = new DebateModel(debate)
+    this.title = title || ''
+    this.problems = problems
+        .map(problem => new PropositionProblemModel(problem))
 
     makeObservable(this, {
-      text: observable,
-      debate: observable
+      title: observable,
+      problems: observable
     })
   }
 }

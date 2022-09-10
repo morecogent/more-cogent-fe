@@ -1,5 +1,6 @@
 import debatesStore from '../stores/Claims.store'
 import narrationsStore from '../stores/Narrations.store'
+import './quests'
 
 import {narrations} from './narrations'
 import { debates } from './debates'
