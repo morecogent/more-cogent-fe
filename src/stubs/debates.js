@@ -2,9 +2,9 @@ import {c1, c2, c5, c3} from './concepts'
 
 export const debates = [{
     id: '100',
-    name: 'All our problems related to happiness lay in the mistaken worldview',
+    name: 'Relationship with a purpose of saving money is sufficient to reduce it’s strength',
     concepts: [],
-    percentage: 55
+    percentage: 87
 }, {
     name: 'Capitalism is not ethical',
     concepts: [c1, c2],

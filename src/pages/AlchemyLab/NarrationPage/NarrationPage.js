@@ -7,8 +7,9 @@ import { Item } from './NarrationPage.styles'
 import Button from '../../../components/Button'
 import RichText from '../../../components/RichText'
 import TextArea from '../../../components/TextArea'
-import List from '../../../components/List'
-import Claim from '../../../entities/Claim/components/ClaimElement/list'
+import Gallery from '../../../components/Gallery'
+import QuestElement from '../../../entities/Quest/components/QuestElement/gallery'
+import { Accordion } from 'react-bootstrap'
 
 export default observer(() => {
         const { id } = useParams()
@@ -25,21 +26,32 @@ export default observer(() => {
                         <RichText items={ctrl.narration.text}/>
                     </div>
 
-                    <h5>Linked debates</h5>
 
+                    <h5>Linked quests</h5>
+                    <Gallery items={ctrl.narration.quests}
+                             Component={QuestElement}
+                             onClick={id => navigate(`/quest/${id}`)}
+                    />
+
+                    <br/>
                     <h5>Additional context</h5>
-                    {
-                        ctrl.narration.beliefs.map(belief => (
-                            <div>
-                                <p>Question: {belief.question}</p>
-                                <p>Answer: {belief.answer}</p>
-                                <List items={ctrl.getLinkedClaims(belief.linked)}
-                                      onClick={id => navigate(`/claim/${id}`)}
-                                      Component={Claim}/>
-                            </div>
-                        ))
-                    }
+                    <br/>
+                    <Accordion defaultActiveKey={0}>
+                        {
+                            ctrl.narration.beliefs.map(belief => (
+                                <Accordion.Item eventKey={0}>
+                                    <Accordion.Header>
+                                        {belief.question}
+                                    </Accordion.Header>
+                                    <Accordion.Body>
+                                        {belief.answer}
+                                    </Accordion.Body>
+                                </Accordion.Item>
+                            ))
+                        }
+                    </Accordion>
 
+                    <br/>
                     <h5>Discussion</h5>
                 </ProblemBody>
 

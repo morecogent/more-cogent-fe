@@ -11,6 +11,7 @@ class NarrationsStore {
   }
 
   add(item){
+
     this.items.push(new NarrationModel(item))
   }
 }

@@ -1,6 +1,7 @@
 import { computed, makeObservable, observable } from 'mobx'
 import { v4 } from 'uuid'
 import narrations from '../Story/Narrations.store'
+import claims from '../Claim/Claims.store'
 import NarrationModel from '../Story/Narration.model'
 import ClaimModel from '../Claim/Claim.model'
 
@@ -10,13 +11,14 @@ export default class PropositionProblemModel {
         this.id = id || v4()
         this.title = title || ''
         this.storiesIds = stories
-        this.claims = claims
-            .map(claim => new ClaimModel(claim))
+        this.claimsIds = claims
+            // .map(claim => new ClaimModel(claim))
 
         makeObservable(this, {
             title: observable,
             storiesIds: observable,
-            claims: observable,
+            claimsIds: observable,
+            claims: computed,
             stories: computed,
         })
     }
@@ -25,6 +27,11 @@ export default class PropositionProblemModel {
         return narrations.items
             .filter(story => this.storiesIds.includes(story.id))
             .map(story => new NarrationModel(story))
+    }
+    get claims(){
+        return claims.items
+            .filter(claim => this.claimsIds.includes(claim.id))
+            .map(claim => new ClaimModel(claim))
     }
 
 }

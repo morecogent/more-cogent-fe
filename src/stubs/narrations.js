@@ -65,7 +65,14 @@ export const narrations = [{
         }
     ],
     concepts: [c3, c4],
-    advices: [advices[0]]
+    advices: [advices[0]],
+    questsIds: ['1'],
+    beliefs: [
+        {
+            question: 'Why you wanted this relationship in the first place?',
+            answer: 'I wanted to have someone with who I could share my successes and have sex'
+        }
+    ]
 }, {
     id: '3',
     title: 'No pleasure from sex',
