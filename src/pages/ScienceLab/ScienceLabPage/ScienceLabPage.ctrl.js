@@ -1,5 +1,5 @@
 import { makeObservable, observable } from 'mobx'
-import claims from '../../../stores/Claims.store'
+import claims from '../../../entities/Claim/Claims.store'
 
 class ScienceLabPageCtrl {
   claims = claims.items

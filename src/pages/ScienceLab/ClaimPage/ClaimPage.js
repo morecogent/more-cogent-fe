@@ -4,8 +4,8 @@ import Ctrl from './ClaimPage.ctrl'
 import { ArgumentContainers, Wrapper } from './ClaimPage.styles'
 import { useParams } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
-import LinkClaim from '../../../components/LinkClaim'
-import Arguments from '../../../components/Arguments'
+import LinkClaim from '../../../entities/Claim/components/LinkClaim'
+import Arguments from '../../../entities/Claim/components/Arguments'
 
 export default observer(() => {
         const { id } = useParams()

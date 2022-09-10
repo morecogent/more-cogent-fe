@@ -8,7 +8,7 @@ import Button from '../../../components/Button'
 import RichText from '../../../components/RichText'
 import TextArea from '../../../components/TextArea'
 import List from '../../../components/List'
-import Claim from '../../../components/Claim/list'
+import Claim from '../../../entities/Claim/components/ClaimElement/list'
 
 export default observer(() => {
         const { id } = useParams()

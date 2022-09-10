@@ -1,6 +1,6 @@
 import { action, computed, makeObservable, observable } from 'mobx'
-import claims from '../../../stores/Claims.store'
-import ClaimModel from '../../../models/Claim.model'
+import claims from '../../../entities/Claim/Claims.store'
+import ClaimModel from '../../../entities/Claim/Claim.model'
 
 export default class ClaimPageCtrl {
 

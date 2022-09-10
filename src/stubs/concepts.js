@@ -1,4 +1,4 @@
-import conceptsStore from '../stores/Concepts.store'
+import conceptsStore from '../entities/Concept/Concepts.store'
 
 export const c1 = conceptsStore.add({ name: 'capitalism' })
 export const c2 = conceptsStore.add({ name: 'ethics' })

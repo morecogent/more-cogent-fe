@@ -1,4 +1,4 @@
-import questsStore from '../stores/Quests.store'
+import questsStore from '../entities/Quest/Quests.store'
 
 questsStore.add({
     id: '1',

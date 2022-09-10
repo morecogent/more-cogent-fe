@@ -1,7 +1,7 @@
 import { computed, makeObservable } from 'mobx'
-import quests from '../../../stores/Quests.store'
-import PropositionModel from '../../../models/Proposition.model'
-import QuestModel from '../../../models/Quest.model'
+import quests from '../../../entities/Quest/Quests.store'
+import PropositionModel from '../../../entities/Quest/Proposition.model'
+import QuestModel from '../../../entities/Quest/Quest.model'
 
 export default class QuestPageCtrl {
   constructor(id) {

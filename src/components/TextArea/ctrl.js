@@ -1,5 +1,5 @@
 import { action, computed, makeObservable, observable } from 'mobx'
-import {NarrationElementModel} from '../../models/Narration.model'
+import {NarrationElementModel} from '../../entities/Story/Narration.model'
 
 export default class TextAreaCtrl {
     popover = false

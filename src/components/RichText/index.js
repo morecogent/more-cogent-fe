@@ -1,5 +1,5 @@
 import React from 'react'
-import ClaimTag from '../ClaimTag'
+import ClaimTag from '../../entities/Claim/components/ClaimTag'
 import { observer } from 'mobx-react'
 
 const Paragraph = observer(({ items }) => {

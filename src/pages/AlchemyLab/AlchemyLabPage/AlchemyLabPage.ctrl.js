@@ -1,6 +1,6 @@
 import { computed, makeObservable, observable } from 'mobx'
-import narrations from '../../../stores/Narrations.store'
-import NarrationModel from '../../../models/Narration.model'
+import narrations from '../../../entities/Story/Narrations.store'
+import NarrationModel from '../../../entities/Story/Narration.model'
 
 class AlchemyLabPageCtrl {
   newNarration = new NarrationModel({})
