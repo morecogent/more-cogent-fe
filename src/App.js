@@ -9,6 +9,7 @@ import {
 import { createGlobalStyle } from 'styled-components'
 import { Navigation } from './App.styles'
 import HomePage from './pages/HomePage/HomePage'
+import QuestPage from './pages/QuestPage/QuestPage'
 import QuestionsPage from './pages/QuestionsPage/QuestionsPage'
 import NarrationPage from './pages/NarrationPage/NarrationPage'
 import PhilosophyLabPage from './pages/PhilosophyLabPage/PhilosophyLabPage'
@@ -51,6 +52,7 @@ export default class App extends React.Component {
                     <Routes>
                         <Route path="/" element={<QuestionsPage />}/>
                         <Route path="/claims" element={<HomePage />}/>
+                        <Route path="/quest/:id" element={<QuestPage />}/>
                         <Route path="/philosophy-lab" element={<PhilosophyLabPage />}/>
                         <Route path="/add-your-question" element={<AddQuestionPage />} />
                         <Route path="/claim/:id" element={<ClaimPage />} />

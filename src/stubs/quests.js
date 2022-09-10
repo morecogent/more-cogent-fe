@@ -1,6 +1,7 @@
 import questsStore from '../stores/Quests.store'
 
 questsStore.add({
+    id: '1',
     title: 'Why do humans create romantic relationships?',
     propositions: [
         {

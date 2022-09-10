@@ -12,7 +12,7 @@ export default observer(() => {
         return (
             <Wrapper>
                 <h3>Relationships</h3>
-                <Gallery items={ctrl.quests} Component={QuestGallery} onClick={id => navigate(`/claim/${id}`)}/>
+                <Gallery items={ctrl.quests} Component={QuestGallery} onClick={id => navigate(`/quest/${id}`)}/>
             </Wrapper>
         )
     }
