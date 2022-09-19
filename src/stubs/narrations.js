@@ -81,5 +81,9 @@ export const narrations = [{
             question: 'Why you wanted this relationship in the first place?',
             answer: 'I wanted to have someone with who I could share my successes and have sex'
         }
-    ]
+    ],
+    author: {
+        name: 'Casanova310'
+    },
+    date: '2022-08-15T16:34:00'
 }]

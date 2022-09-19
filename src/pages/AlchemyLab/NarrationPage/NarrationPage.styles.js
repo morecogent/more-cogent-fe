@@ -21,7 +21,10 @@ export const Title = styled.h1`
 
 export const ProblemBody = styled.div`
   margin: 20px 0;
-  border-radius: 4px;
+  border-radius: 3px;
+  padding-bottom: 20px;
+  border-left: 2px solid grey;
+  padding-left: 20px;
 `
 
 
@@ -29,4 +32,15 @@ export const Item = styled.div`
   padding: 20px;
   border-radius: 4px;
   border: 1px solid;
+`
+
+export const Author = styled.div`
+  border: 1px solid #DEE2E6;
+  border-radius: 4px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #68717A;
+`
+export const AuthorName = styled.span`
+  color: #DC3545;
 `

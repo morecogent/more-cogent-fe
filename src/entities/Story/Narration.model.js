@@ -80,7 +80,7 @@ export class LinkedQuestModel {
 // For questions this should be refactored into Problem (according to problem-posing education)
 export default class NarrationModel {
 
-  constructor({id, title, text = [], advices = [], beliefs = [], concepts = [], linkedQuests = []}) {
+  constructor({id, title, text = [], advices = [], beliefs = [], concepts = [], linkedQuests = [], author, date}) {
     this.id = id || v4()
 
     this.title = title
@@ -95,6 +95,8 @@ export default class NarrationModel {
     this.concepts = concepts.map(c => new ConceptModel(c))
     this.advices = advices.map(el => new AdviceModel(el))
     this.linkedQuests = linkedQuests.map(el => new LinkedQuestModel(el))
+    this.author = author
+    this.date = new Date(date)
 
     makeObservable(this, {
       text: observable,
@@ -102,6 +104,8 @@ export default class NarrationModel {
       beliefs: observable,
       advices: observable,
       linkedQuests: observable,
+      author: observable,
+      date: observable,
       quests: computed,
       addParagraph: action,
     })
