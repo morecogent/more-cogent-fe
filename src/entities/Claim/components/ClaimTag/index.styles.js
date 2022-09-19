@@ -9,6 +9,10 @@ export const Wrapper = styled.div`
   margin: 8px 0;
   cursor: pointer;
   background-color: white;
+
+  :hover{
+    background-color: rgba(0,0,0,.05);
+  }
 `
 
 export const Percentage = styled.span`

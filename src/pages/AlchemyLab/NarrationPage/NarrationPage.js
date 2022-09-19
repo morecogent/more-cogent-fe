@@ -10,6 +10,7 @@ import TextArea from '../../../components/TextArea'
 import Gallery from '../../../components/Gallery'
 import QuestElement from '../../../entities/Quest/components/QuestElement/gallery'
 import { Accordion } from 'react-bootstrap'
+import LinkedQuest from '../../../entities/Quest/components/LinkedQuest'
 
 export default observer(() => {
         const { id } = useParams()
@@ -28,10 +29,15 @@ export default observer(() => {
 
 
                     <h5>Linked quests</h5>
-                    <Gallery items={ctrl.narration.quests}
-                             Component={QuestElement}
-                             onClick={id => navigate(`/quest/${id}`)}
-                    />
+                    {
+                        ctrl.narration.linkedQuests.map(item => (
+                            <LinkedQuest quest={item.quest}
+                                         onQuestClick={questId => navigate(`/quest/${questId}`)}
+                                         onPropositionClick={propositionId => navigate(`/quest/${item.quest.id}/proposition/${propositionId}`)}
+                                         proposition={item.proposition}
+                            />
+                        ))
+                    }
 
                     <br/>
                     <h5>Additional context</h5>

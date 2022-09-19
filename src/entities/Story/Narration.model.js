@@ -54,10 +54,33 @@ export class ProblemBeliefModel {
   }
 }
 
+export class LinkedQuestModel {
+
+  constructor({questId, propositionId}) {
+    this.questId = questId || ''
+    this.propositionId = propositionId || ''
+
+    makeObservable(this, {
+      questId: observable,
+      propositionId: observable,
+      quest: computed,
+      proposition: computed
+    })
+  }
+
+  get quest(){
+    return quests.items.find(quest => quest.id === this.questId)
+  }
+
+  get proposition(){
+    return this.quest.propositions.find(proposition => proposition.id === this.propositionId)
+  }
+}
+
 // For questions this should be refactored into Problem (according to problem-posing education)
 export default class NarrationModel {
 
-  constructor({id, title, text = [], advices = [], beliefs = [], concepts = [], questsIds = []}) {
+  constructor({id, title, text = [], advices = [], beliefs = [], concepts = [], linkedQuests = []}) {
     this.id = id || v4()
 
     this.title = title
@@ -71,14 +94,14 @@ export default class NarrationModel {
     this.beliefs = beliefs.map(el => new ProblemBeliefModel(el))
     this.concepts = concepts.map(c => new ConceptModel(c))
     this.advices = advices.map(el => new AdviceModel(el))
-    this.questsIds = questsIds
+    this.linkedQuests = linkedQuests.map(el => new LinkedQuestModel(el))
 
     makeObservable(this, {
       text: observable,
       concepts: observable,
       beliefs: observable,
       advices: observable,
-      questsIds: observable,
+      linkedQuests: observable,
       quests: computed,
       addParagraph: action,
     })

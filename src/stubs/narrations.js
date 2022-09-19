@@ -1,4 +1,4 @@
-import {c3, c4} from './concepts'
+import { c3, c4 } from './concepts'
 
 const advices = [{
     id: '1',
@@ -66,7 +66,16 @@ export const narrations = [{
     ],
     concepts: [c3, c4],
     advices: [advices[0]],
-    questsIds: ['1'],
+    linkedQuests: [{
+        questId: '1',
+        propositionId: '6'
+    }, {
+        questId: '2',
+        propositionId: '2'
+    }, {
+        questId: '3',
+        propositionId: null
+    }],
     beliefs: [
         {
             question: 'Why you wanted this relationship in the first place?',

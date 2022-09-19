@@ -29,7 +29,7 @@ Parameters:
     Description: 'Name of the github repository'
     Type: 'String'
   GithubBranch:
-    Default: 'master'
+    Default: 'main'
     Description: 'Name of the github branch, that should be fetched'
     Type: 'String'
   OAuthToken:
