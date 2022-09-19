@@ -70,11 +70,7 @@ export const narrations = [{
         questId: '1',
         propositionId: '6'
     }, {
-        questId: '2',
-        propositionId: '2'
-    }, {
-        questId: '3',
-        propositionId: null
+        questId: '2'
     }],
     beliefs: [
         {
@@ -85,5 +81,26 @@ export const narrations = [{
     author: {
         name: 'Casanova310'
     },
+    discussion: [
+        {
+            author: {
+                name: 'JohnyBravo12'
+            },
+            text: 'The fact that sex in your previous relationship was perfect for you doesn’t mean there is no problem with you.',
+            date: '2022-08-15T16:34:00'
+        },{
+            author: {
+                name: 'Casanova310'
+            },
+            text: 'Why not?',
+            date: '2022-08-15T16:34:00'
+        },{
+            author: {
+                name: 'JohnyBravo12'
+            },
+            text: 'Because you are not the same person you were a year ago, also your situation changed including that you are with a different woman. Her attitudes could trigger different attitudes within you which then could lead to a series of events that made her lose apetite in sex with you.',
+            date: '2022-08-15T16:34:00'
+        },
+    ],
     date: '2022-08-15T16:34:00'
 }]

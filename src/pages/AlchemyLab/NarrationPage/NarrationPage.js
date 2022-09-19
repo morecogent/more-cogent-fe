@@ -1,7 +1,16 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react'
 import Ctrl from './NarrationPage.ctrl'
-import { ProblemBody, Title, Wrapper, Author, AuthorName } from './NarrationPage.styles'
+import {
+    ProblemBody,
+    Title,
+    Wrapper,
+    Author,
+    AuthorName,
+    MessageDate,
+    Message,
+    Discussion
+} from './NarrationPage.styles'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Item } from './NarrationPage.styles'
 import Button from '../../../components/Button'
@@ -58,7 +67,21 @@ export default observer(() => {
                     </Accordion>
 
                     <br/>
-                    <h5>Discussion</h5>
+                    <Discussion>
+                        <h5>Discussion</h5>
+
+                        {
+                            ctrl.narration.discussion.map(message => (
+                                <Message>
+                                    <MessageDate>
+                                        {message.date.toDateString() + ' '}
+                                    </MessageDate>
+                                    <AuthorName>{message.author.name}: </AuthorName>
+                                    {message.text}
+                                </Message>
+                            ))
+                        }
+                    </Discussion>
 
                     <Author>
                         <AuthorName>{ctrl.narration.author.name}</AuthorName>

@@ -77,10 +77,25 @@ export class LinkedQuestModel {
   }
 }
 
+export class DiscussionMessageModel {
+
+  constructor({author, text, date}) {
+    this.author = author
+    this.text = text || ''
+    this.date = new Date(date) || date.now()
+
+    makeObservable(this, {
+      author: observable,
+      text: observable,
+      date: observable
+    })
+  }
+}
+
 // For questions this should be refactored into Problem (according to problem-posing education)
 export default class NarrationModel {
 
-  constructor({id, title, text = [], advices = [], beliefs = [], concepts = [], linkedQuests = [], author, date}) {
+  constructor({id, title, text = [], advices = [], beliefs = [], concepts = [], linkedQuests = [], discussion = [], author, date}) {
     this.id = id || v4()
 
     this.title = title
@@ -95,6 +110,7 @@ export default class NarrationModel {
     this.concepts = concepts.map(c => new ConceptModel(c))
     this.advices = advices.map(el => new AdviceModel(el))
     this.linkedQuests = linkedQuests.map(el => new LinkedQuestModel(el))
+    this.discussion = discussion.map(el => new DiscussionMessageModel(el))
     this.author = author
     this.date = new Date(date)
 
@@ -104,6 +120,7 @@ export default class NarrationModel {
       beliefs: observable,
       advices: observable,
       linkedQuests: observable,
+      discussion: observable,
       author: observable,
       date: observable,
       quests: computed,
