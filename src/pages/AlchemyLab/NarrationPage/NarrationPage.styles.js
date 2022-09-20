@@ -31,7 +31,7 @@ export const ProblemBody = styled.div`
 export const Item = styled.div`
   padding: 20px;
   border-radius: 4px;
-  border: 1px solid;
+  border: 1px solid #DEE2E6;
 `
 
 export const Author = styled.div`

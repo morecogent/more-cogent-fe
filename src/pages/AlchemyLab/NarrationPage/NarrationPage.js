@@ -6,10 +6,7 @@ import {
     Title,
     Wrapper,
     Author,
-    AuthorName,
-    MessageDate,
-    Message,
-    Discussion
+    AuthorName
 } from './NarrationPage.styles'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Item } from './NarrationPage.styles'
@@ -20,6 +17,7 @@ import Gallery from '../../../components/Gallery'
 import QuestElement from '../../../entities/Quest/components/QuestElement/gallery'
 import { Accordion } from 'react-bootstrap'
 import LinkedQuest from '../../../entities/Quest/components/LinkedQuest'
+import Discussion from '../../../entities/Story/components/Discussion'
 
 export default observer(() => {
         const { id } = useParams()
@@ -67,21 +65,7 @@ export default observer(() => {
                     </Accordion>
 
                     <br/>
-                    <Discussion>
-                        <h5>Discussion</h5>
-
-                        {
-                            ctrl.narration.discussion.map(message => (
-                                <Message>
-                                    <MessageDate>
-                                        {message.date.toDateString() + ' '}
-                                    </MessageDate>
-                                    <AuthorName>{message.author.name}: </AuthorName>
-                                    {message.text}
-                                </Message>
-                            ))
-                        }
-                    </Discussion>
+                    <Discussion messages={ctrl.narration.discussion}/>
 
                     <Author>
                         <AuthorName>{ctrl.narration.author.name}</AuthorName>
@@ -94,11 +78,11 @@ export default observer(() => {
 
                 <h5>Advices</h5>
                 {
-                    ctrl.narration.advices.map((narration, index) => (
+                    ctrl.narration.advices.map((advice, index) => (
                         <Item key={index}>
-                            <RichText items={narration.text}/>
+                            <RichText items={advice.text}/>
                             <h5>Additional context</h5>
-                            <h5>Discussion</h5>
+                            <Discussion messages={advice.discussion}/>
                         </Item>
                     ))
                 }

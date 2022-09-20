@@ -37,6 +37,21 @@ const advices = [{
                 }
             ]
         }
+    ],
+    discussion: [
+        {
+            author: {
+                name: 'JohnyBravo12'
+            },
+            text: 'By saying that she doesn’t have pleasure from sex, she could mean that she doesn’t have it WITH HIM.',
+            date: '2022-08-15T16:34:00'
+        },{
+            author: {
+                name: 'Mike123'
+            },
+            text: 'But this is exactly my point.',
+            date: '2022-08-15T16:34:00'
+        }
     ]
 }]
 
