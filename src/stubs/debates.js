@@ -62,29 +62,74 @@ export const debates = [{
     concepts: [c3, c5],
     percentage: 62
 }, {
-    id: '4',
-    name: 'Banking model of education treats students like deposits for knowledge',
-    concepts: [],
-    percentage: 0
-}, {
     id: '5',
     name: 'Banking model of education can treat students as humans',
     concepts: [],
     percentage: 0
 }, {
     id: '6',
-    name: 'Banking model of education leads to oppression',
+    name: 'Banking model of education is sufficient to oppress students',
+    nameArr: [{
+        text: 'Banking model of education',
+        func: 'KEY_CONCEPT'
+    },{
+        text: 'is sufficient to',
+        func: 'RELATION'
+    },{
+        text: 'oppress students',
+        func: 'RELATED_CONCEPT'
+    }],
     concepts: [],
     claimArguments: [
         {
-            claimsID: ['4'],
+            claimsID: ['6a', '6b'],
             impact: 'POSITIVE'
         },
         {
             claimsID: ['5'],
             impact: 'NEGATIVE'
-        }
+        },
+        {
+            claimsID: ['8'],
+            impact: 'POSITIVE'
+        },
     ],
+    percentage: 0
+}, {
+    id: '6a',
+    name: 'It is necessary for banking model of education to treat students like deposits for knowledge',
+    nameArr: [{
+        text: 'It is necessary for',
+        func: 'RELATION'
+    },{
+        text: 'banking model of education',
+        func: 'KEY_CONCEPT'
+    },{
+        text: 'to treat students like',
+        func: null
+    },{
+        text: 'deposits for knowledge',
+        func: 'RELATED_CONCEPT'
+    }],
+    concepts: [],
+    percentage: 0
+}, {
+    id: '6b',
+    name: 'Treating students like deposits for knowledge is sufficient to oppress students',
+    nameArr: [{
+        text: 'Treating students like',
+        func: null
+    },{
+        text: 'deposits for knowledge',
+        func: 'KEY_CONCEPT'
+    },{
+        text: 'is sufficient to',
+        func: 'RELATION'
+    },{
+        text: 'oppress students',
+        func: 'RELATED_CONCEPT'
+    }],
+    concepts: [],
     percentage: 0
 }, {
     id: '7',

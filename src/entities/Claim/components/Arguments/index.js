@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import Ctrl from './ctrl'
 import Button from 'react-bootstrap/Button'
 import {observer} from 'mobx-react'
 import ClaimListItem from '../ClaimElement/list'
-import { Wrapper } from './index.styles'
+import { Argument, Wrapper } from './index.styles'
 import { useNavigate } from 'react-router-dom'
 import AddClaim from '../AddClaim'
 import PropTypes from 'prop-types'
+import {BsArrowDown} from 'react-icons/bs'
 
 const Arguments = ({items, isCounter, parentID}) => {
     const navigate = useNavigate()
@@ -14,18 +15,21 @@ const Arguments = ({items, isCounter, parentID}) => {
 
     return (
         <Wrapper isCounter={isCounter}>
-            <h5>{isCounter ? 'Opposing' : 'Supporting'} arguments</h5>
+            <h5>{isCounter ? 'Objections' : 'Arguments'}</h5>
             {
                 items.map(item => (
-                    <div>
+                    <Argument>
                         {
-                            item.claimsID.map(claimId => {
+                            item.claimsID.map((claimId, i) => {
                                 const claim = ctrl.getClaimById(claimId)
 
-                                return <ClaimListItem {...claim} onClick={() => navigate(`/claim/${claimId}`)}/>
+                                return <Fragment key={i}>
+                                    <ClaimListItem {...claim} onClick={() => navigate(`/claim/${claimId}`)}/>
+                                    { !!item.claimsID[i+1] && <BsArrowDown /> }
+                                </Fragment>
                             })
                         }
-                    </div>
+                    </Argument>
                 ))
             }
 

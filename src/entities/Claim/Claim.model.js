@@ -7,9 +7,10 @@ import { v4 } from 'uuid'
 
 export default class ClaimModel {
 
-  constructor({id, name, claimArguments = [], concepts = [], notGoals = [], relatedDebates = [], percentage}) {
+  constructor({id, name, nameArr, claimArguments = [], concepts = [], notGoals = [], relatedDebates = [], percentage}) {
     this.id = id || v4()
     this.name = name || ''
+    this.nameArr = nameArr || []
     this.supportingArguments = claimArguments
         .filter(item => item.impact === 'POSITIVE')
         .map(item => new ClaimArgumentModel(item))

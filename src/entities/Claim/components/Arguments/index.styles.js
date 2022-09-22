@@ -7,6 +7,16 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `
 
+export const Argument = styled.div`
+  background-color: #F5F5F5;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-row-gap: 20px;
+  justify-content: center;
+  justify-items: center;
+`
+
 export const Percentage = styled.span`
   font-weight: bold;
   font-size: 1.1rem;

@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { observer } from 'mobx-react'
 import Ctrl from './ClaimPage.ctrl'
-import { ArgumentContainers, Wrapper } from './ClaimPage.styles'
+import { ArgumentContainers, Title, Wrapper } from './ClaimPage.styles'
 import { useParams } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import LinkClaim from '../../../entities/Claim/components/LinkClaim'
 import Arguments from '../../../entities/Claim/components/Arguments'
+import ClaimTitle from '../../../entities/Claim/components/ClaimTitle'
 
 export default observer(() => {
         const { id } = useParams()
@@ -14,9 +15,7 @@ export default observer(() => {
 
         return (
             <Wrapper>
-                <div>
-                    <h4>{ctrl.claim.name}</h4>
-                </div>
+                <Title><ClaimTitle title={ctrl.claim.nameArr} /></Title>
                 {
                     ctrl.linking ?
                         <LinkClaim linkingTo={id} linkingAs="CONCLUSION"/> :
