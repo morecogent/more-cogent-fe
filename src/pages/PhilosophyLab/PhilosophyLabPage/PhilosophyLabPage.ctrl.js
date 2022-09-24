@@ -1,15 +1,46 @@
 import { action, computed, makeObservable, observable } from 'mobx'
+import narrations from '../../../entities/Story/Narrations.store'
 import questsStore from '../../../entities/Quest/Quests.store'
 
-class PhilosophyLabPageCtrl {
+export default class PhilosophyLabPageCtrl {
 
-    quests = questsStore.items
+    constructor(navigate, searchParams) {
+        this.navigate = navigate
+        this.searchParams = searchParams
 
-    constructor() {
         makeObservable(this, {
-            quests: observable
+            navigate: observable,
+            searchParams: observable,
+            quests: computed,
+            linkQuestToStory: action
         })
     }
-}
 
-export default new PhilosophyLabPageCtrl()
+    get quests(){
+        if(this.searchParams.get('linking') === null){
+            return questsStore.items
+        } else {
+            const storyId = this.searchParams.get('linking')
+            const story = narrations.items.find(el => el.id === storyId)
+            const storyQuests = story.linkedQuests.map(el => el.questId)
+
+            return questsStore.items.filter(el => !storyQuests.includes(el.id))
+        }
+    }
+
+    onQuestSelect(questId){
+        if(this.searchParams.get('linking') === null){
+            this.navigate(`/quest/${questId}`)
+        } else {
+            this.linkQuestToStory(questId)
+        }
+
+    }
+
+    linkQuestToStory(questId){
+        const storyId = this.searchParams.get('linking')
+        const story = narrations.items.find(el => el.id === storyId)
+        story.addQuest(questId)
+        this.navigate(`/narration/${storyId}`)
+    }
+}

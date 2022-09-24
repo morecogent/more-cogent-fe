@@ -13,6 +13,7 @@ export default class QuestPageCtrl {
     makeObservable(this, {
       quest: computed,
       propositions: computed,
+      onPropositionSelect: action,
       linkPropositionToStory: action
     })
   }

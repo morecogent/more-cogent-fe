@@ -52,6 +52,8 @@ export default observer(() => {
                             />
                         ))
                     }
+                    <Link title={`Add a choice`} onClick={() => navigate(`/philosophy-lab?linking=${ctrl.narration.id}`)} />
+
 
                     <br/>
                     <h5>Additional context</h5>

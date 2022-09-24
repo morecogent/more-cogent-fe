@@ -131,6 +131,7 @@ export default class NarrationModel {
       quests: computed,
       addParagraph: action,
       linkChoice: action,
+      addQuest: action,
     })
   }
 
@@ -147,5 +148,9 @@ export default class NarrationModel {
   linkChoice(questId, propositionId){
     const linkedQuest = this.linkedQuests.find(el => el.questId === questId)
     linkedQuest.setChoice(propositionId)
+  }
+
+  addQuest(questId){
+    return this.linkedQuests.push(new LinkedQuestModel({questId}))
   }
 }
