@@ -5,4 +5,8 @@ export const Wrapper = styled.div`
   text-decoration: none;
   padding: 10px;
   cursor: pointer;
+  
+  :hover {
+    filter: brightness(1.25);
+  }
 `

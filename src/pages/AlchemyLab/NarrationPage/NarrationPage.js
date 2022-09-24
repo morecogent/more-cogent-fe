@@ -18,6 +18,7 @@ import QuestElement from '../../../entities/Quest/components/QuestElement/galler
 import { Accordion } from 'react-bootstrap'
 import LinkedQuest from '../../../entities/Quest/components/LinkedQuest'
 import Discussion from '../../../entities/Story/components/Discussion'
+import Link from '../../../components/Link'
 
 export default observer(() => {
         const { id } = useParams()
@@ -37,7 +38,9 @@ export default observer(() => {
 
 
                     <h5>Problem(s)</h5>
+                    <Link title={`Add a problem`} onClick={() => navigate(`/problems?linking=${ctrl.narration.id}`)} />
 
+                    <br/>
                     <h5>Author's choice(s)</h5>
                     {
                         ctrl.narration.linkedQuests.map(item => (
