@@ -64,7 +64,8 @@ export class LinkedQuestModel {
       questId: observable,
       propositionId: observable,
       quest: computed,
-      proposition: computed
+      proposition: computed,
+      setChoice: action
     })
   }
 
@@ -74,6 +75,10 @@ export class LinkedQuestModel {
 
   get proposition(){
     return this.quest.propositions.find(proposition => proposition.id === this.propositionId)
+  }
+
+  setChoice(propositionId){
+    this.propositionId = propositionId
   }
 }
 
@@ -125,6 +130,7 @@ export default class NarrationModel {
       date: observable,
       quests: computed,
       addParagraph: action,
+      linkChoice: action,
     })
   }
 
@@ -136,5 +142,10 @@ export default class NarrationModel {
     return quests.items
         .filter(quest => this.questsIds.includes(quest.id))
         .map(el => new QuestModel(el))
+  }
+
+  linkChoice(questId, propositionId){
+    const linkedQuest = this.linkedQuests.find(el => el.questId === questId)
+    linkedQuest.setChoice(propositionId)
   }
 }

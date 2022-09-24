@@ -30,17 +30,21 @@ export default observer(() => {
                 <ProblemBody>
                     <Title>{ctrl.narration.title}</Title>
 
+                    <h5>Story</h5>
                     <div>
                         <RichText items={ctrl.narration.text}/>
                     </div>
 
 
-                    <h5>Linked quests</h5>
+                    <h5>Problem(s)</h5>
+
+                    <h5>Author's choice(s)</h5>
                     {
                         ctrl.narration.linkedQuests.map(item => (
                             <LinkedQuest quest={item.quest}
                                          onQuestClick={questId => navigate(`/quest/${questId}`)}
                                          onPropositionClick={propositionId => navigate(`/quest/${item.quest.id}/proposition/${propositionId}`)}
+                                         onLinkPropositionClick={questId => navigate(`/quest/${questId}?linking=${ctrl.narration.id}`)}
                                          proposition={item.proposition}
                             />
                         ))

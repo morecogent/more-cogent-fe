@@ -1,8 +1,9 @@
 import React from 'react'
-import { Arrow, Link, Proposition, Quest, Wrapper } from './index.styles'
+import { Arrow, Proposition, Quest, Wrapper } from './index.styles'
 import {BsArrowRight} from 'react-icons/bs'
+import Link from '../../../../components/Link'
 
-const linkedQuest = ({quest, proposition, onQuestClick, onPropositionClick}) => (
+const linkedQuest = ({quest, proposition, onQuestClick, onPropositionClick, onLinkPropositionClick}) => (
     <Wrapper>
         <Quest onClick={() => onQuestClick(quest.id)}>
             {quest.title}
@@ -15,7 +16,7 @@ const linkedQuest = ({quest, proposition, onQuestClick, onPropositionClick}) => 
                 <Proposition onClick={() => onPropositionClick(proposition.id)}>
                     {proposition.title}
                 </Proposition> :
-                <Link>Link author's choice</Link>
+                <Link title={`Link author's choice`} onClick={() => onLinkPropositionClick(quest.id)} />
 
         }
     </Wrapper>
