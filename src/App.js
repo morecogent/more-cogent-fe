@@ -17,6 +17,7 @@ import NarrationPage from './pages/AlchemyLab/NarrationPage/NarrationPage'
 import PhilosophyLabPage from './pages/PhilosophyLab/PhilosophyLabPage/PhilosophyLabPage'
 import ClaimPage from './pages/ScienceLab/ClaimPage/ClaimPage'
 import AddQuestionPage from './pages/AlchemyLab/AddQuestionPage/AddQuestionPage'
+import LinkProblemsPage from './pages/AlchemyLab/LinkResultsPage/LinkResultsPage'
 import './stubs/stubs'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -57,6 +58,7 @@ export default class App extends React.Component {
                         <Route path="/alchemy-lab" element={<AlchemyLabPage/>}/>
                         <Route path="/narration/:id" element={<NarrationPage/>}/>
                         <Route path="/add-your-question" element={<AddQuestionPage/>}/>
+                        <Route path="/link-problems" element={<LinkProblemsPage/>}/>
 
 
                         <Route path="/philosophy-lab" element={<PhilosophyLabPage/>}/>

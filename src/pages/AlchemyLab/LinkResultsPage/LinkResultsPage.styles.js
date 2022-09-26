@@ -45,10 +45,3 @@ export const Author = styled.div`
 export const AuthorName = styled.span`
   color: #DC3545;
 `
-export const Problems = styled.div`
-  display: flex;
-  
-  > div {
-    margin-right: 10px;
-  }
-`

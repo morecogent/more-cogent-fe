@@ -3,6 +3,7 @@ import ConceptModel from '../Concept/Concept.model'
 import AdviceModel from './Advice.model'
 import QuestModel from '../Quest/Quest.model'
 import quests from '../Quest/Quests.store'
+import results from '../Result/Results.store'
 import { v4 } from 'uuid'
 
 export class NarrationElementModel {
@@ -82,6 +83,22 @@ export class LinkedQuestModel {
   }
 }
 
+export class LinkedProblemModel {
+
+  constructor({problemId}) {
+    this.problemId = problemId || ''
+
+    makeObservable(this, {
+      problemId: observable,
+      problem: computed
+    })
+  }
+
+  get problem(){
+    return results.items.find(el => el.id === this.problemId)
+  }
+}
+
 export class DiscussionMessageModel {
 
   constructor({author, text, date}) {
@@ -100,7 +117,7 @@ export class DiscussionMessageModel {
 // For questions this should be refactored into Problem (according to problem-posing education)
 export default class NarrationModel {
 
-  constructor({id, title, text = [], advices = [], beliefs = [], concepts = [], linkedQuests = [], discussion = [], author, date}) {
+  constructor({id, title, text = [], advices = [], beliefs = [], concepts = [], linkedQuests = [], linkedProblems = [], discussion = [], author, date}) {
     this.id = id || v4()
 
     this.title = title
@@ -115,6 +132,7 @@ export default class NarrationModel {
     this.concepts = concepts.map(c => new ConceptModel(c))
     this.advices = advices.map(el => new AdviceModel(el))
     this.linkedQuests = linkedQuests.map(el => new LinkedQuestModel(el))
+    this.linkedProblems = linkedProblems.map(el => new LinkedProblemModel(el))
     this.discussion = discussion.map(el => new DiscussionMessageModel(el))
     this.author = author
     this.date = new Date(date)
@@ -125,6 +143,7 @@ export default class NarrationModel {
       beliefs: observable,
       advices: observable,
       linkedQuests: observable,
+      linkedProblems: observable,
       discussion: observable,
       author: observable,
       date: observable,
@@ -148,6 +167,10 @@ export default class NarrationModel {
   linkChoice(questId, propositionId){
     const linkedQuest = this.linkedQuests.find(el => el.questId === questId)
     linkedQuest.setChoice(propositionId)
+  }
+
+  linkProblem(resultId){
+    return this.linkedProblems.push(new LinkedProblemModel({problemId: resultId}))
   }
 
   addQuest(questId){

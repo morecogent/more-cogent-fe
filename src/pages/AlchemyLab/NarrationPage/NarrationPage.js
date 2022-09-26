@@ -6,19 +6,19 @@ import {
     Title,
     Wrapper,
     Author,
-    AuthorName
+    AuthorName,
+    Problems
 } from './NarrationPage.styles'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Item } from './NarrationPage.styles'
 import Button from '../../../components/Button'
 import RichText from '../../../components/RichText'
 import TextArea from '../../../components/TextArea'
-import Gallery from '../../../components/Gallery'
-import QuestElement from '../../../entities/Quest/components/QuestElement/gallery'
 import { Accordion } from 'react-bootstrap'
 import LinkedQuest from '../../../entities/Quest/components/LinkedQuest'
 import Discussion from '../../../entities/Story/components/Discussion'
 import Link from '../../../components/Link'
+import LinkedResult from '../../../entities/Result/components/LinkedResult'
 
 export default observer(() => {
         const { id } = useParams()
@@ -38,7 +38,14 @@ export default observer(() => {
 
 
                     <h5>Problem(s)</h5>
-                    <Link title={`Add a problem`} onClick={() => navigate(`/problems?linking=${ctrl.narration.id}`)} />
+                    <Problems>
+                        {
+                            ctrl.narration.linkedProblems.map(el => (
+                                <LinkedResult result={el.problem}/>
+                            ))
+                        }
+                    </Problems>
+                    <Link title={`Add a problem`} onClick={() => navigate(`/link-problems?linking=${ctrl.narration.id}`)}/>
 
                     <br/>
                     <h5>Author's choice(s)</h5>
@@ -52,7 +59,7 @@ export default observer(() => {
                             />
                         ))
                     }
-                    <Link title={`Add a choice`} onClick={() => navigate(`/philosophy-lab?linking=${ctrl.narration.id}`)} />
+                    <Link title={`Add a choice`} onClick={() => navigate(`/philosophy-lab?linking=${ctrl.narration.id}`)}/>
 
 
                     <br/>
