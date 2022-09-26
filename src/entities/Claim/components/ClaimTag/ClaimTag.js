@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Percentage, Wrapper } from './index.styles'
+import { Percentage, Wrapper } from './ClaimTag.styles'
 import Ctrl from './ClaimTag.ctrl'
 import { useNavigate } from 'react-router-dom'
 

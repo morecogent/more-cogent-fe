@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Item, Wrapper } from './index.styles'
-import Ctrl from './ctrl'
+import { Item, Wrapper } from './ClaimPopover.styles'
+import Ctrl from './ClaimPopover.ctrl'
 import { observer } from 'mobx-react'
 
 const ClaimsPopover = ({filter, onSelect}) => {

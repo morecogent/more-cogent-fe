@@ -1,5 +1,5 @@
 import React from 'react'
-import { Wrapper } from './index.styles'
+import { Wrapper } from './Link.styles'
 
 const Link = ({ title, onClick }) => (
     <Wrapper onClick={onClick}>

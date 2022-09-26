@@ -24,16 +24,25 @@ module.exports = {
         })
     ],
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js'],
         alias: {
             'react-dom$': 'react-dom/profiling',
         }
     },
     module: {
         rules: [{
-            test: /\.jsx?$/,
-            use: ['babel-loader'],
-            include: path.join(__dirname, 'src')
+            test: /\.js$/,
+            use: [{
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/react'],
+                    plugins: [
+                        ["@babel/plugin-proposal-decorators", { "legacy": true }],
+                        ["@babel/plugin-proposal-class-properties", {"loose": true}]
+                    ]
+                }
+            }],
+            include: path.join(__dirname, 'src'),
         },{
             test: /\.css$/,
             use: ['style-loader', 'css-loader']

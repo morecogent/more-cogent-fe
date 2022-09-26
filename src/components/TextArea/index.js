@@ -3,7 +3,7 @@ import { Container, Label, TextSpan, TextInput, Wrapper } from './index.styles'
 import Ctrl from './ctrl'
 import ClaimTag from '../../entities/Claim/components/ClaimTag'
 import { observer } from 'mobx-react'
-import ClaimsPopover from '../../entities/Claim/components/ClaimsPopover'
+import ClaimsPopover from '../../entities/Claim/components/ClaimPopover'
 import PropTypes from 'prop-types'
 
 const Paragraph = observer(({ items, narration }) => {

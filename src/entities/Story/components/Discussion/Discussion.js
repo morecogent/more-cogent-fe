@@ -4,7 +4,7 @@ import {
     Discussion,
     Message,
     MessageDate
-} from './index.styles'
+} from './Discussion.styles'
 
 const discussion = ({messages}) => (
     <Discussion>

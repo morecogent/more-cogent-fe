@@ -1,5 +1,5 @@
 import React  from 'react'
-import { Element } from './index.styles'
+import { Element } from './ClaimTitle.styles'
 
 const ClaimTitle = ({ title }) => {
 
