@@ -150,6 +150,8 @@ export default class NarrationModel {
       quests: computed,
       addParagraph: action,
       linkChoice: action,
+      linkProblem: action,
+      unlinkProblem: action,
       addQuest: action,
     })
   }
@@ -169,8 +171,12 @@ export default class NarrationModel {
     linkedQuest.setChoice(propositionId)
   }
 
-  linkProblem(resultId){
-    return this.linkedProblems.push(new LinkedProblemModel({problemId: resultId}))
+  linkProblem(problemId){
+    return this.linkedProblems.push(new LinkedProblemModel({problemId}))
+  }
+
+  unlinkProblem(problemId){
+    return this.linkedProblems = this.linkedProblems.filter(el => el.problemId !== problemId)
   }
 
   addQuest(questId){

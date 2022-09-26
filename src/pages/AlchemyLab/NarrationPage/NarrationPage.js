@@ -41,7 +41,8 @@ export default observer(() => {
                     <Problems>
                         {
                             ctrl.narration.linkedProblems.map(el => (
-                                <LinkedResult result={el.problem}/>
+                                <LinkedResult result={el.problem}
+                                              onRemove={problemId => ctrl.narration.unlinkProblem(problemId)}/>
                             ))
                         }
                     </Problems>
