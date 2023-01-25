@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { observer } from 'mobx-react'
 import Ctrl from './ClaimPage.ctrl'
 import { ArgumentContainers, Title, Wrapper } from './ClaimPage.styles'
@@ -8,31 +8,39 @@ import LinkClaim from '../../../entities/Claim/components/LinkClaim'
 import Arguments from '../../../entities/Claim/components/Arguments'
 import ClaimTitle from '../../../entities/Claim/components/ClaimTitle'
 
-export default observer(() => {
-        const { id } = useParams()
-        // TODO - single instance kept in the hooks prevents moving from one claim to another (no refresh)
-        const [ctrl] = useState(new Ctrl(id))
+function ClaimPage({ ctrl, id }) {
+    return (
+        <Wrapper>
+            <Title><ClaimTitle title={ctrl.claim.nameArr}/></Title>
+            {
+                ctrl.linking ?
+                    <LinkClaim linkingTo={id} linkingAs="CONCLUSION"/> :
+                    <div>
+                        <Button onClick={() => ctrl.linkAsArgument()}>Link as a premise</Button>
+                    </div>
+            }
+            <ArgumentContainers>
+                <Arguments items={ctrl.claim.supportingArguments}
+                           isCounter={false}
+                           parentID={id}/>
+                <Arguments items={ctrl.claim.opposingArguments}
+                           isCounter={true}
+                           parentID={id}/>
+            </ArgumentContainers>
 
-        return (
-            <Wrapper>
-                <Title><ClaimTitle title={ctrl.claim.nameArr} /></Title>
-                {
-                    ctrl.linking ?
-                        <LinkClaim linkingTo={id} linkingAs="CONCLUSION"/> :
-                        <div>
-                            <Button onClick={() => ctrl.linkAsArgument()}>Link as a premise</Button>
-                        </div>
-                }
-                <ArgumentContainers>
-                    <Arguments items={ctrl.claim.supportingArguments}
-                               isCounter={false}
-                               parentID={id} />
-                    <Arguments items={ctrl.claim.opposingArguments}
-                               isCounter={true}
-                               parentID={id} />
-                </ArgumentContainers>
+        </Wrapper>
+    )
+}
 
-            </Wrapper>
-        )
-    }
-)
+const ClaimPageWithMobx = observer(ClaimPage)
+
+function ClaimPageWrapper() {
+    const { id } = useParams()
+    const ctrl = new Ctrl(id)
+
+    return (
+        <ClaimPageWithMobx ctrl={ctrl} id={id}/>
+    )
+}
+
+export default ClaimPageWrapper
