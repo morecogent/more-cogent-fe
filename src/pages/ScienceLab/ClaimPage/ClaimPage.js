@@ -11,7 +11,13 @@ import ClaimTitle from '../../../entities/Claim/components/ClaimTitle'
 function ClaimPage({ ctrl, id }) {
     return (
         <Wrapper>
-            <Title><ClaimTitle title={ctrl.claim.nameArr}/></Title>
+            <Title>
+                { ctrl.claim.nameArr.length > 0 ?
+                    <ClaimTitle title={ctrl.claim.nameArr}/> :
+                    ctrl.claim.name
+                }
+
+            </Title>
             {
                 ctrl.linking ?
                     <LinkClaim linkingTo={id} linkingAs="CONCLUSION"/> :
