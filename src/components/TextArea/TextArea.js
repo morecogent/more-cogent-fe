@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Container, Label, TextSpan, TextInput, Wrapper } from './index.styles'
-import Ctrl from './ctrl'
+import { Container, Label, TextSpan, TextInput, Wrapper } from './TextArea.styles'
+import Ctrl from './TextArea.ctrl'
 import ClaimTag from '../../entities/Claim/components/ClaimTag'
 import { observer } from 'mobx-react'
 import ClaimsPopover from '../../entities/Claim/components/ClaimPopover'
