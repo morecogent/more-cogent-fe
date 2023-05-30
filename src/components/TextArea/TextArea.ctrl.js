@@ -34,7 +34,7 @@ export default class TextAreaCtrl {
     onKeyPress(e, index) {
         this.currentItemIndex = index
 
-        if (this.popover && e.keyCode >= 65 && e.keyCode <= 122) {
+        if (this.popover && (e.keyCode >= 65 && e.keyCode <= 122) || e.keyCode === 32) {
             this.searchText += e.key
         }
         if (!e.shiftKey) {

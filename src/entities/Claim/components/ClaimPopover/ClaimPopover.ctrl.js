@@ -19,4 +19,14 @@ export default class ClaimsPopoverCtrl {
         return this._items.filter(el => el.name.toLowerCase().includes(this.filter.toLowerCase()))
     }
 
+    get addingDisabled(){
+        return this.filter.length === 0 || this.directMatch
+    }
+
+    get directMatch(){
+        return this.items.filter(el => el.name.toLowerCase() === this.filter.toLowerCase()).length > 0
+    }
+
+
+
 }
