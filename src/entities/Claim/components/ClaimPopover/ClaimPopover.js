@@ -10,7 +10,9 @@ const ClaimsPopover = ({items, onSelect, filter}) => {
         <Wrapper>
             {
                 ctrl.items.map(item => (
-                    <Item onClick={() => onSelect(item)}>
+                    <Item
+                        key={item.id}
+                        onClick={() => onSelect(item)}>
                         {item.name}
                     </Item>
                 ))
