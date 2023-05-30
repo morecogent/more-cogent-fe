@@ -45,6 +45,12 @@ export default class TextAreaCtrl {
                 case 'Slash':
                     this._onSlash(e)
                     break
+                case 'ArrowLeft':
+                    if(this.currentItemIndex > 0) this._onArrowLeft(e)
+                    break
+                case 'ArrowRight':
+                    if(this.currentItemIndex < this.items.length - 1) this._onArrowRight(e)
+                    break
                 case 'Escape':
                     this.popover = false
                     break
@@ -52,6 +58,29 @@ export default class TextAreaCtrl {
                     e.preventDefault()
                     return false
             }
+        }
+    }
+
+    _onArrowLeft(e) {
+        const currentPosition = Cursor.getCurrentCursorPosition(e.target)
+
+        if (currentPosition === 0) {
+            const nextNode = this._items[this.currentItemIndex - 2].ref.current
+            Cursor.setCurrentCursorPosition(nextNode.textContent.length, nextNode)
+            nextNode.focus()
+            e.preventDefault()
+        }
+    }
+
+    _onArrowRight(e) {
+        const currentPosition = Cursor.getCurrentCursorPosition(e.target)
+        const currentLength = e.target.textContent.length
+
+        if (currentPosition === currentLength) {
+            const nextNode = this._items[this.currentItemIndex + 2].ref.current
+            Cursor.setCurrentCursorPosition(nextNode.textContent.length, nextNode)
+            nextNode.focus()
+            e.preventDefault()
         }
     }
 
@@ -100,7 +129,6 @@ export default class TextAreaCtrl {
         const currentItemNode = this._items[this.currentItemIndex].ref.current
         const textBeforeSlash = currentItemNode.textContent.substring(0, this.slashIndex)
         const textAfterSlash = currentItemNode.textContent.substring(this.slashIndex + this.searchText.length + 2, currentItemNode.textContent.length)
-
 
         if (textAfterSlash.length > 0) {
             this._items.splice(this.currentItemIndex, 1, createText(textBeforeSlash), conceptToInsert, createText(textAfterSlash))
