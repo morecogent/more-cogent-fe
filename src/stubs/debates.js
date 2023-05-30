@@ -1,11 +1,6 @@
-import {c1, c2, c5, c3} from './concepts'
+import { c1, c2, c5, c3, human, knowledgeAPriori, compositeHowToLive } from './concepts'
 
 export const debates = [{
-    id: '100',
-    name: 'Relationship with a purpose of saving money is sufficient to reduce it’s strength',
-    concepts: [],
-    percentage: 87
-}, {
     name: 'Capitalism is not ethical',
     concepts: [c1, c2],
     debateArguments: [
@@ -72,10 +67,10 @@ export const debates = [{
     nameArr: [{
         text: 'Banking model of education',
         func: 'KEY_CONCEPT'
-    },{
+    }, {
         text: 'is sufficient to',
         func: 'RELATION'
-    },{
+    }, {
         text: 'oppress students',
         func: 'RELATED_CONCEPT'
     }],
@@ -92,7 +87,7 @@ export const debates = [{
         {
             claimsID: ['8'],
             impact: 'POSITIVE'
-        },
+        }
     ],
     percentage: 0
 }, {
@@ -101,13 +96,13 @@ export const debates = [{
     nameArr: [{
         text: 'It is necessary for',
         func: 'RELATION'
-    },{
+    }, {
         text: 'banking model of education',
         func: 'KEY_CONCEPT'
-    },{
+    }, {
         text: 'to treat students like',
         func: null
-    },{
+    }, {
         text: 'deposits for knowledge',
         func: 'RELATED_CONCEPT'
     }],
@@ -119,13 +114,13 @@ export const debates = [{
     nameArr: [{
         text: 'Treating students like',
         func: null
-    },{
+    }, {
         text: 'deposits for knowledge',
         func: 'KEY_CONCEPT'
-    },{
+    }, {
         text: 'is sufficient to',
         func: 'RELATION'
-    },{
+    }, {
         text: 'oppress students',
         func: 'RELATED_CONCEPT'
     }],
@@ -135,14 +130,29 @@ export const debates = [{
     id: '7',
     name: 'Sex should give pleasure to both partners',
     concepts: [],
-    claimArguments: [
-    ],
+    claimArguments: [],
     percentage: 83
 }, {
     id: '8',
     name: 'We should create friendships to feel better in work',
     concepts: [],
-    claimArguments: [
-    ],
+    claimArguments: [],
     percentage: 23
+}, {
+    id: '100',
+    nameArr: [{
+        value: human,
+        type: 'CONCEPT'
+    }, {
+        value: 'doesn\'t have',
+        type: 'TEXT'
+    }, {
+        value: knowledgeAPriori,
+        type: 'CONCEPT'
+    }, {
+        value: compositeHowToLive,
+        type: 'CONCEPT'
+    }],
+    concepts: [],
+    percentage: 0
 }]

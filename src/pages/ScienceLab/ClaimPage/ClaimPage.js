@@ -6,18 +6,13 @@ import { useParams } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import LinkClaim from '../../../entities/Claim/components/LinkClaim'
 import Arguments from '../../../entities/Claim/components/Arguments'
-import ClaimTitle from '../../../entities/Claim/components/ClaimTitle'
+import TextArea from '../../../components/TextArea/TextArea'
 
 function ClaimPage({ ctrl, id }) {
+
     return (
         <Wrapper>
-            <Title>
-                { ctrl.claim.nameArr.length > 0 ?
-                    <ClaimTitle title={ctrl.claim.nameArr}/> :
-                    ctrl.claim.name
-                }
-
-            </Title>
+            <TextArea items={ctrl.claim.nameArr}/>
             {
                 ctrl.linking ?
                     <LinkClaim linkingTo={id} linkingAs="CONCLUSION"/> :

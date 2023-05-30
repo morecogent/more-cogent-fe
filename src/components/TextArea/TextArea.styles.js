@@ -23,16 +23,28 @@ export const Label = styled.span`
 `
 
 export const TextSpan = styled.div`
-  display: ${({block}) => block ? 'block': 'inline'};
-  padding: 6px 6px 6px 0;
+  display: ${({ block }) => block ? 'block' : 'inline'};
+  padding: 6px;
+  ${({last}) => last && `flex: 1 0 auto;`}
   
-  :focus-visible{
+
+  :focus-visible {
     outline: none;
   }
 `
 
+export const TemporaryConcept = styled.span`
+  padding: 6px;
+  margin: 3px 0px;
+  background-color: #f0d0d0;
+  cursor: pointer;
+`
+
 export const TextInput = styled.div`
   padding: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 `
 
 export const Popover = styled.div`

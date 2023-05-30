@@ -1,17 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Item, Wrapper } from './ClaimPopover.styles'
 import Ctrl from './ClaimPopover.ctrl'
 import { observer } from 'mobx-react'
 
-const ClaimsPopover = ({filter, onSelect}) => {
-    const ctrl = new Ctrl(filter)
+const ClaimsPopover = ({items, onSelect, filter}) => {
+    const ctrl = new Ctrl(items, filter)
 
     return (
         <Wrapper>
-            {/*<input type="text" value={search} onChange={(e) => ctrl.setFilter(e.target.value)}/>*/}
             {
                 ctrl.items.map(item => (
-                    <Item onClick={() => onSelect(item.id)}>
+                    <Item onClick={() => onSelect(item)}>
                         {item.name}
                     </Item>
                 ))

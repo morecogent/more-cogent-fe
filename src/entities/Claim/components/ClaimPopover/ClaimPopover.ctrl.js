@@ -1,10 +1,10 @@
 import { computed, makeObservable, observable } from 'mobx'
-import claims from '../../Claims.store'
 
 export default class ClaimsPopoverCtrl {
     filter = ''
 
-    constructor(filter) {
+    constructor(items, filter) {
+        this._items = items
         this.filter = filter
 
         makeObservable(this, {
@@ -14,13 +14,9 @@ export default class ClaimsPopoverCtrl {
     }
 
     get items(){
-        if(!this.filter) return claims.items
+        if(!this.filter) return this._items
 
-        return claims.items.filter(el => el.name.toLowerCase().includes(this.filter.toLowerCase()))
+        return this._items.filter(el => el.name.toLowerCase().includes(this.filter.toLowerCase()))
     }
-    //
-    // setFilter(value){
-    //     this.filter = value
-    // }
 
 }

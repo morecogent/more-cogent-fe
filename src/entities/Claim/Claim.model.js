@@ -27,6 +27,7 @@ export default class ClaimModel {
 
     makeObservable(this, {
       name: observable,
+      nameArr: observable,
       supportingArguments: observable,
       opposingArguments: observable,
       concepts: observable,
@@ -34,7 +35,7 @@ export default class ClaimModel {
       relatedDebates: observable,
       linkedClaimIDs: computed,
       linkSupportiveArgument: action,
-      linkOpposingArgument: action
+      linkOpposingArgument: action,
     })
   }
 
