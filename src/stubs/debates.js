@@ -1,4 +1,5 @@
 import { c1, c2, c5, c3, human, knowledgeAPriori, compositeHowToLive } from './concepts'
+import TextFragment from '../entities/Claim/TextFragment'
 
 export const debates = [{
     name: 'Capitalism is not ethical',
@@ -140,19 +141,12 @@ export const debates = [{
     percentage: 23
 }, {
     id: '100',
-    nameArr: [{
-        value: human,
-        type: 'CONCEPT'
-    }, {
-        value: 'doesn\'t have',
-        type: 'TEXT'
-    }, {
-        value: knowledgeAPriori,
-        type: 'CONCEPT'
-    }, {
-        value: compositeHowToLive,
-        type: 'CONCEPT'
-    }],
+    nameArr: [
+        human,
+        new TextFragment('doesn\'t have'),
+        knowledgeAPriori,
+        compositeHowToLive
+    ],
     concepts: [],
     percentage: 0
 }]

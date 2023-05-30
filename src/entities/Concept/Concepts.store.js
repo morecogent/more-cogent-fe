@@ -1,5 +1,6 @@
 import { makeObservable, observable } from 'mobx'
 import ConceptModel from './Concept.model'
+import CompositeModel from './Composite.model'
 
 class ConceptsStore {
   items = []
@@ -11,7 +12,11 @@ class ConceptsStore {
   }
 
   add(item){
-    const instance = new ConceptModel(item)
+    let instance = item
+    if(!(item instanceof ConceptModel) && !(item instanceof CompositeModel)) {
+      instance = new ConceptModel(item)
+    }
+
     this.items.push(instance)
     return instance
   }

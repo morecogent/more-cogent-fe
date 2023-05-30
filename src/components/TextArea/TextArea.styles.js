@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import CompositeModel from '../../entities/Concept/Composite.model'
+import ConceptModel from '../../entities/Concept/Concept.model'
 
 export const Container = styled.div`
   position: relative;
@@ -36,8 +38,13 @@ export const TextSpan = styled.div`
 export const TemporaryConcept = styled.span`
   padding: 6px;
   margin: 3px 0px;
-  background-color: #f0d0d0;
+  background-color: ${ConceptModel.color};
   cursor: pointer;
+  border-radius: 5px;
+`
+
+export const TemporaryComposite = styled(TemporaryConcept)`
+  background-color: ${CompositeModel.color};
 `
 
 export const TextInput = styled.div`

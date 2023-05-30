@@ -1,4 +1,6 @@
 import styled from 'styled-components'
+import CompositeModel from '../../../Concept/Composite.model'
+import ConceptModel from '../../../Concept/Concept.model'
 
 export const Wrapper = styled.div`
   background-color: white;
@@ -33,8 +35,15 @@ export const Item = styled.div`
   padding: 15px 20px;
   border-bottom: 1px solid;
   cursor: pointer;
-  
+  background-color: ${({ item }) => {
+    if (item instanceof CompositeModel) return CompositeModel.color + '30'
+    else if (item instanceof ConceptModel) return ConceptModel.color + '30'
+  }};
+
   :hover {
-    background-color: rgba(0,0,0,.1);
+    background-color: ${({ item }) => {
+      if (item instanceof CompositeModel) return CompositeModel.color + '80'
+      else if (item instanceof ConceptModel) return ConceptModel.color + '80'
+    }};
   }
 `

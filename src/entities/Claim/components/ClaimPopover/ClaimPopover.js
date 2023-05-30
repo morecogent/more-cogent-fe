@@ -12,7 +12,7 @@ const ClaimsPopover = ({items, onSelect, filter}) => {
             <Items>
                 {
                     ctrl.items.map(item => (
-                        <Item
+                        <Item item={item}
                             key={item.id}
                             onClick={() => onSelect(item)}>
                             {item.name}

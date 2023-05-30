@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Label, TextSpan, TextInput, Wrapper, TemporaryConcept } from './TextArea.styles'
+import { Container, Label, TextSpan, TextInput, Wrapper, TemporaryConcept, TemporaryComposite } from './TextArea.styles'
 import Ctrl from './TextArea.ctrl'
 import ClaimTag from '../../entities/Claim/components/ClaimTag'
 import { observer } from 'mobx-react'
@@ -12,8 +12,8 @@ const Paragraph = observer(({ items }) => {
     return (
         <TextInput itemsLength={ctrl.items.length}>
             {
-                ctrl.items.map(({ type, value, ref }, index) => {
-                    switch (type) {
+                ctrl.items.map(({item, ref}, index) => {
+                    switch (item.type) {
                         case 'TEXT':
                         case 'span':
                             return <TextSpan key={index}
@@ -22,11 +22,13 @@ const Paragraph = observer(({ items }) => {
                                              suppressContentEditableWarning
                                              onKeyDown={e => ctrl.onKeyPress(e, index)}
                                              contentEditable placeholder={'Type something here...'}
-                                             onBlur={e => ctrl.updateText(e, items[index])}>{value}</TextSpan>
+                                             onBlur={e => ctrl.updateText(e, items[index])}>{item.value}</TextSpan>
                         case 'claim':
                             return <ClaimTag key={index} id={content} ref={ref}/>
                         case 'CONCEPT':
-                            return <TemporaryConcept key={index} ref={ref}>{value.name}</TemporaryConcept>
+                            return <TemporaryConcept key={index} ref={ref}>{item.name}</TemporaryConcept>
+                        case 'COMPOSITE':
+                            return <TemporaryComposite key={index} ref={ref}>{item.name}</TemporaryComposite>
                     }
                 })
             }

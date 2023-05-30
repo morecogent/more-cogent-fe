@@ -2,6 +2,22 @@ import { action, computed, makeObservable, observable } from 'mobx'
 import { createRef } from 'react'
 import { Cursor } from '../../libs/Cursor'
 import store from '../../entities/Concept/Concepts.store'
+import TextFragment from '../../entities/Claim/TextFragment'
+
+class TextAreaElement {
+    constructor(item = '') {
+        if(typeof item === 'string'){
+            this.item = new TextFragment(item)
+        } else {
+            this.item = item
+        }
+        this.ref = createRef()
+    }
+
+    isText(){
+        return this.item.type === 'TEXT'
+    }
+}
 
 export default class TextAreaCtrl {
     popover = false
@@ -26,7 +42,7 @@ export default class TextAreaCtrl {
     }
 
     get items() {
-        if (this._items.length === 0) return [createText()]
+        if (this._items.length === 0) return [new TextAreaElement()]
 
         return this._items
     }
@@ -101,7 +117,7 @@ export default class TextAreaCtrl {
 
             this._items.splice(this.currentItemIndex - 1, 2)
 
-            if (prevPrevItem?.type === 'TEXT') {
+            if (prevPrevItem?.item.isText()) {
                 const length = prevPrevItem.ref.current.textContent.length
                 Cursor.setCurrentCursorPosition(length, prevPrevItem.ref.current)
             }
@@ -121,19 +137,24 @@ export default class TextAreaCtrl {
     //    else place concept between split TEXT
     // ? Change name to insertComponent
     replaceSlash(item) {
-        const conceptToInsert = {
-            type: 'CONCEPT',
-            value: item
-        }
+        const conceptToInsert = new TextAreaElement(item)
 
         const currentItemNode = this._items[this.currentItemIndex].ref.current
         const textBeforeSlash = currentItemNode.textContent.substring(0, this.slashIndex)
         const textAfterSlash = currentItemNode.textContent.substring(this.slashIndex + this.searchText.length + 2, currentItemNode.textContent.length)
 
         if (textAfterSlash.length > 0) {
-            this._items.splice(this.currentItemIndex, 1, createText(textBeforeSlash), conceptToInsert, createText(textAfterSlash))
+            this._items.splice(
+                this.currentItemIndex,
+                1,
+                new TextAreaElement(textBeforeSlash), conceptToInsert, new TextAreaElement(textAfterSlash)
+            )
         } else {
-            this._items.splice(this.currentItemIndex + 1, 0, conceptToInsert, createText())
+            this._items.splice(
+                this.currentItemIndex + 1,
+                0,
+                conceptToInsert, new TextAreaElement()
+            )
             currentItemNode.textContent = textBeforeSlash
         }
 
@@ -145,14 +166,6 @@ export default class TextAreaCtrl {
 
 // Helpers
 
-function createText(value = '') {
-    return {
-        type: 'TEXT',
-        value,
-        ref: createRef()
-    }
-}
-
 // Add empty texts:
 //  Before each Component Element (if it's not preceded by text already)
 //  After the last Component Element (if it's not followed by text already)
@@ -161,18 +174,15 @@ function addEmptyTexts(items) {
     const result = []
 
     items.forEach((item, i) => {
-        const previousItemIsText = i !== 0 && items[i - 1].type === 'TEXT'
-        const currentItemIsText = item.type === 'TEXT'
-        if (!previousItemIsText && !currentItemIsText) result.push(createText())
+        const previousItemIsText = i !== 0 && items[i - 1] instanceof TextFragment
+        const currentItemIsText = item instanceof TextFragment
+        if (!previousItemIsText && !currentItemIsText) result.push(new TextAreaElement())
 
-        result.push({
-            ...item,
-            ref: createRef()
-        })
+        result.push(new TextAreaElement(item))
     })
 
     const lastItem = items[items.length - 1]
-    if (lastItem.type !== 'TEXT') result.push(createText())
+    if (!(lastItem instanceof TextFragment)) result.push(new TextAreaElement())
 
     return result
 }
