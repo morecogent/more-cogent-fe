@@ -21,6 +21,7 @@ import LinkProblemsPage from './pages/AlchemyLab/LinkResultsPage/LinkResultsPage
 import ArticlePage from './pages/PhilosophyLab/ArticlePage/ArticlePage'
 import './stubs/stubs'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import ConceptsPage from './pages/ScienceLab/ConceptsPage/ConceptsPage'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -71,6 +72,7 @@ export default class App extends React.Component {
 
                         <Route path="/science-lab" element={<ScienceLabPage/>}/>
                         <Route path="/claim/:id" element={<ClaimPage/>}/>
+                        <Route path="/concepts" element={<ConceptsPage/>}/>
 
 
                         <Route exact path="/" element={<Navigate to="/alchemy-lab" replace/>}/>

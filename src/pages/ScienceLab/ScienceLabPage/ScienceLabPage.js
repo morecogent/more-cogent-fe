@@ -6,6 +6,7 @@ import Gallery from '../../../components/Gallery'
 import { Wrapper } from '../../../App.styles'
 import { useNavigate } from 'react-router-dom'
 import AddClaim from '../../../entities/Claim/components/AddClaim'
+import Button from 'react-bootstrap/Button'
 
 export default observer(() => {
         const navigate = useNavigate()
@@ -14,6 +15,7 @@ export default observer(() => {
             <Wrapper>
                 <h3>Claims</h3>
                 <Gallery items={ctrl.claims} Component={DebateGallery} onClick={id => navigate(`/claim/${id}`)}/>
+                <Button onClick={() => navigate('/concepts')}>See Concepts</Button>
                 <div style={{ marginTop: 30 }}>
                     <AddClaim />
                 </div>

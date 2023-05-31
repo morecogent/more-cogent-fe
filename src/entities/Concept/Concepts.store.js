@@ -20,6 +20,10 @@ class ConceptsStore {
     this.items.push(instance)
     return instance
   }
+
+  remove(itemToRemove){
+    this.items = this.items.filter(item => item !== itemToRemove)
+  }
 }
 
 export default new ConceptsStore()
