@@ -22,6 +22,8 @@ import ArticlePage from './pages/PhilosophyLab/ArticlePage/ArticlePage'
 import './stubs/stubs'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import ConceptsPage from './pages/ScienceLab/ConceptsPage/ConceptsPage'
+import DesignLabPage from './pages/DesignLab/DesignLabPage/DesignLabPage'
+import DesignPage from './pages/DesignLab/DesignPage/DesignPage'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -55,6 +57,8 @@ export default class App extends React.Component {
                             Lab</NavLink>
                         <NavLink to="/science-lab" className={({ isActive }) => isActive ? " selected" : ""}>Science
                             Lab</NavLink>
+                        <NavLink to="/design-lab" className={({ isActive }) => isActive ? " selected" : ""}>Design
+                            Lab</NavLink>
                     </Navigation>
                     <Routes>
                         <Route path="/article" element={<ArticlePage/>}/>
@@ -73,6 +77,9 @@ export default class App extends React.Component {
                         <Route path="/science-lab" element={<ScienceLabPage/>}/>
                         <Route path="/claim/:id" element={<ClaimPage/>}/>
                         <Route path="/concepts" element={<ConceptsPage/>}/>
+
+                        <Route path="/design-lab" element={<DesignLabPage/>}/>
+                        <Route path="/design/:id" element={<DesignPage/>}/>
 
 
                         <Route exact path="/" element={<Navigate to="/alchemy-lab" replace/>}/>
