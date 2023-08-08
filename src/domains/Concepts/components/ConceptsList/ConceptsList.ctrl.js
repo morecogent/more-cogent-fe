@@ -1,5 +1,5 @@
 import { action, computed, makeObservable, observable } from 'mobx'
-import conceptsStore from '../../../../entities/Concept/Concepts.store'
+import conceptsStore from '../../../../system-wide/entities/Concept/Concepts.store'
 
 class ConceptsListCtrl {
     constructor() {

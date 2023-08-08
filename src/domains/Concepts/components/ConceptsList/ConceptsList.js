@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import ctrl from './ConceptsList.ctrl'
-import Table from "../../../../components/data-presentation/Table/Table"
+import Table from "../../../../system-wide/components/data-presentation/Table/Table"
 
 function ConceptsList({actions = []}) {
     const tableSchema = [
