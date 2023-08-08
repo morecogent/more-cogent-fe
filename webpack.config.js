@@ -30,26 +30,31 @@ module.exports = {
         }
     },
     module: {
-        rules: [{
-            test: /\.js$/,
-            use: [{
-                loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/react'],
-                    plugins: [
-                        ["@babel/plugin-proposal-decorators", { "legacy": true }],
-                        ["@babel/plugin-proposal-class-properties", {"loose": true}]
-                    ]
-                }
-            }],
-            include: path.join(__dirname, 'src'),
-        },{
-            test: /\.css$/,
-            use: ['style-loader', 'css-loader']
-        },{
-            test: /\.svg$/,
-            loader: 'svg-inline-loader'
-        }]
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            }, {
+                test: /\.js$/,
+                use: [{
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/react'],
+                        plugins: [
+                            ["@babel/plugin-proposal-decorators", {"legacy": true}],
+                            ["@babel/plugin-proposal-class-properties", {"loose": true}]
+                        ]
+                    }
+                }],
+                include: path.join(__dirname, 'src'),
+            }, {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader']
+            }, {
+                test: /\.svg$/,
+                loader: 'svg-inline-loader'
+            }]
     },
     devServer: {
         hot: true,

@@ -2,10 +2,23 @@ import React from 'react'
 import { observer } from 'mobx-react'
 import ctrl from './ConceptsList.ctrl'
 import { Wrapper } from './ConceptsList.styles'
-import Table from 'react-bootstrap/Table'
+// import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
+import Table from "../../../../components/data-presentation/Table/Table";
 
 function ConceptsList({actions = []}) {
+    return (
+        <Table schema={[
+            {
+                label: 'Name',
+                valueKey: 'name'
+            }, {
+                label: 'Type',
+                valueKey: 'type'
+            }
+        ]} data={ctrl.items} actions={actions}/>
+    )
+
     return (
         <Wrapper>
             <Table striped bordered hover>
