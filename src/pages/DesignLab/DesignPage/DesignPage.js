@@ -7,16 +7,7 @@ import { Tree, TreeNode } from 'react-organizational-chart'
 import Button from 'react-bootstrap/Button'
 import ConceptsList from '../../../domains/Concepts/components/ConceptsList/ConceptsList'
 import appCtrl from '../../../system-wide/controllers/App.ctrl'
-
-function AddingConceptModal({ addGoal }) {
-    return (
-        <ConceptsList actions={[{
-            variant: 'primary',
-            label: 'Add',
-            function: addGoal
-        }]}/>
-    )
-}
+import ContextWindow from '../../../system-wide/components/ContextWindow/ContextWindow'
 
 function Node({ goal, root, ctrl }) {
     const Component = root ? Tree : TreeNode
@@ -24,11 +15,11 @@ function Node({ goal, root, ctrl }) {
     return (
         <Component label={<Concept>
             {goal.name}
-            <Button onClick={() => appCtrl.openModal(AddingConceptModal)}>Add child</Button>
+            <Button onClick={() => ctrl.showPossibleSubGoals(goal)}>Add child</Button>
         </Concept>}>
             {
                 goal.children.map(child => (
-                    <Node goal={child} ctrl={ctrl}/>
+                    <Node key={child.id} goal={child} ctrl={ctrl}/>
                 ))
             }
         </Component>
@@ -41,6 +32,13 @@ function DesignPage({ ctrl }) {
         <Wrapper>
             <h3>Title: {ctrl.design?.name}</h3>
             <Node goal={ctrl.design.mainTree} root ctrl={ctrl}/>
+            <ContextWindow active={ctrl.claimsContextOpen}>
+                <ConceptsList actions={[{
+                    variant: 'primary',
+                    label: 'Add',
+                    function: ctrl.addSubGoal.bind(ctrl)
+                }]}/>
+            </ContextWindow>
         </Wrapper>
     )
 }

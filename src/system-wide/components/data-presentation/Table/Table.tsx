@@ -17,7 +17,7 @@ function Table({schema, data, actions = []}: ITableProps) {
                 <tr>
                     {
                         schema.map((attribute: Attribute) => (
-                            <th scope="col">{attribute.label}</th>
+                            <th key={attribute.label} scope="col">{attribute.label}</th>
                         ))
                     }
                 </tr>
@@ -36,7 +36,8 @@ function Table({schema, data, actions = []}: ITableProps) {
                             <td>
                                 {
                                     actions.map((action: Action) => (
-                                        <Button variant={action.variant}
+                                        <Button key={action.label}
+                                                variant={action.variant}
                                                 onClick={() => action.function(item)}>{action.label}</Button>
                                     ))
                                 }

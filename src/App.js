@@ -24,7 +24,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import ConceptsPage from './pages/ScienceLab/ConceptsPage/ConceptsPage'
 import DesignLabPage from './pages/DesignLab/DesignLabPage/DesignLabPage'
 import DesignPage from './pages/DesignLab/DesignPage/DesignPage'
-import Modal from './system-wide/components/Modal/Modal'
+import Modal from './system-wide/components/ContextWindow/ContextWindow'
 
 const GlobalStyle = createGlobalStyle`
   body {
