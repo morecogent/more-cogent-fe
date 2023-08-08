@@ -1,5 +1,5 @@
 import { makeObservable, observable } from 'mobx'
-import DesignModel from './Design.model'
+import Design from './Design.model'
 
 class DesignsStore {
     items = []
@@ -11,9 +11,9 @@ class DesignsStore {
     }
 
     add(item) {
-        let instance = item instanceof DesignModel ?
+        let instance = item instanceof Design ?
             item :
-            new DesignModel(item)
+            new Design(item)
 
         this.items.push(instance)
         return instance

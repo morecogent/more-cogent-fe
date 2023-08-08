@@ -9,7 +9,8 @@ export default class DesignPageCtrl {
         this.id = id
 
         makeObservable(this, {
-            design: computed
+            design: computed,
+            addChild: action
         })
     }
 
@@ -17,5 +18,9 @@ export default class DesignPageCtrl {
         if (this.id) {
             return this.items.find(item => item.id === this.id)
         }
+    }
+
+    addChild(){
+
     }
 }

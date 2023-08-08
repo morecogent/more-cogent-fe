@@ -1,21 +1,17 @@
 import { computed, makeObservable, observable } from 'mobx'
 import { v4 } from 'uuid'
 
-export default class DesignModel {
-  constructor({id, initialConcept, orphanConcepts}) {
+export default class Design {
+  constructor({id, name, mainGoal, sideGoals}) {
     this.id = id || v4()
-    this.initialConcept = initialConcept
-
-    this.orphanConcepts = orphanConcepts
+    this.name = name || 'Default design name'
+    this.mainTree = mainGoal
+    this.sideTrees = sideGoals
 
     makeObservable(this, {
-      initialConcept: observable,
-      name: computed
+      mainTree: observable,
+      sideTrees: observable
     })
-  }
-
-  get name(){
-    return this.initialConcept.name
   }
 
 }

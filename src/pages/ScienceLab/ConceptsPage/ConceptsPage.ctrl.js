@@ -1,7 +1,7 @@
 import { action, computed, makeObservable, observable } from 'mobx'
 import store from '../../../entities/Concept/Concepts.store'
 
-export default class ConceptsPageCtrl {
+class ConceptsPageCtrl {
     constructor() {
         makeObservable(this, {
             items: computed,
@@ -17,3 +17,5 @@ export default class ConceptsPageCtrl {
         store.remove(item)
     }
 }
+
+export default new ConceptsPageCtrl()

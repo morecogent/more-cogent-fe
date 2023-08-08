@@ -1,16 +1,17 @@
 import { life, meaning, loneliness, loved, loving } from './concepts'
-import DesignModel from '../entities/Design/Design.model'
-import DesignConceptModel from '../entities/Design/DesignConcept.model'
+import Design from '../entities/Design/Design.model'
+import Goal from '../entities/Design/Goal.model'
 
-const dcLoving = new DesignConceptModel({concept: loving, children: []})
-const dcLoved = new DesignConceptModel({concept: loved, children: []})
-const dcLoneliness = new DesignConceptModel({concept: loneliness, children: [dcLoved, dcLoving]})
-const dcMeaning = new DesignConceptModel({concept: meaning, children: [dcLoneliness]})
-const dcLife = new DesignConceptModel({concept: life, children: [dcMeaning]})
+// const dcLoving = new Goal({concept: loving, children: []})
+// const dcLoved = new Goal({concept: loved, children: []})
+// const dcLoneliness = new Goal({concept: loneliness, children: [dcLoved, dcLoving]})
+const dcMeaning = new Goal({concept: meaning, children: []})
+const dcLife = new Goal({concept: life, children: [dcMeaning]})
 
-const design = new DesignModel({
+const design = new Design({
     id: '1',
-    initialConcept: dcLife
+    name: 'Life worth living',
+    mainGoal: dcLife
 })
 
 export const designs = [design]

@@ -13,6 +13,7 @@ export const Concept = styled.div`
   margin: 10px;
   border-radius: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 `
 

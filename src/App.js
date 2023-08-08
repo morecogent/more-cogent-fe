@@ -24,6 +24,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import ConceptsPage from './pages/ScienceLab/ConceptsPage/ConceptsPage'
 import DesignLabPage from './pages/DesignLab/DesignLabPage/DesignLabPage'
 import DesignPage from './pages/DesignLab/DesignPage/DesignPage'
+import Modal from './components/Modal/Modal'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -85,6 +86,7 @@ export default class App extends React.Component {
                         <Route exact path="/" element={<Navigate to="/alchemy-lab" replace/>}/>
                     </Routes>
                 </Router>
+                <Modal />
             </div>
         )
     }
