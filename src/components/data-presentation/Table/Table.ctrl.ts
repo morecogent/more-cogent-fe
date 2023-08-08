@@ -1,9 +1,5 @@
-import { action, computed, makeObservable, observable } from 'mobx'
-
-type Attribute = {
-    label: string,
-    valueKey: string
-}
+import {action, computed, makeObservable, observable} from 'mobx'
+import {Attribute} from "./Table.types";
 
 export default class TableCtrl {
     items = []

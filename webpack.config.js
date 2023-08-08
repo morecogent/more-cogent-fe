@@ -24,7 +24,7 @@ module.exports = {
         })
     ],
     resolve: {
-        extensions: ['.js'],
+        extensions: ['.js', '.ts', '.tsx'],
         alias: {
             'react-dom$': 'react-dom/profiling',
         }

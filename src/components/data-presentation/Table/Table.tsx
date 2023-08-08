@@ -1,12 +1,14 @@
 import React, {useState} from 'react'
-import { observer } from 'mobx-react'
-import Ctrl from './Table.ctrl.ts'
-import { Wrapper } from './Table.styles'
+import {observer} from 'mobx-react'
+import Ctrl from './Table.ctrl'
+import {Wrapper} from './Table.styles'
 import BootstrapTable from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
+import {Action, Attribute, ITableProps} from './Table.types'
 
-function Table({schema, data, actions = []}) {
-    const [ctrl, _] = useState(new Ctrl(data, schema))
+
+function Table({schema, data, actions = []}: ITableProps) {
+    const [ctrl] = useState(new Ctrl(data, schema))
 
     return (
         <Wrapper>
@@ -14,8 +16,8 @@ function Table({schema, data, actions = []}) {
                 <thead className="thead-dark">
                 <tr>
                     {
-                        ctrl.labels.map(label => (
-                            <th scope="col">{label}</th>
+                        schema.map((attribute: Attribute) => (
+                            <th scope="col">{attribute.label}</th>
                         ))
                     }
                 </tr>
@@ -25,13 +27,15 @@ function Table({schema, data, actions = []}) {
                     ctrl.items.map(item => (
                         <tr key={item.id}>
                             {
-                                ctrl.valueKeys.map(valueKey => (
-                                    <td key={valueKey}>{item[valueKey]}</td>
+                                schema.map(({valueKey, fn}: Attribute) => (
+                                    <td key={valueKey}>
+                                        {fn ? fn(item[valueKey]) : item[valueKey]}
+                                    </td>
                                 ))
                             }
                             <td>
                                 {
-                                    actions.map(action => (
+                                    actions.map((action: Action) => (
                                         <Button variant={action.variant}
                                                 onClick={() => action.function(item)}>{action.label}</Button>
                                     ))
