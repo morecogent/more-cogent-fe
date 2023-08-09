@@ -15,5 +15,7 @@ export const Concept = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
+  ${({active}) => active && 'background-color: #ddd;'}
 `
 

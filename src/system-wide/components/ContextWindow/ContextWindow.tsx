@@ -1,18 +1,22 @@
 import React from 'react'
-import { Wrapper } from './ContextWindow.styles'
+import {Sidebar, Wrapper} from './ContextWindow.styles'
+import Button from 'react-bootstrap/Button'
 
 interface IContextWindowProps {
     active: boolean
     children: React.JSX.Element
+    onClose: () => void
 }
 
-const ContextWindow = ({active, children}: IContextWindowProps) => {
+
+const ContextWindow = ({active, children, onClose}: IContextWindowProps) => {
     if(!active) return null
 
     return (
-        <Wrapper>
+        <Sidebar>
+            <Button onClick={onClose}>x</Button>
             {children}
-        </Wrapper>
+        </Sidebar>
     )
 }
 

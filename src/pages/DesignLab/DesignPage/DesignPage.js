@@ -6,20 +6,22 @@ import { useParams } from 'react-router-dom'
 import { Tree, TreeNode } from 'react-organizational-chart'
 import Button from 'react-bootstrap/Button'
 import ConceptsList from '../../../domains/Concepts/components/ConceptsList/ConceptsList'
-import appCtrl from '../../../system-wide/controllers/App.ctrl'
 import ContextWindow from '../../../system-wide/components/ContextWindow/ContextWindow'
 
-function Node({ goal, root, ctrl }) {
+function Node({ goal, root, ctrl, isDuringLinking }) {
     const Component = root ? Tree : TreeNode
 
     return (
-        <Component label={<Concept>
-            {goal.name}
-            <Button onClick={() => ctrl.showPossibleSubGoals(goal)}>Add child</Button>
-        </Concept>}>
+        <Component label={
+            <Concept active={isDuringLinking}>
+                {goal.name}
+                <Button onClick={() => ctrl.showPossibleSubGoals(goal)}>+</Button>
+            </Concept>
+        }>
             {
                 goal.children.map(child => (
-                    <Node key={child.id} goal={child} ctrl={ctrl}/>
+                    <Node key={child.id} goal={child} ctrl={ctrl}
+                          isDuringLinking={child === ctrl.goalDuringLinking}/>
                 ))
             }
         </Component>
@@ -31,8 +33,11 @@ function DesignPage({ ctrl }) {
     return (
         <Wrapper>
             <h3>Title: {ctrl.design?.name}</h3>
-            <Node goal={ctrl.design.mainTree} root ctrl={ctrl}/>
-            <ContextWindow active={ctrl.claimsContextOpen}>
+            <Node goal={ctrl.design.mainTree} root ctrl={ctrl}
+                  isDuringLinking={ctrl.design.mainTree === ctrl.goalDuringLinking}
+            />
+            <ContextWindow active={!!ctrl.claimsContextOpen}
+                           onClose={ctrl.closeContextWindow.bind(ctrl)}>
                 <ConceptsList actions={[{
                     variant: 'primary',
                     label: 'Add',

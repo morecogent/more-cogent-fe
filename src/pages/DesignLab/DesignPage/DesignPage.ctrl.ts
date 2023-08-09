@@ -14,6 +14,7 @@ export default class DesignPageCtrl {
 
         makeObservable(this, {
             claimsContextOpen: observable,
+            goalDuringLinking: observable,
             design: computed,
             showPossibleSubGoals: action,
             addSubGoal: action
@@ -32,7 +33,12 @@ export default class DesignPageCtrl {
     }
 
     addSubGoal(concept){
-        this.claimsContextOpen = false
         this.goalDuringLinking.addSubGoal(concept)
+        this.closeContextWindow()
+    }
+
+    closeContextWindow(){
+        this.claimsContextOpen = false
+        this.goalDuringLinking = null
     }
 }
