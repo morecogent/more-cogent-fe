@@ -1,17 +1,13 @@
 export type Attribute = {
     label: string
     valueKey: string
-    fn?: any
-}
-
-type Callback = {
-    (item): void
+    fn?: (item: any) => any
 }
 
 export type Action = {
     variant: string
-    function: Callback
     label: string
+    fn: (item: any) => void
 }
 
 export interface ITableProps {

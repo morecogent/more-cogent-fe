@@ -38,7 +38,7 @@ function Table({schema, data, actions = []}: ITableProps) {
                                     actions.map((action: Action) => (
                                         <Button key={action.label}
                                                 variant={action.variant}
-                                                onClick={() => action.function(item)}>{action.label}</Button>
+                                                onClick={() => action.fn(item)}>{action.label}</Button>
                                     ))
                                 }
                             </td>

@@ -41,7 +41,7 @@ function DesignPage({ ctrl }) {
                 <ConceptsList actions={[{
                     variant: 'primary',
                     label: 'Add',
-                    function: ctrl.addSubGoal.bind(ctrl)
+                    fn: ctrl.addSubGoal.bind(ctrl)
                 }]}/>
             </ContextWindow>
         </Wrapper>
