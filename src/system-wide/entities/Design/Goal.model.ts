@@ -32,7 +32,7 @@ export default class Goal implements IGoal {
     return this.concept.name
   }
 
-  attachChild(goal: IGoal, justifications: IClaim[]){
+  attachChild(goal: IGoal, justifications?: IClaim[]){
     const decision = new Decision({parent: this, child: goal, justifications})
     this.children.push(decision)
   }

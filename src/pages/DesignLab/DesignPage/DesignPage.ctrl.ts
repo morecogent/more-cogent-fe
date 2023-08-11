@@ -1,19 +1,24 @@
-import { action, computed, makeObservable, observable } from 'mobx'
+import {action, computed, makeObservable, observable} from 'mobx'
 import designs from '../../../system-wide/entities/Design/Designs.store'
 import Goal from '../../../system-wide/entities/Design/Goal.model'
+import claimsStore from "../../../system-wide/entities/Claim/Claims.store"
+import {IDecision} from "../../../system-wide/entities/Decision/Decision.types";
 
 export default class DesignPageCtrl {
 
-    id
+    id: string
     items = designs.items
-    claimsContextOpen = false
-    goalDuringLinking = null
+    conceptsContextOpen: boolean = false
+    claimsContextOpen: boolean = false
+    goalDuringLinking: Goal = null
+    decisionDuringJustification: IDecision = null
 
     constructor(id) {
         this.id = id
 
         makeObservable(this, {
             claimsContextOpen: observable,
+            conceptsContextOpen: observable,
             goalDuringLinking: observable,
             design: computed,
             showPossibleSubGoals: action,
@@ -27,18 +32,37 @@ export default class DesignPageCtrl {
         }
     }
 
-    showPossibleSubGoals(goal: Goal){
-        this.claimsContextOpen = true
+    get claims() {
+        return claimsStore.items
+    }
+
+    showPossibleSubGoals(goal: Goal) {
+        this.conceptsContextOpen = true
         this.goalDuringLinking = goal
     }
 
-    attachConcept(concept){
-        const goal = new Goal({concept})
-        this.goalDuringLinking.attachChild(goal)
-        this.closeContextWindow()
+    showClaims(decision: IDecision) {
+        this.claimsContextOpen = true
+        this.decisionDuringJustification = decision
     }
 
-    closeContextWindow(){
+    attachConcept(concept) {
+        const goal = new Goal({concept})
+        this.goalDuringLinking.attachChild(goal)
+        this.closeConceptsContext()
+    }
+
+    attachClaim(claim) {
+        this.decisionDuringJustification.justifications.push(claim)
+        this.closeClaimsContext()
+    }
+
+    closeConceptsContext() {
+        this.conceptsContextOpen = false
+        this.goalDuringLinking = null
+    }
+
+    closeClaimsContext() {
         this.claimsContextOpen = false
         this.goalDuringLinking = null
     }

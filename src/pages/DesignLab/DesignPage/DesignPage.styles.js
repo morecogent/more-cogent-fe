@@ -19,3 +19,9 @@ export const Concept = styled.div`
   ${({active}) => active && 'background-color: #ddd;'}
 `
 
+export const Actions = styled.div`
+  display: flex;
+  width: 100%;
+  grid-gap: 10px;
+  margin-bottom: 10px;
+`
