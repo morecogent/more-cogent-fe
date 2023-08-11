@@ -17,7 +17,7 @@ export default class DesignPageCtrl {
             goalDuringLinking: observable,
             design: computed,
             showPossibleSubGoals: action,
-            addSubGoal: action
+            attachConcept: action
         })
     }
 
@@ -32,8 +32,9 @@ export default class DesignPageCtrl {
         this.goalDuringLinking = goal
     }
 
-    addSubGoal(concept){
-        this.goalDuringLinking.addSubGoal(concept)
+    attachConcept(concept){
+        const goal = new Goal({concept})
+        this.goalDuringLinking.attachChild(goal)
         this.closeContextWindow()
     }
 

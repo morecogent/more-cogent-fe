@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 `
 
 export const Concept = styled.div`
-  border: 1px solid #c2c2c2;
+  border: 1px solid ${({unjustified}) => unjustified ? '#F66' : '#c2c2c2'};
   padding: 15px;
   margin: 10px;
   border-radius: 10px;

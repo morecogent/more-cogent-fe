@@ -8,19 +8,21 @@ import Button from 'react-bootstrap/Button'
 import ConceptsList from '../../../domains/Concepts/components/ConceptsList/ConceptsList'
 import ContextWindow from '../../../system-wide/components/ContextWindow/ContextWindow'
 
-function Node({ goal, root, ctrl, isDuringLinking }) {
+function Node({ goal, root, ctrl, isDuringLinking, justifications = [] }) {
     const Component = root ? Tree : TreeNode
 
     return (
         <Component label={
-            <Concept active={isDuringLinking}>
+            <Concept active={isDuringLinking} unjustified={justifications.length === 0}>
                 {goal.name}
+                Justifications: {justifications.length}
                 <Button onClick={() => ctrl.showPossibleSubGoals(goal)}>+</Button>
             </Concept>
         }>
             {
-                goal.children.map(child => (
+                goal.children.map(({child, justifications}) => (
                     <Node key={child.id} goal={child} ctrl={ctrl}
+                          justifications={justifications}
                           isDuringLinking={child === ctrl.goalDuringLinking}/>
                 ))
             }
@@ -41,7 +43,7 @@ function DesignPage({ ctrl }) {
                 <ConceptsList actions={[{
                     variant: 'primary',
                     label: 'Add',
-                    fn: ctrl.addSubGoal.bind(ctrl)
+                    fn: ctrl.attachConcept.bind(ctrl)
                 }]}/>
             </ContextWindow>
         </Wrapper>
