@@ -21,11 +21,11 @@ Parameters:
     Description: 'Name for S3 bucket to store the build'
     Type: 'String'
   GithubOwner:
-    Default: 'OskarKaminski'
+    Default: 'morecogent'
     Description: 'Name of the github owner, who has the repo to fetch'
     Type: 'String'
   GithubRepo:
-    Default: 'debates'
+    Default: 'more-cogent-fe'
     Description: 'Name of the github repository'
     Type: 'String'
   GithubBranch:
