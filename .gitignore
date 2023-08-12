@@ -4,3 +4,5 @@ dist/
 **/cdk.out
 **/package-lock.json
 config/**/*.js
+config/**/*.js.map
+config/**/*.d.ts
