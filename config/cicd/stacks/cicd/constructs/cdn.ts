@@ -2,6 +2,7 @@ import {Construct} from "constructs"
 import {Bucket} from "aws-cdk-lib/aws-s3";
 import {S3Origin} from "aws-cdk-lib/aws-cloudfront-origins";
 import {Distribution, PriceClass} from "aws-cdk-lib/aws-cloudfront";
+import {Duration} from "aws-cdk-lib";
 
 interface MyCDNProps {
     projectName: string,
@@ -31,7 +32,14 @@ export class MyCDN extends Construct {
                 }
             },
             priceClass: PriceClass.PRICE_CLASS_100,
-            defaultRootObject: 'index.html'
+            defaultRootObject: 'index.html',
+            // When user navigates to e.g. `domain.org/design` he should be re-directed to application router instead.
+            errorResponses: [{
+                httpStatus: 403,
+                responseHttpStatus: 200,
+                responsePagePath: '/index.html',
+                ttl: Duration.minutes(30)
+            }]
         })
     }
 }
