@@ -20,9 +20,12 @@ export default class DesignPageCtrl {
             claimsContextOpen: observable,
             conceptsContextOpen: observable,
             goalDuringLinking: observable,
+            decisionDuringJustification: observable,
             design: computed,
+            justificationsForSelectedDecision: computed,
             showPossibleSubGoals: action,
-            attachConcept: action
+            attachConcept: action,
+            justify: action,
         })
     }
 
@@ -34,6 +37,10 @@ export default class DesignPageCtrl {
 
     get claims() {
         return claimsStore.items
+    }
+
+    get justificationsForSelectedDecision(){
+        return this.decisionDuringJustification?.justifications || []
     }
 
     showPossibleSubGoals(goal: Goal) {
@@ -52,9 +59,8 @@ export default class DesignPageCtrl {
         this.closeConceptsContext()
     }
 
-    attachClaim(claim) {
+    justify(claim) {
         this.decisionDuringJustification.justifications.push(claim)
-        this.closeClaimsContext()
     }
 
     closeConceptsContext() {
@@ -62,7 +68,7 @@ export default class DesignPageCtrl {
         this.goalDuringLinking = null
     }
 
-    closeClaimsContext() {
+    closeJustificationsContext() {
         this.claimsContextOpen = false
         this.goalDuringLinking = null
     }

@@ -22,7 +22,6 @@ function Node({ goal, root, ctrl, isDuringLinking, decision }) {
                     <Button onClick={() => ctrl.showClaims(decision)}>justify</Button>
                 </Actions>
                 <i>Justifications: {justifications.length}</i>
-                <p>{JSON.stringify(justifications)}</p>
             </Concept>
         }>
             {
@@ -55,13 +54,24 @@ function DesignPage({ ctrl }) {
             </ContextWindow>
 
             <ContextWindow active={!!ctrl.claimsContextOpen}
-                           onClose={ctrl.closeClaimsContext.bind(ctrl)}>
+                           onClose={ctrl.closeJustificationsContext.bind(ctrl)}>
+
+                <h3>Justifications</h3>
+                <ClaimsList
+                    items={ctrl.justificationsForSelectedDecision}
+                    actions={[{
+                        variant: 'danger',
+                        label: 'Remove',
+                        fn: f=>f // Remove justification
+                    }]}/>
+
+                <h3>Unrelated claims</h3>
                 <ClaimsList
                     items={ctrl.claims}
                     actions={[{
                         variant: 'primary',
                         label: 'Add',
-                        fn: ctrl.attachClaim.bind(ctrl)
+                        fn: ctrl.justify.bind(ctrl)
                     }]}/>
             </ContextWindow>
         </Wrapper>
