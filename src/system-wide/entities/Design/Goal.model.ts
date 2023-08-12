@@ -1,39 +1,32 @@
 import {action, computed, makeObservable, observable} from 'mobx'
-import { v4 } from 'uuid'
-import {IGoal} from "./Goal.types";
+import {v4} from 'uuid'
+import {IGoal, IGoalConstructor} from "./Goal.types";
 import Decision from "../Decision/Decision.model";
 import {IClaim} from "../Claim/Claim.types";
-import {IDecision} from "../Decision/Decision.types";
-
-type IGoalConstructor = {
-  id?: string
-  concept: any
-  children?: IDecision[]
-}
 
 export default class Goal implements IGoal {
-  id
-  concept
-  children
+    id
+    concept
+    children
 
-  constructor({id, concept, children}: IGoalConstructor) {
-    this.id = id || v4()
-    this.concept = concept
-    this.children = children || []
+    constructor({id, concept, children}: IGoalConstructor) {
+        this.id = id || v4()
+        this.concept = concept
+        this.children = children || []
 
-    makeObservable(this, {
-      name: computed,
-      children: observable,
-      attachChild: action
-    })
-  }
+        makeObservable(this, {
+            name: computed,
+            children: observable,
+            attachChild: action
+        })
+    }
 
-  get name(){
-    return this.concept.name
-  }
+    get name() {
+        return this.concept.name
+    }
 
-  attachChild(goal: IGoal, justifications?: IClaim[]){
-    const decision = new Decision({parent: this, child: goal, justifications})
-    this.children.push(decision)
-  }
+    attachChild(goal: IGoal, justifications?: IClaim[]) {
+        const decision = new Decision({parent: this, child: goal, justifications})
+        this.children.push(decision)
+    }
 }

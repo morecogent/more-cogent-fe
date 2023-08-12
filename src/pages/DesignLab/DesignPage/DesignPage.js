@@ -9,6 +9,7 @@ import ConceptsList from '../../../domains/Concepts/components/ConceptsList/Conc
 import ClaimsList from '../../../domains/Claims/components/ClaimsList/ClaimsList'
 import ContextWindow from '../../../system-wide/components/ContextWindow/ContextWindow'
 import AddClaim from "../../../system-wide/entities/Claim/components/AddClaim";
+import ConceptAdd from '../../../domains/Concepts/components/ConceptAdd/ConceptAdd'
 
 function Node({ goal, root, ctrl, isDuringLinking, decision }) {
     const Component = root ? Tree : TreeNode
@@ -20,9 +21,8 @@ function Node({ goal, root, ctrl, isDuringLinking, decision }) {
                 <p>{goal.name}</p>
                 <Actions>
                     <Button onClick={() => ctrl.showPossibleSubGoals(goal)}>+</Button>
-                    <Button onClick={() => ctrl.showClaims(decision)}>justify</Button>
+                    <Button onClick={() => ctrl.showClaims(decision)}>justifications: {justifications.length}</Button>
                 </Actions>
-                <i>Justifications: {justifications.length}</i>
             </Concept>
         }>
             {
@@ -47,6 +47,9 @@ function DesignPage({ ctrl }) {
             />
             <ContextWindow active={!!ctrl.conceptsContextOpen}
                            onClose={ctrl.closeConceptsContext.bind(ctrl)}>
+                <h3>Add a concept</h3>
+                <ConceptAdd onFinish={ctrl.createGoal.bind(ctrl)} />
+
                 <ConceptsList actions={[{
                     variant: 'primary',
                     label: 'Add',

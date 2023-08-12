@@ -1,10 +1,17 @@
 import { makeObservable, observable } from 'mobx'
 import { v4 } from 'uuid'
+import {IConceptConstructor} from "./Concept.types"
 
-export default class ConceptModel {
+
+export default class Concept {
+  id: string
+  name: string
+  color: string
+  type: 'CONCEPT' | 'COMPOSITE'
+
   static color = '#f0d0d0'
 
-  constructor({id, name, color}) {
+  constructor({id, name, color}: IConceptConstructor) {
     this.id = id || v4()
     this.name = name
     this.color = color || `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`

@@ -3,6 +3,8 @@ import designs from '../../../system-wide/entities/Design/Designs.store'
 import Goal from '../../../system-wide/entities/Design/Goal.model'
 import claimsStore from "../../../system-wide/entities/Claim/Claims.store"
 import {IDecision} from "../../../system-wide/entities/Decision/Decision.types";
+import Concept from "../../../system-wide/entities/Concept/Concept.model";
+import conceptsStore from "../../../system-wide/entities/Concept/Concepts.store";
 
 export default class DesignPageCtrl {
 
@@ -58,6 +60,13 @@ export default class DesignPageCtrl {
         const goal = new Goal({concept})
         this.goalDuringLinking.attachChild(goal)
         this.closeConceptsContext()
+    }
+
+    createGoal(name){
+        const concept = new Concept({name})
+        conceptsStore.add(concept)
+
+        this.attachConcept(concept)
     }
 
     justify(claim) {
