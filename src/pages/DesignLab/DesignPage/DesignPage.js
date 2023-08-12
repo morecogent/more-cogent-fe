@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button'
 import ConceptsList from '../../../domains/Concepts/components/ConceptsList/ConceptsList'
 import ClaimsList from '../../../domains/Claims/components/ClaimsList/ClaimsList'
 import ContextWindow from '../../../system-wide/components/ContextWindow/ContextWindow'
+import AddClaim from "../../../system-wide/entities/Claim/components/AddClaim";
 
 function Node({ goal, root, ctrl, isDuringLinking, decision }) {
     const Component = root ? Tree : TreeNode
@@ -64,6 +65,9 @@ function DesignPage({ ctrl }) {
                         label: 'Remove',
                         fn: (claim) => ctrl.removeJustification(claim.id)
                     }]}/>
+
+                <h3>Add claim</h3>
+                <AddClaim />
 
                 <h3>Unrelated claims</h3>
                 <ClaimsList
