@@ -1,0 +1,18 @@
+{
+  "name": "morecogent-config",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cdk-bootstrap": "cdk bootstrap aws://966855986707/eu-central-1",
+    "start": "tsc && cd cicd && cdk deploy"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "aws-cdk": "^2.91.0",
+    "aws-cdk-lib": "^2.91.0",
+    "constructs": "^10.2.69",
+    "typescript": "^5.1.6"
+  }
+}
