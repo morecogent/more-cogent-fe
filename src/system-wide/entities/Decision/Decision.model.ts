@@ -24,7 +24,7 @@ export default class Decision implements IDecision {
   }
 
   justify(claim: IClaim){
-    this.justifications.push(claim)
+    this._justifications = [].concat(this._justifications, [claim])
   }
 
   removeJustification(id: string){
