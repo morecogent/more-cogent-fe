@@ -1,6 +1,5 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {observer} from 'mobx-react'
-import Ctrl from './Table.ctrl'
 import {Wrapper} from './Table.styles'
 import BootstrapTable from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
@@ -8,8 +7,6 @@ import {Action, Attribute, ITableProps} from './Table.types'
 
 
 function Table({schema, data, actions = []}: ITableProps) {
-    const [ctrl] = useState(new Ctrl(data, schema))
-
     return (
         <Wrapper>
             <BootstrapTable striped bordered hover>
@@ -24,7 +21,7 @@ function Table({schema, data, actions = []}: ITableProps) {
                 </thead>
                 <tbody>
                 {
-                    ctrl.items.map(item => (
+                    data.map(item => (
                         <tr key={item.id}>
                             {
                                 schema.map(({valueKey, fn}: Attribute) => (

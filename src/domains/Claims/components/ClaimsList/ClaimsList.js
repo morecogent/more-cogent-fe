@@ -7,6 +7,10 @@ function ClaimsList({items, actions = []}) {
         { label: 'Name', valueKey: 'name' },
     ]
 
+    if(!items.length){
+        return <p>There are no Claims in this table</p>
+    }
+
     return (
         <Table schema={tableSchema} data={items} actions={actions}/>
     )

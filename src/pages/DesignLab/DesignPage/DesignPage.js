@@ -62,7 +62,7 @@ function DesignPage({ ctrl }) {
                     actions={[{
                         variant: 'danger',
                         label: 'Remove',
-                        fn: f=>f // Remove justification
+                        fn: (claim) => ctrl.removeJustification(claim.id)
                     }]}/>
 
                 <h3>Unrelated claims</h3>

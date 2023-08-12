@@ -26,6 +26,7 @@ export default class DesignPageCtrl {
             showPossibleSubGoals: action,
             attachConcept: action,
             justify: action,
+            removeJustification: action,
         })
     }
 
@@ -40,7 +41,7 @@ export default class DesignPageCtrl {
     }
 
     get justificationsForSelectedDecision(){
-        return this.decisionDuringJustification?.justifications || []
+        return this.decisionDuringJustification?.justifications
     }
 
     showPossibleSubGoals(goal: Goal) {
@@ -60,7 +61,11 @@ export default class DesignPageCtrl {
     }
 
     justify(claim) {
-        this.decisionDuringJustification.justifications.push(claim)
+        this.decisionDuringJustification.justify(claim)
+    }
+
+    removeJustification(id: string){
+        this.decisionDuringJustification.removeJustification(id)
     }
 
     closeConceptsContext() {
