@@ -4,23 +4,24 @@ import {
     GitHubTrigger,
     ManualApprovalAction, S3DeployAction
 } from "aws-cdk-lib/aws-codepipeline-actions"
-import {SecretValue} from "aws-cdk-lib"
+import {SecretValue, StackProps} from "aws-cdk-lib"
 import {Artifact, Pipeline} from "aws-cdk-lib/aws-codepipeline"
 import {Construct} from "constructs"
-import {Bucket} from "aws-cdk-lib/aws-s3";
-import {IProject, BuildEnvironmentVariable} from "aws-cdk-lib/aws-codebuild"
-import {CiCdStackProps} from "../_stack-cicd"
+import {IProject} from "aws-cdk-lib/aws-codebuild"
+import {CIBuckets} from "./s3-buckets";
 
 
-interface MyPipelineProps extends CiCdStackProps {
-    artifactBucket: Bucket
-    deploymentBucket: Bucket
+export type GithubProps = {
+    repoOwner: string
+    repoName: string
+    oauthToken: string
+}
+
+interface MyPipelineProps extends StackProps {
+    projectName: string
+    github: GithubProps
+    buckets: CIBuckets
     buildProject: IProject
-    github: {
-        repoOwner: string
-        repoName: string,
-        oauthToken: string
-    }
 }
 
 /**
@@ -33,7 +34,7 @@ export class MyPipeline extends Construct {
 
     constructor(scope: Construct, id: string, props: MyPipelineProps) {
         super(scope, id)
-        const {projectName, artifactBucket, deploymentBucket, buildProject, github} = props
+        const {projectName, buckets, buildProject, github} = props
 
         const githubArtifact = new Artifact('Github-Dev')
         const builtDevArtifact = new Artifact('Build-Dev')
@@ -58,7 +59,7 @@ export class MyPipeline extends Construct {
         const deployAction = new S3DeployAction({
             actionName: 'deploy',
             input: builtDevArtifact,
-            bucket: deploymentBucket
+            bucket: buckets.deploymentBucket
         })
 
         const approvalAction = new ManualApprovalAction({
@@ -67,7 +68,7 @@ export class MyPipeline extends Construct {
 
         this.pipeline = new Pipeline(this, 'Pipeline', {
             pipelineName: `${projectName}-Pipeline`,
-            artifactBucket: artifactBucket,
+            artifactBucket: buckets.artifactBucket,
             stages: [{
                 stageName: 'stage-1',
                 actions: [githubAction]

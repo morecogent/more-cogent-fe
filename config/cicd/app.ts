@@ -16,6 +16,13 @@ new CiCdStack(app, `${APP_NAME}-CI-${MODULE_NAME}`, {
         repoOwner: 'morecogent',
         repoName: 'more-cogent-fe',
         oauthToken: 'Github_PAT'
+    },
+    domain: {
+        domainNames: [
+            'www.morecogent.org',
+            'morecogent.org'
+        ],
+        certificateArn: 'arn:aws:acm:us-east-1:966855986707:certificate/6444dfa6-9faf-4901-9146-28695d00b1d8'
     }
 })
 app.synth()

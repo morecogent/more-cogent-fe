@@ -1,9 +1,9 @@
-import {Bucket, BucketAccessControl, HttpMethods, BlockPublicAccess} from "aws-cdk-lib/aws-s3"
+import {Bucket, HttpMethods} from "aws-cdk-lib/aws-s3"
 import {Construct} from "constructs";
 
-export interface ICiCdBuckets {
-    hostingDev: Bucket,
-    pipelineArtifacts: Bucket,
+export type CIBuckets = {
+    artifactBucket: Bucket
+    deploymentBucket: Bucket
 }
 
 function toDash(str: string) {
@@ -25,26 +25,22 @@ interface IBucketsProps {
  * */
 export class Buckets extends Construct {
 
-    buckets: ICiCdBuckets = <ICiCdBuckets>{}
+    buckets: CIBuckets = <CIBuckets>{}
 
     constructor(scope: Construct, id: string, props: IBucketsProps) {
         super(scope, id)
         const {projectName} = props
         const bucketNamePrefix = toDash(projectName)
 
-        this.buckets.hostingDev = new Bucket(scope, 'BucketHostingDev', {
+        this.buckets.deploymentBucket = new Bucket(scope, 'BucketHostingDev', {
             bucketName: `${bucketNamePrefix}.hosting.dev`,
-            // blockPublicAccess: new BlockPublicAccess({
-            //     blockPublicAcls: false
-            // }),
             cors: [{
                 allowedMethods: [HttpMethods.GET],
                 allowedOrigins: ['*']
-            }],
-            // accessControl: BucketAccessControl.PUBLIC_READ,
+            }]
         })
 
-        this.buckets.pipelineArtifacts = new Bucket(scope, 'BucketPipelineArtifacts', {
+        this.buckets.artifactBucket = new Bucket(scope, 'BucketPipelineArtifacts', {
             bucketName: `${bucketNamePrefix}.pipeline`
         })
     }
