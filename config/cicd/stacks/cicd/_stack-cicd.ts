@@ -26,7 +26,7 @@ export class CiCdStack extends Stack {
         const buckets = this.addBuckets(projectName).buckets
         const buildProject = this.addCodeBuild()
         this.addPipeline(projectName, github, buckets, buildProject)
-        this.addCDN(projectName, buckets.deploymentBucket)
+        this.addCDN(projectName, buckets.deploymentBucket, domain)
     }
 
     addBuckets(projectName: string): Buckets {
@@ -46,11 +46,12 @@ export class CiCdStack extends Stack {
         })
     }
 
-    addCDN(projectName: string, bucket: Bucket): MyCDN {
+    addCDN(projectName: string, bucket: Bucket, domain: IDomainProps): MyCDN {
         return new MyCDN(this, 'CDN', {
             projectName,
             hostingBucket: bucket,
-            path: 'dist'
+            path: 'dist',
+            domain
         })
     }
 }
