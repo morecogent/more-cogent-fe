@@ -21,7 +21,9 @@ function Node({ goal, root, ctrl, isDuringLinking, decision }) {
                 <p>{goal.name}</p>
                 <Actions>
                     <Button onClick={() => ctrl.showPossibleSubGoals(goal)}>+</Button>
-                    <Button onClick={() => ctrl.showClaims(decision)}>justifications: {justifications.length}</Button>
+                    {
+                        !root && <Button onClick={() => ctrl.showClaims(decision)}>justifications: {justifications.length}</Button>
+                    }
                 </Actions>
             </Concept>
         }>
@@ -45,6 +47,9 @@ function DesignPage({ ctrl }) {
             <Node goal={ctrl.design.mainTree} root ctrl={ctrl}
                   isDuringLinking={ctrl.design.mainTree === ctrl.goalDuringLinking}
             />
+
+            {/* ContextWindows */}
+
             <ContextWindow active={!!ctrl.conceptsContextOpen}
                            onClose={ctrl.closeConceptsContext.bind(ctrl)}>
                 <h3>Add a concept</h3>
@@ -81,6 +86,8 @@ function DesignPage({ ctrl }) {
                         fn: ctrl.justify.bind(ctrl)
                     }]}/>
             </ContextWindow>
+
+            {/* END: ContextWindows */}
         </Wrapper>
     )
 }
