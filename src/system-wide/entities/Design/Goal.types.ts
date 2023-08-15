@@ -1,14 +1,17 @@
-import {IDecision} from "../Decision/Decision.types";
 import {IConcept} from "../Concept/Concept.types";
 
 export type IGoal = {
   id: string
-  concept: IConcept
-  children: IDecision[]
+  conceptId: string
+  justificationIds: string[]
+
+  get name(): string
+  get concept(): IConcept
+  get justifications(): any[]
 }
 
-export type IGoalConstructor = {
+export type IGoalProperties = {
   id?: string
-  concept: IConcept
-  children?: IDecision[]
+  conceptId: string
+  justificationIds?: string[]
 }

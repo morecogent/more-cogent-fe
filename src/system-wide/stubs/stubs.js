@@ -7,7 +7,9 @@ import './quests'
 import {narrations} from './narrations'
 import { debates } from './debates'
 import { results } from './results'
-import { designs } from './designs'
+import { stub as stubDesigns } from './designs'
+
+stubDesigns()
 
 debates.map(debate => {
     debatesStore.add(debate)
@@ -17,7 +19,4 @@ narrations.map(narration => {
 })
 results.map(el => {
     resultsStore.add(el)
-})
-designs.map(el => {
-    designsStore.add(el)
 })

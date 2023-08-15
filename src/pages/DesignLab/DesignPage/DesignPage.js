@@ -11,28 +11,27 @@ import ContextWindow from '../../../system-wide/components/ContextWindow/Context
 import AddClaim from "../../../system-wide/entities/Claim/components/AddClaim";
 import ConceptAdd from '../../../domains/Concepts/components/ConceptAdd/ConceptAdd'
 
-function Node({ goal, root, ctrl, isDuringLinking, decision }) {
+function Node({ goalsTree, root, ctrl, isDuringLinking }) {
     const Component = root ? Tree : TreeNode
-    const justifications = decision?.justifications || []
+    const justifications = []
+    // const justifications = decision?.justifications || []
 
     return (
         <Component label={
             <Concept active={isDuringLinking} unjustified={justifications.length === 0}>
-                <p>{goal.name}</p>
+                <p>{goalsTree.item.name}</p>
                 <Actions>
-                    <Button onClick={() => ctrl.showPossibleSubGoals(goal)}>+</Button>
-                    {
-                        !root && <Button onClick={() => ctrl.showClaims(decision)}>justifications: {justifications.length}</Button>
-                    }
+                    <Button onClick={() => ctrl.showPossibleSubGoals(goalsTree.item)}>+</Button>
+                    {/*{*/}
+                    {/*    !root && <Button onClick={() => ctrl.showClaims(goalsTree.item)}>justifications: {justifications.length}</Button>*/}
+                    {/*}*/}
                 </Actions>
             </Concept>
         }>
             {
-                goal.children.map((decision) => {
-                    const { child } = decision
-                    return <Node key={child.id} goal={child} ctrl={ctrl}
-                                 decision={decision}
-                                 isDuringLinking={child === ctrl.goalDuringLinking}/>
+                goalsTree.children.map((goalsTree) => {
+                    return <Node key={goalsTree.item.id} goalsTree={goalsTree} ctrl={ctrl}
+                                 isDuringLinking={goalsTree.item === ctrl.goalDuringLinking}/>
                 })
             }
         </Component>
@@ -41,11 +40,13 @@ function Node({ goal, root, ctrl, isDuringLinking, decision }) {
 
 function DesignPage({ ctrl }) {
 
+    const goalsTree = ctrl.design.mainTree.asTree
+
     return (
         <Wrapper>
             <h3>Title: {ctrl.design?.name}</h3>
-            <Node goal={ctrl.design.mainTree} root ctrl={ctrl}
-                  isDuringLinking={ctrl.design.mainTree === ctrl.goalDuringLinking}
+            <Node goalsTree={goalsTree} root ctrl={ctrl}
+                  isDuringLinking={goalsTree.item === ctrl.goalDuringLinking}
             />
 
             {/* ContextWindows */}

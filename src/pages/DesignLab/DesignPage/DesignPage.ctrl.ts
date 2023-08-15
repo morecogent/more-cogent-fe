@@ -13,7 +13,7 @@ export default class DesignPageCtrl {
     conceptsContextOpen: boolean = false
     claimsContextOpen: boolean = false
     goalDuringLinking: Goal = null
-    decisionDuringJustification: IDecision = null
+    goalDuringJustification: Goal = null
 
     constructor(id) {
         this.id = id
@@ -22,7 +22,7 @@ export default class DesignPageCtrl {
             claimsContextOpen: observable,
             conceptsContextOpen: observable,
             goalDuringLinking: observable,
-            decisionDuringJustification: observable,
+            goalDuringJustification: observable,
             design: computed,
             justificationsForSelectedDecision: computed,
             showPossibleSubGoals: action,
@@ -43,7 +43,7 @@ export default class DesignPageCtrl {
     }
 
     get justificationsForSelectedDecision(){
-        return this.decisionDuringJustification?.justifications
+        return this.goalDuringJustification?.justifications
     }
 
     showPossibleSubGoals(goal: Goal) {
@@ -51,14 +51,14 @@ export default class DesignPageCtrl {
         this.goalDuringLinking = goal
     }
 
-    showClaims(decision: IDecision) {
+    showClaims(goal: Goal) {
         this.claimsContextOpen = true
-        this.decisionDuringJustification = decision
+        this.goalDuringJustification = goal
     }
 
     attachConcept(concept) {
-        const goal = new Goal({concept})
-        this.goalDuringLinking.attachChild(goal)
+        // const goal = new Goal({concept})
+        // this.goalDuringLinking.attachChild(goal)
         this.closeConceptsContext()
     }
 
@@ -70,11 +70,11 @@ export default class DesignPageCtrl {
     }
 
     justify(claim) {
-        this.decisionDuringJustification.justify(claim)
+        // this.goalDuringJustification.justify(claim)
     }
 
     removeJustification(id: string){
-        this.decisionDuringJustification.removeJustification(id)
+        // this.goalDuringJustification.removeJustification(id)
     }
 
     closeConceptsContext() {
