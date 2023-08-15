@@ -1,14 +1,11 @@
 import { makeObservable, observable } from 'mobx'
 import ConceptModel from './Concept.model'
 import CompositeModel from './Composite.model'
+import Store from "../../services/Store";
 
-class ConceptsStore {
-  items = []
-
+class ConceptsStore extends Store {
   constructor() {
-    makeObservable(this, {
-      items: observable
-    })
+    super()
   }
 
   add(item){

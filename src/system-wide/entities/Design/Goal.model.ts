@@ -13,17 +13,20 @@ export default class Goal implements IGoal {
         this.justificationIds = justificationIds || []
 
         makeObservable(this, {
-            name: computed
+            name: computed,
+            concept: computed,
+            justifications: computed
         })
     }
 
     get name() {
-        return this.concept.id
+        return this.concept.name
     }
 
     // TODO - Implement getByIds method in new Store base class and extend specific stores
     get concept(){
-        return this.conceptsStore.getByIds([this.id])[0]
+        const concepts = this.conceptsStore.getByIds([this.conceptId])
+        return concepts[0]
     }
 
     get justifications(){

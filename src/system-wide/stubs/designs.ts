@@ -4,10 +4,12 @@ import Goal from '../entities/Design/Goal.model'
 import Claim from '../entities/Claim/Claim.model'
 import {debates} from './debates'
 import designsStore from "../entities/Design/Designs.store";
+import conceptsStore from "../entities/Concept/Concepts.store";
+import claimsStore from "../entities/Claim/Claims.store";
 
-export function stub(conceptsStore, justificationsStore) {
-    const dcMeaning = new Goal({conceptId: meaning.id}, conceptsStore, justificationsStore)
-    const dcLife = new Goal({conceptId: life.id}, conceptsStore, justificationsStore)
+export function stub() {
+    const dcMeaning = new Goal({conceptId: meaning.id}, conceptsStore, claimsStore)
+    const dcLife = new Goal({conceptId: life.id}, conceptsStore, claimsStore)
     // const claim = new Claim(debates[1])
 
     const design = new Design({
