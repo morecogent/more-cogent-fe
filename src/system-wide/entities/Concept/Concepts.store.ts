@@ -1,4 +1,3 @@
-import { makeObservable, observable } from 'mobx'
 import ConceptModel from './Concept.model'
 import CompositeModel from './Composite.model'
 import Store from "../../services/Store";

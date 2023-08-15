@@ -12,7 +12,7 @@ export default class DesignPageCtrl {
     items = designs.items
     conceptsContextOpen: boolean = false
     claimsContextOpen: boolean = false
-    goalDuringLinking: Goal = null
+    goalDuringExtension: Goal = null
     goalDuringJustification: Goal = null
 
     constructor(id) {
@@ -21,12 +21,12 @@ export default class DesignPageCtrl {
         makeObservable(this, {
             claimsContextOpen: observable,
             conceptsContextOpen: observable,
-            goalDuringLinking: observable,
+            goalDuringExtension: observable,
             goalDuringJustification: observable,
             design: computed,
             justificationsForSelectedDecision: computed,
             showPossibleSubGoals: action,
-            attachConcept: action,
+            attachGoal: action,
             justify: action,
             removeJustification: action,
         })
@@ -42,48 +42,57 @@ export default class DesignPageCtrl {
         return claimsStore.items
     }
 
-    get justificationsForSelectedDecision(){
+    get justificationsForSelectedDecision() {
         return this.goalDuringJustification?.justifications
     }
 
+    // Handling adding decision
     showPossibleSubGoals(goal: Goal) {
         this.conceptsContextOpen = true
-        this.goalDuringLinking = goal
+        this.goalDuringExtension = goal
     }
 
-    showClaims(goal: Goal) {
-        this.claimsContextOpen = true
-        this.goalDuringJustification = goal
-    }
-
-    attachConcept(concept) {
-        // const goal = new Goal({concept})
-        // this.goalDuringLinking.attachChild(goal)
-        this.closeConceptsContext()
-    }
-
-    createGoal(name){
+    createGoal(name) {
         const concept = new Concept({name})
         conceptsStore.add(concept)
 
-        this.attachConcept(concept)
+        this.attachGoal(concept)
+    }
+
+    attachGoal(concept: Concept) {
+        const goal = new Goal({
+            conceptId: concept.id,
+            parentId: this.goalDuringExtension.id
+        }, conceptsStore, claimsStore)
+        this.design.mainTree.goals.push(goal)
+        this.closeConceptsContext()
+    }
+
+    // ---
+
+    // Handling adding justification
+    showClaims(goal: Goal) {
+        this.claimsContextOpen = true
+        this.goalDuringJustification = goal
     }
 
     justify(claim) {
         // this.goalDuringJustification.justify(claim)
     }
 
-    removeJustification(id: string){
+    // ---
+
+    removeJustification(id: string) {
         // this.goalDuringJustification.removeJustification(id)
     }
 
     closeConceptsContext() {
         this.conceptsContextOpen = false
-        this.goalDuringLinking = null
+        this.goalDuringExtension = null
     }
 
     closeJustificationsContext() {
         this.claimsContextOpen = false
-        this.goalDuringLinking = null
+        this.goalDuringExtension = null
     }
 }

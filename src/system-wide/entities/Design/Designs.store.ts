@@ -1,13 +1,9 @@
-import { makeObservable, observable } from 'mobx'
 import Design from './Design.model'
+import Store from "../../services/Store";
 
-class DesignsStore {
-    items = []
-
+class DesignsStore extends Store {
     constructor() {
-        makeObservable(this, {
-            items: observable
-        })
+        super()
     }
 
     add(item) {

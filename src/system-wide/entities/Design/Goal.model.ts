@@ -4,11 +4,13 @@ import {IGoal, IGoalProperties} from "./Goal.types";
 
 export default class Goal implements IGoal {
     id
+    parentId
     conceptId
     justificationIds
 
-    constructor({id, conceptId, justificationIds}: IGoalProperties, private conceptsStore, private justificationsStore) {
+    constructor({id, conceptId, parentId, justificationIds}: IGoalProperties, private conceptsStore, private justificationsStore) {
         this.id = id || v4()
+        this.parentId = parentId
         this.conceptId = conceptId
         this.justificationIds = justificationIds || []
 
@@ -23,7 +25,6 @@ export default class Goal implements IGoal {
         return this.concept.name
     }
 
-    // TODO - Implement getByIds method in new Store base class and extend specific stores
     get concept(){
         const concepts = this.conceptsStore.getByIds([this.conceptId])
         return concepts[0]

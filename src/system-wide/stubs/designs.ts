@@ -8,28 +8,14 @@ import conceptsStore from "../entities/Concept/Concepts.store";
 import claimsStore from "../entities/Claim/Claims.store";
 
 export function stub() {
-    const dcMeaning = new Goal({conceptId: meaning.id}, conceptsStore, claimsStore)
     const dcLife = new Goal({conceptId: life.id}, conceptsStore, claimsStore)
+    const dcMeaning = new Goal({conceptId: meaning.id, parentId: dcLife.id}, conceptsStore, claimsStore)
     // const claim = new Claim(debates[1])
 
     const design = new Design({
         id: '1',
         name: 'Life worth living',
-        mainTree: {
-            goals: [dcLife, dcMeaning],
-            rootId: dcLife.id,
-            decisionsHierarchy: [{
-                id: dcLife.id,
-                type: 'GOAL',
-                parentId: null,
-                childrenIds: [dcMeaning.id]
-            }, {
-                id: dcMeaning.id,
-                type: 'GOAL',
-                parentId: dcLife.id,
-                childrenIds: []
-            }]
-        }
+        mainTree: [dcLife, dcMeaning]
     })
 
     designsStore.add(design)

@@ -13,5 +13,6 @@ export type IGoal = {
 export type IGoalProperties = {
   id?: string
   conceptId: string
+  parentId?: string
   justificationIds?: string[]
 }

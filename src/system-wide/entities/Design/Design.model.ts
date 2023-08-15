@@ -1,12 +1,12 @@
-import {computed, makeObservable, observable} from 'mobx'
+import {makeObservable, observable} from 'mobx'
 import {v4} from 'uuid'
 import DesignTree from "./DesignTree";
-import {DesignTreeConstructor} from "./DesignTree.types";
+import Goal from "./Goal.model";
 
 type DesignConstructor = {
     id?: string
     name?: string
-    mainTree: DesignTreeConstructor
+    mainTree: Goal[]
 }
 
 export default class Design {
@@ -17,7 +17,7 @@ export default class Design {
     constructor({id, name, mainTree}: DesignConstructor) {
         this.id = id || v4()
         this.name = name || 'Default design name'
-        this.mainTree = new DesignTree(mainTree.goals, mainTree.decisionsHierarchy, mainTree.rootId)
+        this.mainTree = new DesignTree(mainTree)
         // this.sideTrees = sideGoals
 
         makeObservable(this, {
