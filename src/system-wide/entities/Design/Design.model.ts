@@ -6,7 +6,9 @@ import Goal from "./Goal.model";
 type DesignConstructor = {
     id?: string
     name?: string
-    mainTree: Goal[]
+    mainTree: {
+        goals: Goal[]
+    }
 }
 
 export default class Design {
@@ -17,7 +19,7 @@ export default class Design {
     constructor({id, name, mainTree}: DesignConstructor) {
         this.id = id || v4()
         this.name = name || 'Default design name'
-        this.mainTree = new DesignTree(mainTree)
+        this.mainTree = new DesignTree(mainTree.goals)
         // this.sideTrees = sideGoals
 
         makeObservable(this, {

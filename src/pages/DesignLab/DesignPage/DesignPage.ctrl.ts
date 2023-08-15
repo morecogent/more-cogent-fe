@@ -63,7 +63,7 @@ export default class DesignPageCtrl {
         const goal = new Goal({
             conceptId: concept.id,
             parentId: this.goalDuringExtension.id
-        }, conceptsStore, claimsStore)
+        })
         this.design.mainTree.goals.push(goal)
         this.closeConceptsContext()
     }

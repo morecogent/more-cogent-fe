@@ -6,6 +6,16 @@ import ClaimArgumentModel from './ClaimArgumentModel'
 import { v4 } from 'uuid'
 
 export default class ClaimModel {
+  id
+  name
+  nameArr
+  supportingArguments
+  opposingArguments
+  concepts
+  notGoals
+  relatedDebates
+  percentage
+
 
   constructor({id, name, nameArr, claimArguments = [], concepts = [], notGoals = [], relatedDebates = [], percentage}) {
     this.id = id || v4()

@@ -1,6 +1,8 @@
 import {action, computed, makeObservable, observable} from 'mobx'
 import {v4} from 'uuid'
 import {IGoal, IGoalProperties} from "./Goal.types";
+import conceptsStore from "../Concept/Concepts.store";
+import claimsStore from "../Claim/Claims.store";
 
 export default class Goal implements IGoal {
     id
@@ -8,7 +10,7 @@ export default class Goal implements IGoal {
     conceptId
     justificationIds
 
-    constructor({id, conceptId, parentId, justificationIds}: IGoalProperties, private conceptsStore, private justificationsStore) {
+    constructor({id, conceptId, parentId, justificationIds}: IGoalProperties) {
         this.id = id || v4()
         this.parentId = parentId
         this.conceptId = conceptId
@@ -26,12 +28,12 @@ export default class Goal implements IGoal {
     }
 
     get concept(){
-        const concepts = this.conceptsStore.getByIds([this.conceptId])
+        const concepts = conceptsStore.getByIds([this.conceptId])
         return concepts[0]
     }
 
     get justifications(){
-        return this.justificationsStore.getByIds(this.justificationIds)
+        return claimsStore.getByIds(this.justificationIds)
     }
 
 

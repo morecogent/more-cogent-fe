@@ -3,7 +3,7 @@ import Store from "../../services/Store";
 
 class DesignsStore extends Store {
     constructor() {
-        super()
+        super([], Design)
     }
 
     add(item) {

@@ -6,7 +6,7 @@ export default class DesignTree {
     goals
 
     constructor(goals: Goal[]) {
-        this.goals = goals
+        this.goals = goals.map(goal => new Goal(goal))
 
         makeObservable(this, {
             goals: observable,
@@ -16,8 +16,6 @@ export default class DesignTree {
 
     get asTree(): ChildrenHashTable<Goal[]> {
         const tree = adjacencyToChildren(this.goals)
-        console.log(this.goals)
-        console.log(tree)
         return tree
     }
 }

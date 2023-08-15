@@ -4,7 +4,7 @@ import Store from "../../services/Store";
 
 class ConceptsStore extends Store {
   constructor() {
-    super()
+    super([], ConceptModel)
   }
 
   add(item){

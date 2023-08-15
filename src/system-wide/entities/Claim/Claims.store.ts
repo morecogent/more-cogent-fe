@@ -3,7 +3,7 @@ import Store from "../../services/Store";
 
 class ClaimsStore extends Store {
     constructor() {
-      super()
+        super([], ClaimModel);
     }
 
     add(item) {
