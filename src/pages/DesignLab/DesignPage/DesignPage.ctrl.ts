@@ -2,9 +2,9 @@ import {action, computed, makeObservable, observable} from 'mobx'
 import designs from '../../../system-wide/entities/Design/Designs.store'
 import Goal from '../../../system-wide/entities/Design/Goal.model'
 import claimsStore from "../../../system-wide/entities/Claim/Claims.store"
-import {IDecision} from "../../../system-wide/entities/Decision/Decision.types";
 import Concept from "../../../system-wide/entities/Concept/Concept.model";
 import conceptsStore from "../../../system-wide/entities/Concept/Concepts.store";
+import ClaimModel from "../../../system-wide/entities/Claim/Claim.model";
 
 export default class DesignPageCtrl {
 
@@ -12,8 +12,7 @@ export default class DesignPageCtrl {
     items = designs.items
     conceptsContextOpen: boolean = false
     claimsContextOpen: boolean = false
-    goalDuringExtension: Goal = null
-    goalDuringJustification: Goal = null
+    selectedGoal: Goal = null
 
     constructor(id) {
         this.id = id
@@ -21,8 +20,7 @@ export default class DesignPageCtrl {
         makeObservable(this, {
             claimsContextOpen: observable,
             conceptsContextOpen: observable,
-            goalDuringExtension: observable,
-            goalDuringJustification: observable,
+            selectedGoal: observable,
             design: computed,
             justificationsForSelectedDecision: computed,
             showPossibleSubGoals: action,
@@ -43,15 +41,10 @@ export default class DesignPageCtrl {
     }
 
     get justificationsForSelectedDecision() {
-        return this.goalDuringJustification?.justifications
+        return this.selectedGoal?.justifications
     }
 
     // Handling adding decision
-    showPossibleSubGoals(goal: Goal) {
-        this.conceptsContextOpen = true
-        this.goalDuringExtension = goal
-    }
-
     createGoal(name) {
         const concept = new Concept({name})
         conceptsStore.add(concept)
@@ -62,7 +55,7 @@ export default class DesignPageCtrl {
     attachGoal(concept: Concept) {
         const goal = new Goal({
             conceptId: concept.id,
-            parentId: this.goalDuringExtension.id
+            parentId: this.selectedGoal.id
         })
         this.design.mainTree.goals.push(goal)
         this.closeConceptsContext()
@@ -70,29 +63,34 @@ export default class DesignPageCtrl {
 
     // ---
 
-    // Handling adding justification
-    showClaims(goal: Goal) {
-        this.claimsContextOpen = true
-        this.goalDuringJustification = goal
+    // Handling justification
+    justify(claim: ClaimModel) {
+        this.selectedGoal.justify(claim.id)
     }
 
-    justify(claim) {
-        // this.goalDuringJustification.justify(claim)
+    removeJustification(id: string) {
+        this.selectedGoal.removeJustification(id)
     }
 
     // ---
 
-    removeJustification(id: string) {
-        // this.goalDuringJustification.removeJustification(id)
+    showPossibleSubGoals(goal: Goal) {
+        this.conceptsContextOpen = true
+        this.selectedGoal = goal
+    }
+
+    showClaims(goal: Goal) {
+        this.selectedGoal = goal
+        this.claimsContextOpen = true
     }
 
     closeConceptsContext() {
         this.conceptsContextOpen = false
-        this.goalDuringExtension = null
+        this.selectedGoal = null
     }
 
     closeJustificationsContext() {
+        this.selectedGoal = null
         this.claimsContextOpen = false
-        this.goalDuringExtension = null
     }
 }

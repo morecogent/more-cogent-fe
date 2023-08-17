@@ -8,34 +8,37 @@ import Button from 'react-bootstrap/Button'
 import ConceptsList from '../../../domains/Concepts/components/ConceptsList/ConceptsList'
 import ClaimsList from '../../../domains/Claims/components/ClaimsList/ClaimsList'
 import ContextWindow from '../../../system-wide/components/ContextWindow/ContextWindow'
-import AddClaim from "../../../system-wide/entities/Claim/components/AddClaim";
+import AddClaim from "../../../system-wide/entities/Claim/components/AddClaim"
 import ConceptAdd from '../../../domains/Concepts/components/ConceptAdd/ConceptAdd'
 
-function Node({ goalsTree, goal, ctrl, isDuringLinking }) {
+function Node({ goalsTree, goal, ctrl }) {
     const Component = !goal.id ? Tree : TreeNode
-    const justifications = []
     const children = goalsTree.get(goal.id) || []
-    // const justifications = decision?.justifications || []
+
+    const Label = (
+        <Concept active={goal === ctrl.selectedGoal}
+                 unjustified={!goal.isJustified}>
+            <p>{goal.name}</p>
+            <Actions>
+                <Button onClick={() => ctrl.showPossibleSubGoals(goal)}>+</Button>
+                {
+                    !!goal.id && <Button
+                        onClick={() => ctrl.showClaims(goal)}>
+                        justifications: {goal.justificationsSize}
+                    </Button>
+                }
+            </Actions>
+        </Concept>
+    )
 
     return (
-        <Component label={
-            <Concept active={isDuringLinking} unjustified={justifications.length === 0}>
-                <p>{goal.name}</p>
-                <Actions>
-                    <Button onClick={() => ctrl.showPossibleSubGoals(goal)}>+</Button>
-                    {/*{*/}
-                    {/*    !root && <Button onClick={() => ctrl.showClaims(goalsTree.item)}>justifications: {justifications.length}</Button>*/}
-                    {/*}*/}
-                </Actions>
-            </Concept>
-        }>
+        <Component label={Label}>
             {
                 children.map((goal) => {
                     return <Node key={goal.id}
                                  goalsTree={goalsTree}
                                  goal={goal}
-                                 ctrl={ctrl}
-                                 isDuringLinking={goal === ctrl.goalDuringExtension}/>
+                                 ctrl={ctrl}/>
                 })
             }
         </Component>
@@ -53,7 +56,6 @@ function DesignPage({ ctrl }) {
             <Node goalsTree={goalsTree}
                   goal={rootGoal}
                   ctrl={ctrl}
-                  isDuringLinking={goalsTree.get('_') === ctrl.goalDuringExtension}
             />
 
             {/* ContextWindows */}
@@ -61,7 +63,7 @@ function DesignPage({ ctrl }) {
             <ContextWindow active={!!ctrl.conceptsContextOpen}
                            onClose={ctrl.closeConceptsContext.bind(ctrl)}>
                 <h3>Add a concept</h3>
-                <ConceptAdd onFinish={ctrl.createGoal.bind(ctrl)} />
+                <ConceptAdd onFinish={ctrl.createGoal.bind(ctrl)}/>
 
                 <ConceptsList actions={[{
                     variant: 'primary',
@@ -83,7 +85,7 @@ function DesignPage({ ctrl }) {
                     }]}/>
 
                 <h3>Add claim</h3>
-                <AddClaim />
+                <AddClaim/>
 
                 <h3>Unrelated claims</h3>
                 <ClaimsList

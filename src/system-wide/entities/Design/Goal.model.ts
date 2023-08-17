@@ -17,9 +17,13 @@ export default class Goal implements IGoal {
         this.justificationIds = justificationIds || []
 
         makeObservable(this, {
+            justificationIds: observable,
             name: computed,
             concept: computed,
-            justifications: computed
+            justifications: computed,
+            justificationsSize: computed,
+            isJustified: computed,
+            justify: action
         })
     }
 
@@ -36,11 +40,19 @@ export default class Goal implements IGoal {
         return claimsStore.getByIds(this.justificationIds)
     }
 
+    get justificationsSize(){
+        return this.justificationIds.length
+    }
 
+    get isJustified(){
+        return this.justificationsSize > 0
+    }
 
-    // Todo: Move out to DesignTree
-    // attachChild(goal: IGoal, justifications?: IClaim[]) {
-    //     const decision = new Decision({parent: this, child: goal, justifications})
-    //     this.children.push(decision)
-    // }
+    justify(claimId: string){
+        this.justificationIds.push(claimId)
+    }
+
+    removeJustification(id: string){
+        this.justificationIds = this.justificationIds.filter(itemId => itemId !== id)
+    }
 }
