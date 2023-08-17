@@ -1,13 +1,13 @@
-import ClaimModel from './Claim.model'
+import Claim from './Claim'
 import Store from "../../services/Store";
 
 class ClaimsStore extends Store {
     constructor() {
-        super([], ClaimModel);
+        super([], Claim);
     }
 
     add(item) {
-        this.items.push(new ClaimModel(item))
+        this.items.push(new Claim(item))
     }
 }
 

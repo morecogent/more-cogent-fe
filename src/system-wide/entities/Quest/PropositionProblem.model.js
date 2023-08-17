@@ -3,7 +3,7 @@ import { v4 } from 'uuid'
 import narrations from '../Story/Narrations.store'
 import claims from '../Claim/Claims.store'
 import NarrationModel from '../Story/Narration.model'
-import ClaimModel from '../Claim/Claim.model'
+import Claim from '../Claim/Claim'
 
 export default class PropositionProblemModel {
 
@@ -31,7 +31,7 @@ export default class PropositionProblemModel {
     get claims(){
         return claims.items
             .filter(claim => this.claimsIds.includes(claim.id))
-            .map(claim => new ClaimModel(claim))
+            .map(claim => new Claim(claim))
     }
 
 }

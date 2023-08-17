@@ -1,10 +1,10 @@
 import { action, computed, makeObservable, observable } from 'mobx'
 import claims from '../../Claims.store'
-import ClaimModel from '../../Claim.model'
+import Claim from '../../Claim'
 import ClaimArgumentModel from '../../ClaimArgumentModel'
 
 export default class Ctrl {
-    newClaim = new ClaimModel({concepts: []})
+    newClaim = new Claim({concepts: []})
 
     constructor({linkingTo, linkingAs, isCounter}) {
         this.linkingAs = linkingAs
@@ -35,7 +35,7 @@ export default class Ctrl {
             }
         }
 
-        this.newClaim = new ClaimModel({})
+        this.newClaim = new Claim({})
         onFinish()
     }
 }

@@ -5,7 +5,7 @@ import ConceptModel from '../Concept/Concept.model'
 import ClaimArgumentModel from './ClaimArgumentModel'
 import { v4 } from 'uuid'
 
-export default class ClaimModel {
+export default class Claim {
   id
   name
   nameArr

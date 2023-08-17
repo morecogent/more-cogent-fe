@@ -1,6 +1,6 @@
 import { action, computed, makeObservable, observable } from 'mobx'
 import claims from '../../Claims.store'
-import ClaimModel from '../../Claim.model'
+import Claim from '../../Claim'
 
 export default class Ctrl {
     //

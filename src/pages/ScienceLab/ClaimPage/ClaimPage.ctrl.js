@@ -1,6 +1,6 @@
 import { action, computed, makeObservable, observable } from 'mobx'
 import claims from '../../../system-wide/entities/Claim/Claims.store'
-import ClaimModel from '../../../system-wide/entities/Claim/Claim.model'
+import Claim from '../../../system-wide/entities/Claim/Claim'
 
 export default class ClaimPageCtrl {
 
@@ -20,7 +20,7 @@ export default class ClaimPageCtrl {
         if (this.id) {
             return claims.items.find(item => item.id === this.id)
         } else {
-            return new ClaimModel({})
+            return new Claim({})
         }
     }
 
