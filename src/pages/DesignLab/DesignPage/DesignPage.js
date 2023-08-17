@@ -12,7 +12,7 @@ import AddClaim from "../../../system-wide/entities/Claim/components/AddClaim"
 import ConceptAdd from '../../../domains/Concepts/components/ConceptAdd/ConceptAdd'
 
 function Node({ goalsTree, goal, ctrl }) {
-    const Component = !goal.id ? Tree : TreeNode
+    const Component = !goal.parentId ? Tree : TreeNode
     const children = goalsTree.get(goal.id) || []
 
     const Label = (
