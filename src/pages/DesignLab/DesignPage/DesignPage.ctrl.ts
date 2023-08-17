@@ -3,7 +3,6 @@ import designs from '../../../system-wide/entities/Design/Designs.store'
 import Goal from '../../../system-wide/entities/Design/Goal.model'
 import claimsStore from "../../../system-wide/entities/Claim/Claims.store"
 import Concept from "../../../system-wide/entities/Concept/Concept.model";
-import conceptsStore from "../../../system-wide/entities/Concept/Concepts.store";
 import Claim from "../../../system-wide/entities/Claim/Claim";
 
 export default class DesignPageCtrl {
@@ -45,12 +44,6 @@ export default class DesignPageCtrl {
     }
 
     // Handling adding decision
-    createGoal(name) {
-        const concept = new Concept({name})
-        conceptsStore.add(concept)
-
-        this.attachGoal(concept)
-    }
 
     attachGoal(concept: Concept) {
         const goal = new Goal({

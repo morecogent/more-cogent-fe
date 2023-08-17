@@ -20,6 +20,7 @@ export const Sidebar = styled.div`
   top: 0;
   right: 0;
   width: 30%;
-  min-height: 100vh;
+  height: 100%;
   border-left: 1px solid grey;
+  overflow-y: auto;
 `

@@ -1,33 +1,22 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import Ctrl from './DesignPage.ctrl'
-import { Actions, Concept, Wrapper } from './DesignPage.styles'
+import { Concept, Wrapper } from './DesignPage.styles'
 import { useParams } from 'react-router-dom'
 import { Tree, TreeNode } from 'react-organizational-chart'
-import Button from 'react-bootstrap/Button'
-import ConceptsList from '../../../domains/Concepts/components/ConceptsList/ConceptsList'
-import ClaimsList from '../../../domains/Claims/components/ClaimsList/ClaimsList'
 import ContextWindow from '../../../system-wide/components/ContextWindow/ContextWindow'
-import AddClaim from "../../../system-wide/entities/Claim/components/AddClaim"
-import ConceptAdd from '../../../domains/Concepts/components/ConceptAdd/ConceptAdd'
+import GoalContext from '../../../domains/Goal/components/GoalContext/GoalContext'
 
-function Node({ goalsTree, goal, ctrl }) {
+const Node = observer(({ goalsTree, goal, ctrl }) => {
     const Component = !goal.parentId ? Tree : TreeNode
     const children = goalsTree.get(goal.id) || []
 
     const Label = (
         <Concept active={goal === ctrl.selectedGoal}
-                 unjustified={!goal.isJustified}>
+                 unjustified={!goal.isJustified}
+                 onClick={() => ctrl.showPossibleSubGoals(goal)}
+        >
             <p>{goal.name}</p>
-            <Actions>
-                <Button onClick={() => ctrl.showPossibleSubGoals(goal)}>+</Button>
-                {
-                    !!goal.id && <Button
-                        onClick={() => ctrl.showClaims(goal)}>
-                        justifications: {goal.justificationsSize}
-                    </Button>
-                }
-            </Actions>
         </Concept>
     )
 
@@ -43,7 +32,7 @@ function Node({ goalsTree, goal, ctrl }) {
             }
         </Component>
     )
-}
+})
 
 function DesignPage({ ctrl }) {
 
@@ -62,39 +51,9 @@ function DesignPage({ ctrl }) {
 
             <ContextWindow active={!!ctrl.conceptsContextOpen}
                            onClose={ctrl.closeConceptsContext.bind(ctrl)}>
-                <h3>Add a concept</h3>
-                <ConceptAdd onFinish={ctrl.createGoal.bind(ctrl)}/>
-
-                <ConceptsList actions={[{
-                    variant: 'primary',
-                    label: 'Add',
-                    fn: ctrl.attachGoal.bind(ctrl)
-                }]}/>
-            </ContextWindow>
-
-            <ContextWindow active={!!ctrl.claimsContextOpen}
-                           onClose={ctrl.closeJustificationsContext.bind(ctrl)}>
-
-                <h3>Justifications</h3>
-                <ClaimsList
-                    items={ctrl.justificationsForSelectedDecision}
-                    actions={[{
-                        variant: 'danger',
-                        label: 'Remove',
-                        fn: (claim) => ctrl.removeJustification(claim.id)
-                    }]}/>
-
-                <h3>Add claim</h3>
-                <AddClaim/>
-
-                <h3>Unrelated claims</h3>
-                <ClaimsList
-                    items={ctrl.claims}
-                    actions={[{
-                        variant: 'primary',
-                        label: 'Add',
-                        fn: ctrl.justify.bind(ctrl)
-                    }]}/>
+                <GoalContext goal={ctrl.selectedGoal}
+                             design={ctrl.design}
+                />
             </ContextWindow>
 
             {/* END: ContextWindows */}
