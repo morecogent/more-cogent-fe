@@ -1,4 +1,4 @@
-import Claim from './Claim'
+import Claim from './Claim.model'
 import Store from "../../services/Store";
 
 class ClaimsStore extends Store {

@@ -3,7 +3,7 @@ import { v4 } from 'uuid'
 import narrations from '../Story/Narrations.store'
 import claims from '../Claim/Claims.store'
 import NarrationModel from '../Story/Narration.model'
-import Claim from '../Claim/Claim'
+import Claim from '../Claim/Claim.model'
 
 export default class PropositionProblemModel {
 
