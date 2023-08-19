@@ -49,12 +49,16 @@ function DesignPage({ ctrl }) {
 
             {/* ContextWindows */}
 
-            <ContextWindow active={!!ctrl.conceptsContextOpen}
-                           onClose={ctrl.closeConceptsContext.bind(ctrl)}>
-                <GoalContext goal={ctrl.selectedGoal}
-                             design={ctrl.design}
-                />
-            </ContextWindow>
+            {
+                ctrl.selectedGoal &&
+                <ContextWindow active={!!ctrl.conceptsContextOpen}
+                               onClose={ctrl.closeConceptsContext.bind(ctrl)}>
+                    <GoalContext goal={ctrl.selectedGoal}
+                                 children={goalsTree.get(ctrl.selectedGoal.id)}
+                                 design={ctrl.design}
+                    />
+                </ContextWindow>
+            }
 
             {/* END: ContextWindows */}
         </Wrapper>

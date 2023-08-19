@@ -4,6 +4,7 @@ import Goal from '../../../system-wide/entities/Design/Goal.model'
 import claimsStore from "../../../system-wide/entities/Claim/Claims.store"
 import Concept from "../../../system-wide/entities/Concept/Concept.model";
 import Claim from "../../../system-wide/entities/Claim/Claim.model";
+import conceptsStore from "../../../system-wide/entities/Concept/Concepts.store";
 
 export default class DesignPageCtrl {
 

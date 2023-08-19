@@ -11,23 +11,31 @@ export default class GoalContextCtrl {
 
     goal: Goal
     design: Design
+    children: Goal[]
     items = designs.items
 
-    constructor(goal, design) {
+    constructor(goal, design, children: Goal[]) {
         this.goal = goal
         this.design = design
+        this.children = children || []
 
         makeObservable(this, {
             claims: computed,
+            concepts: computed,
             createSubGoal: action,
             attachGoal: action,
             justify: action,
             removeJustification: action,
+            removeGoal: action,
         })
     }
 
     get claims() {
         return claimsStore.items
+    }
+
+    get concepts(){
+        return conceptsStore.items
     }
 
     // Handling adding decision
@@ -44,6 +52,10 @@ export default class GoalContextCtrl {
             parentId: this.goal.id
         })
         this.design.mainTree.goals.push(goal)
+    }
+
+    removeGoal(goal: Goal) {
+        this.design.mainTree.removeGoal(goal.id)
     }
 
     // ---

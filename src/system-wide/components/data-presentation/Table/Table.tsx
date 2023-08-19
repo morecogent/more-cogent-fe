@@ -24,11 +24,14 @@ function Table({schema, data, actions = []}: ITableProps) {
                     data.map(item => (
                         <tr key={item.id}>
                             {
-                                schema.map(({valueKey, fn}: Attribute) => (
-                                    <td key={valueKey}>
-                                        {fn ? fn(item[valueKey]) : item[valueKey]}
-                                    </td>
-                                ))
+                                schema.map(({label, propertyTransform, fn}: Attribute) => {
+                                    const property = propertyTransform(item)
+                                    return (
+                                        <td key={label}>
+                                            {fn ? fn(property) : property}
+                                        </td>
+                                    )
+                                })
                             }
                             <td>
                                 {

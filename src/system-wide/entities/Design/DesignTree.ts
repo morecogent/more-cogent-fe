@@ -1,6 +1,6 @@
 import Goal from "./Goal.model";
 import {adjacencyToChildren, ChildrenHashTable} from "../../functions/hierarchical.functions";
-import {computed, makeObservable, observable} from "mobx";
+import {action, computed, makeObservable, observable} from "mobx";
 
 export default class DesignTree {
     goals
@@ -10,12 +10,17 @@ export default class DesignTree {
 
         makeObservable(this, {
             goals: observable,
-            asTree: computed
+            asTree: computed,
+            removeGoal: action
         })
     }
 
     get asTree(): ChildrenHashTable<Goal[]> {
         const tree = adjacencyToChildren(this.goals)
         return tree
+    }
+
+    removeGoal(id){
+        this.goals = this.goals.filter(goal => goal.id !== id)
     }
 }

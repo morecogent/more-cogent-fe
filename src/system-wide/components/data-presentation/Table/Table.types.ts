@@ -1,6 +1,7 @@
 export type Attribute = {
     label: string
-    valueKey: string
+    // Need a better name - it picks a property from every item
+    propertyTransform: (item: any) => any
     fn?: (item: any) => any
 }
 

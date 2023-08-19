@@ -4,7 +4,7 @@ import Table from "../../../../system-wide/components/data-presentation/Table/Ta
 
 function ClaimsList({items, actions = []}) {
     const tableSchema = [
-        { label: 'Name', valueKey: 'name' },
+        { label: 'Name', propertyTransform: item => item.name },
     ]
 
     if(!items.length){

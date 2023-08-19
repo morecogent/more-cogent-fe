@@ -1,5 +1,5 @@
 import React from 'react'
-import {Sidebar, Wrapper} from './ContextWindow.styles'
+import {Sidebar, ChildrenWrapper} from './ContextWindow.styles'
 import Button from 'react-bootstrap/Button'
 
 interface IContextWindowProps {
@@ -15,7 +15,9 @@ const ContextWindow = ({active, children, onClose}: IContextWindowProps) => {
     return (
         <Sidebar>
             <Button onClick={onClose}>x</Button>
-            {children}
+            <ChildrenWrapper>
+                {children}
+            </ChildrenWrapper>
         </Sidebar>
     )
 }
