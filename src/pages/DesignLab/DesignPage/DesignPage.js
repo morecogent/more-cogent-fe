@@ -6,13 +6,15 @@ import { useParams } from 'react-router-dom'
 import { Tree, TreeNode } from 'react-organizational-chart'
 import ContextWindow from '../../../system-wide/components/ContextWindow/ContextWindow'
 import GoalContext from '../../../domains/Goal/components/GoalContext/GoalContext'
+import Activity from '../../../domains/Activities/models/Activity.model'
 
 const Node = observer(({ childrenHashTable, item, ctrl }) => {
     const Component = !item.parentId ? Tree : TreeNode
     const children = childrenHashTable.get(item.id) || []
 
     const Label = (
-        <DesignTreeItem active={item === ctrl.selectedItem}
+        <DesignTreeItem isActive={item === ctrl.selectedItem}
+                        isActivity={item instanceof Activity}
                         unjustified={!item.isJustified}
                         onClick={() => ctrl.selectItem(item)}
         >

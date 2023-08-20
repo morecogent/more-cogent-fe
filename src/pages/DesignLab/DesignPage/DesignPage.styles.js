@@ -16,8 +16,14 @@ export const DesignTreeItem = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
-  ${({active}) => active && 'background-color: #ddd;'}
+
+  background-color: ${({isActive, isActivity}) => {
+    if(isActivity) {
+      return isActive ? '#f1d2ae' : '#f9ecec'
+    } else {
+      return isActive ? '#f1d2ae' : '#FFF'
+    }
+  }};
 `
 
 export const Actions = styled.div`
