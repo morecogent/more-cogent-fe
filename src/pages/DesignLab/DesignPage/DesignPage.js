@@ -1,7 +1,7 @@
 import React from 'react'
 import { observer } from 'mobx-react'
 import Ctrl from './DesignPage.ctrl'
-import { Concept, Wrapper } from './DesignPage.styles'
+import { DesignTreeItem, Wrapper } from './DesignPage.styles'
 import { useParams } from 'react-router-dom'
 import { Tree, TreeNode } from 'react-organizational-chart'
 import ContextWindow from '../../../system-wide/components/ContextWindow/ContextWindow'
@@ -12,12 +12,12 @@ const Node = observer(({ childrenHashTable, item, ctrl }) => {
     const children = childrenHashTable.get(item.id) || []
 
     const Label = (
-        <Concept active={item === ctrl.selectedItem}
-                 unjustified={!item.isJustified}
-                 onClick={() => ctrl.selectItem(item)}
+        <DesignTreeItem active={item === ctrl.selectedItem}
+                        unjustified={!item.isJustified}
+                        onClick={() => ctrl.selectItem(item)}
         >
             <p>{item.name}</p>
-        </Concept>
+        </DesignTreeItem>
     )
 
     return (

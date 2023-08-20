@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
 `
 
-export const Concept = styled.div`
+export const DesignTreeItem = styled.div`
   cursor: pointer;
   border: 1px solid ${({unjustified}) => unjustified ? '#F66' : '#c2c2c2'};
   padding: 15px;
