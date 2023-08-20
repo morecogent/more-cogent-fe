@@ -7,16 +7,21 @@ import ClaimsList from "../../../Claims/components/ClaimsList/ClaimsList";
 import AddClaim from "../../../../system-wide/entities/Claim/components/AddClaim";
 import {Tabs, Tab} from "react-bootstrap";
 import GoalsList from "../GoalsList/GoalsList";
+import ConceptEditName from "../../../Concepts/components/ConceptEditName/ConceptEditName";
 
 const GoalContext = observer(({ctrl}) => {
     return (
         <div>
             <Tabs
-                defaultActiveKey="justifications"
+                defaultActiveKey="overview"
                 className="mb-3"
             >
+                <Tab eventKey="overview" title="Overview">
+                    <h5>Goal overview</h5>
+                    <ConceptEditName name={ctrl.goal.concept.name} onChange={ctrl.changeConceptName.bind(ctrl)} />
+                </Tab>
                 <Tab eventKey="justifications" title="Justifications">
-                    <h4>Existing Justifications</h4>
+                    <h5>Existing Justifications</h5>
                     <ClaimsList
                         items={ctrl.goal.justifications}
                         actions={[{
@@ -25,7 +30,8 @@ const GoalContext = observer(({ctrl}) => {
                             fn: (claim) => ctrl.removeJustification(claim.id)
                         }]}/>
 
-                    <h4>Add a Justification</h4>
+                    <hr/>
+                    <h5>Add a Justification</h5>
                     <Tabs
                         defaultActiveKey="existingClaim"
                         className="mb-3"
@@ -40,14 +46,14 @@ const GoalContext = observer(({ctrl}) => {
                                 }]}/>
                         </Tab>
                         <Tab eventKey="newClaim" title="Add as a new Claim">
-                            <AddClaim/>
+                            <AddClaim onAdd={ctrl.justify.bind(ctrl)}/>
                         </Tab>
                     </Tabs>
 
                 </Tab>
                 <Tab eventKey="children" title="Children">
 
-                    <h4>Existing children</h4>
+                    <h5>Existing children</h5>
                     <GoalsList
                         items={ctrl.children}
                         actions={[{
@@ -56,7 +62,8 @@ const GoalContext = observer(({ctrl}) => {
                             fn: ctrl.removeGoal.bind(ctrl)
                         }]}/>
 
-                    <h4>Add a child</h4>
+                    <hr/>
+                    <h5>Add a child</h5>
                     <Tabs
                         defaultActiveKey="existingConcept"
                         className="mb-3"

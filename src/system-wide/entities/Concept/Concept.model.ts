@@ -1,4 +1,4 @@
-import { makeObservable, observable } from 'mobx'
+import {action, makeObservable, observable} from 'mobx'
 import { v4 } from 'uuid'
 import {IConceptConstructor} from "./Concept.types"
 
@@ -19,7 +19,12 @@ export default class Concept {
 
     makeObservable(this, {
       name: observable,
-      color: observable
+      color: observable,
+      changeName: action
     })
+  }
+
+  changeName(name: string){
+    this.name = name
   }
 }

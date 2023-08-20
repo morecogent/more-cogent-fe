@@ -34,8 +34,11 @@ const GlobalStyle = createGlobalStyle`
     font-size: 16px;
 
     input, textarea {
-      font-weight: 100 !important;
+      font-weight: 400 !important;
     }
+  }
+  h5 {
+    margin: 30px 0 20px !important;
   }
 `
 

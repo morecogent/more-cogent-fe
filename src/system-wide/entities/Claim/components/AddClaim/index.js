@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 import { observer } from 'mobx-react'
 import PropTypes from 'prop-types'
 
-const AddClaim = ({ onFinish, linkingTo, linkingAs, isCounter }) => {
+const AddClaim = ({ onAdd, linkingTo, linkingAs, isCounter }) => {
     const [ctrl] = useState(new Ctrl({linkingTo, linkingAs, isCounter}))
 
     return (
@@ -18,13 +18,13 @@ const AddClaim = ({ onFinish, linkingTo, linkingAs, isCounter }) => {
                               value={ctrl.newClaim.name}
                               onChange={e => ctrl.changeName(e.target.value)}/>
             </Form.Group>
-            <Button onClick={() => ctrl.addClaim(onFinish)}>Add a claim</Button>
+            <Button onClick={() => ctrl.addClaim(onAdd)}>Add a claim</Button>
         </Form>
     )
 }
 
 AddClaim.propTypes = {
-    onFinish: PropTypes.func,
+    onAdd: PropTypes.func,
     linkingTo: PropTypes.string,
     linkingAs: PropTypes.oneOf(['CONCLUSION', 'PREMISE']),
     isCounter: PropTypes.bool

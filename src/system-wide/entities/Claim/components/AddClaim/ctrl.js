@@ -22,7 +22,7 @@ export default class Ctrl {
         this.newClaim.name = value
     }
 
-    addClaim = (onFinish) => {
+    addClaim = (onAdd) => {
         claims.add(this.newClaim)
 
         if(this.linkingAs === 'PREMISE'){
@@ -35,7 +35,8 @@ export default class Ctrl {
             }
         }
 
+        onAdd(this.newClaim)
+
         this.newClaim = new Claim({})
-        onFinish()
     }
 }

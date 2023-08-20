@@ -27,6 +27,7 @@ export default class GoalContextCtrl {
             justify: action,
             removeJustification: action,
             removeGoal: action,
+            changeConceptName: action,
         })
     }
 
@@ -36,6 +37,10 @@ export default class GoalContextCtrl {
 
     get concepts(){
         return conceptsStore.items
+    }
+
+    changeConceptName(name: string){
+        this.goal.concept.changeName(name)
     }
 
     // Handling adding decision
