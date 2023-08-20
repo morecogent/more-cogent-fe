@@ -25,10 +25,3 @@ export const DesignTreeItem = styled.div`
     }
   }};
 `
-
-export const Actions = styled.div`
-  display: flex;
-  width: 100%;
-  grid-gap: 10px;
-  margin-bottom: 10px;
-`
