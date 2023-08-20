@@ -12,9 +12,9 @@ const Node = observer(({ childrenHashTable, item, ctrl }) => {
     const children = childrenHashTable.get(item.id) || []
 
     const Label = (
-        <Concept active={item === ctrl.selectedGoal}
+        <Concept active={item === ctrl.selectedItem}
                  unjustified={!item.isJustified}
-                 onClick={() => ctrl.showPossibleSubGoals(item)}
+                 onClick={() => ctrl.selectItem(item)}
         >
             <p>{item.name}</p>
         </Concept>
@@ -50,11 +50,11 @@ function DesignPage({ ctrl }) {
             {/* ContextWindows */}
 
             {
-                ctrl.selectedGoal &&
-                <ContextWindow active={!!ctrl.conceptsContextOpen}
-                               onClose={ctrl.closeConceptsContext.bind(ctrl)}>
-                    <GoalContext item={ctrl.selectedGoal}
-                                 children={childrenHashTable.get(ctrl.selectedGoal.id)}
+                ctrl.selectedItem &&
+                <ContextWindow active={!!ctrl.itemContextOpen}
+                               onClose={ctrl.closeItemContext.bind(ctrl)}>
+                    <GoalContext item={ctrl.selectedItem}
+                                 children={childrenHashTable.get(ctrl.selectedItem.id)}
                                  design={ctrl.design}
                     />
                 </ContextWindow>

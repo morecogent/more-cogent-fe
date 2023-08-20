@@ -2,31 +2,26 @@ import {action, computed, makeObservable, observable} from 'mobx'
 import designs from '../../../system-wide/entities/Design/Designs.store'
 import Goal from '../../../system-wide/entities/Design/Goal.model'
 import claimsStore from "../../../system-wide/entities/Claim/Claims.store"
-import Concept from "../../../system-wide/entities/Concept/Concept.model";
-import Claim from "../../../system-wide/entities/Claim/Claim.model";
-import conceptsStore from "../../../system-wide/entities/Concept/Concepts.store";
+import Activity from "../../../domains/Activities/models/Activity.model";
 
 export default class DesignPageCtrl {
 
     id: string
     items = designs.items
-    conceptsContextOpen: boolean = false
+    itemContextOpen: boolean = false
     claimsContextOpen: boolean = false
-    selectedGoal: Goal = null
+    selectedItem: Goal | Activity = null
 
     constructor(id) {
         this.id = id
 
         makeObservable(this, {
             claimsContextOpen: observable,
-            conceptsContextOpen: observable,
-            selectedGoal: observable,
+            itemContextOpen: observable,
+            selectedItem: observable,
             design: computed,
             justificationsForSelectedDecision: computed,
-            showPossibleSubGoals: action,
-            attachGoal: action,
-            justify: action,
-            removeJustification: action,
+            selectItem: action
         })
     }
 
@@ -41,50 +36,17 @@ export default class DesignPageCtrl {
     }
 
     get justificationsForSelectedDecision() {
-        return this.selectedGoal?.justifications
+        return this.selectedItem?.justifications
     }
 
-    // Handling adding decision
 
-    attachGoal(concept: Concept) {
-        const goal = new Goal({
-            conceptId: concept.id,
-            parentId: this.selectedGoal.id
-        })
-        this.design.mainTree.goals.push(goal)
-        this.closeConceptsContext()
+    selectItem(goal: Goal) {
+        this.itemContextOpen = true
+        this.selectedItem = goal
     }
 
-    // ---
-
-    // Handling justification
-    justify(claim: Claim) {
-        this.selectedGoal.justify(claim.id)
-    }
-
-    removeJustification(id: string) {
-        this.selectedGoal.removeJustification(id)
-    }
-
-    // ---
-
-    showPossibleSubGoals(goal: Goal) {
-        this.conceptsContextOpen = true
-        this.selectedGoal = goal
-    }
-
-    showClaims(goal: Goal) {
-        this.selectedGoal = goal
-        this.claimsContextOpen = true
-    }
-
-    closeConceptsContext() {
-        this.conceptsContextOpen = false
-        this.selectedGoal = null
-    }
-
-    closeJustificationsContext() {
-        this.selectedGoal = null
-        this.claimsContextOpen = false
+    closeItemContext() {
+        this.itemContextOpen = false
+        this.selectedItem = null
     }
 }
