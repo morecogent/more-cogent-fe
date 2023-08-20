@@ -8,6 +8,7 @@ import AddClaim from "../../../../system-wide/entities/Claim/components/AddClaim
 import {Tabs, Tab} from "react-bootstrap";
 import GoalsList from "../GoalsList/GoalsList";
 import ConceptEditName from "../../../Concepts/components/ConceptEditName/ConceptEditName";
+import ActivityAdd from "../../../Activities/components/ActivityAdd/ActivityAdd";
 
 const GoalContext = observer(({ctrl}) => {
     return (
@@ -18,12 +19,12 @@ const GoalContext = observer(({ctrl}) => {
             >
                 <Tab eventKey="overview" title="Overview">
                     <h5>Goal overview</h5>
-                    <ConceptEditName name={ctrl.goal.concept.name} onChange={ctrl.changeConceptName.bind(ctrl)} />
+                    <ConceptEditName name={ctrl.name} onChange={ctrl.changeName.bind(ctrl)} />
                 </Tab>
                 <Tab eventKey="justifications" title="Justifications">
                     <h5>Existing Justifications</h5>
                     <ClaimsList
-                        items={ctrl.goal.justifications}
+                        items={ctrl.item.justifications}
                         actions={[{
                             variant: 'danger',
                             label: 'Remove',
@@ -59,7 +60,7 @@ const GoalContext = observer(({ctrl}) => {
                         actions={[{
                             variant: 'danger',
                             label: 'Remove',
-                            fn: ctrl.removeGoal.bind(ctrl)
+                            fn: ctrl.removeItem.bind(ctrl)
                         }]}/>
 
                     <hr/>
@@ -77,8 +78,11 @@ const GoalContext = observer(({ctrl}) => {
                                     fn: ctrl.attachGoal.bind(ctrl)
                                 }]}/>
                         </Tab>
-                        <Tab eventKey="newClaim" title="Add a new Concept">
+                        <Tab eventKey="newClaim" title="Add a Concept">
                             <ConceptAdd onFinish={ctrl.createSubGoal.bind(ctrl)}/>
+                        </Tab>
+                        <Tab eventKey="newActivity" title="Add an Activity">
+                            <ActivityAdd onFinish={ctrl.createActivity.bind(ctrl)}/>
                         </Tab>
                     </Tabs>
                 </Tab>
@@ -87,8 +91,8 @@ const GoalContext = observer(({ctrl}) => {
     )
 })
 
-function Wrapper({goal, design, children}) {
-    const ctrl = new Ctrl(goal, design, children)
+function Wrapper({item, design, children}) {
+    const ctrl = new Ctrl(item, design, children)
 
     return <GoalContext ctrl={ctrl}/>
 }

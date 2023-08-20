@@ -11,7 +11,7 @@ interface IStore {
 export default abstract class Store implements IStore {
     items: any[]
 
-    constructor(items = [], Model) {
+    protected constructor(items = [], Model) {
         const parentClassName = Object.getPrototypeOf(this).constructor.name
 
         const storedCollection = Store.rehydrateStorage(`cogent.collections.${parentClassName}`)

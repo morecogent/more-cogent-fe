@@ -7,26 +7,26 @@ import { Tree, TreeNode } from 'react-organizational-chart'
 import ContextWindow from '../../../system-wide/components/ContextWindow/ContextWindow'
 import GoalContext from '../../../domains/Goal/components/GoalContext/GoalContext'
 
-const Node = observer(({ goalsTree, goal, ctrl }) => {
-    const Component = !goal.parentId ? Tree : TreeNode
-    const children = goalsTree.get(goal.id) || []
+const Node = observer(({ childrenHashTable, item, ctrl }) => {
+    const Component = !item.parentId ? Tree : TreeNode
+    const children = childrenHashTable.get(item.id) || []
 
     const Label = (
-        <Concept active={goal === ctrl.selectedGoal}
-                 unjustified={!goal.isJustified}
-                 onClick={() => ctrl.showPossibleSubGoals(goal)}
+        <Concept active={item === ctrl.selectedGoal}
+                 unjustified={!item.isJustified}
+                 onClick={() => ctrl.showPossibleSubGoals(item)}
         >
-            <p>{goal.name}</p>
+            <p>{item.name}</p>
         </Concept>
     )
 
     return (
         <Component label={Label}>
             {
-                children.map((goal) => {
-                    return <Node key={goal.id}
-                                 goalsTree={goalsTree}
-                                 goal={goal}
+                children.map((item) => {
+                    return <Node key={item.id}
+                                 childrenHashTable={childrenHashTable}
+                                 item={item}
                                  ctrl={ctrl}/>
                 })
             }
@@ -36,14 +36,14 @@ const Node = observer(({ goalsTree, goal, ctrl }) => {
 
 function DesignPage({ ctrl }) {
 
-    const goalsTree = ctrl.design.mainTree.asTree
-    const rootGoal = goalsTree.get('_')
+    const childrenHashTable = ctrl.design.mainTree.asHashTable
+    const rootItem = childrenHashTable.get('_')
 
     return (
         <Wrapper>
             <h3>Title: {ctrl.design?.name}</h3>
-            <Node goalsTree={goalsTree}
-                  goal={rootGoal}
+            <Node childrenHashTable={childrenHashTable}
+                  item={rootItem}
                   ctrl={ctrl}
             />
 
@@ -53,8 +53,8 @@ function DesignPage({ ctrl }) {
                 ctrl.selectedGoal &&
                 <ContextWindow active={!!ctrl.conceptsContextOpen}
                                onClose={ctrl.closeConceptsContext.bind(ctrl)}>
-                    <GoalContext goal={ctrl.selectedGoal}
-                                 children={goalsTree.get(ctrl.selectedGoal.id)}
+                    <GoalContext item={ctrl.selectedGoal}
+                                 children={childrenHashTable.get(ctrl.selectedGoal.id)}
                                  design={ctrl.design}
                     />
                 </ContextWindow>
