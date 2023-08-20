@@ -24,6 +24,7 @@ export default class GoalContextCtrl {
         makeObservable(this, {
             claims: computed,
             concepts: computed,
+            isGoal: computed,
             createSubGoal: action,
             createActivity: action,
             attachGoal: action,
@@ -48,6 +49,10 @@ export default class GoalContextCtrl {
         }
 
         return this.item.name
+    }
+
+    get isGoal(){
+        return this.item instanceof Goal
     }
 
     changeName(name: string){

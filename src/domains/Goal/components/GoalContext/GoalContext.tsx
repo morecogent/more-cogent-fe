@@ -19,7 +19,7 @@ const GoalContext = observer(({ctrl}) => {
             >
                 <Tab eventKey="overview" title="Overview">
                     <h5>Goal overview</h5>
-                    <ConceptEditName name={ctrl.name} onChange={ctrl.changeName.bind(ctrl)} />
+                    <ConceptEditName name={ctrl.name} onChange={ctrl.changeName.bind(ctrl)}/>
                 </Tab>
                 <Tab eventKey="justifications" title="Justifications">
                     <h5>Existing Justifications</h5>
@@ -65,22 +65,27 @@ const GoalContext = observer(({ctrl}) => {
 
                     <hr/>
                     <h5>Add a child</h5>
+
                     <Tabs
-                        defaultActiveKey="existingConcept"
+                        defaultActiveKey={ctrl.isGoal ? 'existingConcept' : 'newActivity'}
                         className="mb-3"
                     >
-                        <Tab eventKey="existingConcept" title="Add existing Concepts">
-                            <ConceptsList
-                                items={ctrl.concepts}
-                                actions={[{
-                                    variant: 'primary',
-                                    label: 'Add',
-                                    fn: ctrl.attachGoal.bind(ctrl)
-                                }]}/>
-                        </Tab>
-                        <Tab eventKey="newClaim" title="Add a Concept">
-                            <ConceptAdd onFinish={ctrl.createSubGoal.bind(ctrl)}/>
-                        </Tab>
+                        {
+                            !!ctrl.isGoal && <Tab eventKey="existingConcept" title="Add existing Concepts">
+                                <ConceptsList
+                                    items={ctrl.concepts}
+                                    actions={[{
+                                        variant: 'primary',
+                                        label: 'Add',
+                                        fn: ctrl.attachGoal.bind(ctrl)
+                                    }]}/>
+                            </Tab>
+                        }
+                        {
+                            !!ctrl.isGoal && <Tab eventKey="newClaim" title="Add a Concept">
+                                <ConceptAdd onFinish={ctrl.createSubGoal.bind(ctrl)}/>
+                            </Tab>
+                        }
                         <Tab eventKey="newActivity" title="Add an Activity">
                             <ActivityAdd onFinish={ctrl.createActivity.bind(ctrl)}/>
                         </Tab>
