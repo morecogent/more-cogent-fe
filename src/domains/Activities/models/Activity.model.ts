@@ -16,7 +16,6 @@ export default class Activity extends DesignTreeItem implements IActivity {
     name
     type
 
-
     constructor({id, name, parentId, justificationIds, type}: ActivityProperties) {
         super({id, parentId, justificationIds})
         this.name = name
