@@ -5,11 +5,13 @@ import ConceptsList from '../../../domains/Concepts/components/ConceptsList/Conc
 
 function ConceptsPage() {
     return (
-        <ConceptsList actions={[{
-            variant: 'danger',
-            label: 'Delete',
-            function: ctrl.onDelete
-        }]}/>
+        <ConceptsList
+            items={ctrl.items}
+            actions={[{
+                variant: 'danger',
+                label: 'Delete',
+                function: ctrl.onDelete
+            }]}/>
     )
 }
 
